@@ -28,6 +28,6 @@ public class HomeController {
 		for(User user : userList){
 			log.info("User:"+user.getUsername());
 		}
-		return "index";
+		return "home";
 	}
 }
