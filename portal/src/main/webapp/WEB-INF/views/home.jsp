@@ -6,9 +6,12 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="resources/css/bootstrap-flatly.min.css">
 <link rel="stylesheet" href="resources/css/font-awesome.min.css">
+<link rel="stylesheet" href="resources/css/bootstrap-social.css">
 <link href='https://fonts.googleapis.com/css?family=Questrial'
 	rel='stylesheet' type='text/css'>
 <script src="resources/js/jquery.min.js"></script>
+
+
 <link rel="stylesheet" href="resources/css/custom.css">
 <title>Portal</title>
 </head>
@@ -148,147 +151,171 @@
 				<span class="sr-only">Next</span>
 			</a>
 		</div>
+	</div>
+	<!-- /.carousel -->
+
+
+	<!-- Content -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9" style="border-right: 1px solid #e0e0e0;">
+				<h3>Technology at your finger tips!</h3>
+				<p>TEAM Consultants is a national provider of technology
+					resource solutions to small and mid-size companies including
+					sourcing for federal and state agencies. From single development
+					resource needs to staffing entire project teams.</p>
+				<p>At TEAM Consultants, we believe that hard work is the key to
+					sustainable and user friendly technology. By understanding what
+					drives our specialty industries, becoming involved in our
+					communities on a professional and personal basis, following a
+					disciplined process of identifying quality candidates, partnering
+					with employers to understand their core business and their
+					employment requirements, and delivering exceptional service, we
+					achieve great results for all.</p>
+
+				<h3>Company</h3>
+				<p>What sets Team Consultants apart is not only our commitment
+					to our clients, but a commitment to every aspect of our business,
+					our employees, and our community.</p>
+			</div>
+
+			<div class="col-md-3">
+				<h3>Tech Partners</h3>
+
+				<table class="table">
+					<tr>
+						<td><img src="resources/img/microsoft.png"
+							style="height: 40px;"></td>
+						<td><img src="resources/img/techdata.png"
+							style="height: 40px;"></td>
+					</tr>
+					<tr>
+						<td><img src="resources/img/dell.png" style="height: 40px;"></td>
+						<td><img src="resources/img/cisco.png" style="height: 40px;"></td>
+					</tr>
+					<tr>
+						<td><img src="resources/img/toshiba.png"
+							style="height: 40px;"></td>
+						<td><img src="resources/img/force.png" style="height: 40px;"></td>
+					</tr>
+				</table>
+
+			</div>
+
 		</div>
-			<!-- /.carousel -->
+	</div>
 
 
-			<!-- Content -->
-			<div class="container">
-				<div class="row">
-					<div class="col-md-9" style="border-right: 1px solid #e0e0e0;">
-						<h3>Technology at your finger tips!</h3>
-						<p>TEAM Consultants is a national provider of technology
-							resource solutions to small and mid-size companies including
-							sourcing for federal and state agencies. From single development
-							resource needs to staffing entire project teams.</p>
-						<p>At TEAM Consultants, we believe that hard work is the key
-							to sustainable and user friendly technology. By understanding
-							what drives our specialty industries, becoming involved in our
-							communities on a professional and personal basis, following a
-							disciplined process of identifying quality candidates, partnering
-							with employers to understand their core business and their
-							employment requirements, and delivering exceptional service, we
-							achieve great results for all.</p>
+	<!-- Modal -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="signInModalID">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Login/Register</h4>
+				</div>
+				<div class="modal-body">
 
-						<h3>Company</h3>
-						<p>What sets Team Consultants apart is not only our commitment
-							to our clients, but a commitment to every aspect of our business,
-							our employees, and our community.</p>
-					</div>
+					<form role="form">
+						<div class="form-group">
+							<input type="email" class="form-control input-sm" id="email"
+								placeholder="Enter your Email">
 
-					<div class="col-md-3">
-						<h3>
-							Tech Partners
-							</h3>
-							
-							<table class="table">
-								<tr>
-									<td><img src="resources/img/microsoft.png"
-										style="height: 40px;"></td>
-									<td><img src="resources/img/techdata.png"
-										style="height: 40px;"></td>
-								</tr>
-								<tr>
-									<td><img src="resources/img/dell.png"
-										style="height: 40px;"></td>
-									<td><img src="resources/img/cisco.png"
-										style="height: 40px;"></td>
-								</tr>
-								<tr>
-									<td><img src="resources/img/toshiba.png"
-										style="height: 40px;"></td>
-									<td><img src="resources/img/force.png"
-										style="height: 40px;"></td>
-								</tr>
-							</table>
-							
-					</div>
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control input-sm" id="pwd"
+								placeholder="Enter your Password">
 
+						</div>
+						<button type="submit" class="btn btn-primary btn-sm">Log
+							in</button>
+						
+						<div class="hr-sect">Or</div>
+						
+						
+
+    <ul class="list-inline">
+        <li>
+			 <a class="btn btn-block btn-social btn-google btn-sm">
+				<span class="fa fa-google"></span>Google
+			</a>
+		</li>
+        <li>
+			 <a class="btn btn-block btn-social btn-facebook btn-sm">
+				<span class="fa fa-facebook"></span>Facebook
+			</a>
+		</li>
+    </ul>
+
+
+						
+					</form>
+
+				</div>
+				
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+
+	<hr style="margin-top: 0px;">
+	<footer id="footerID" class="section section-primary bg-primary">
+		<div class="container">
+			<div class="row small">
+				<div class="col-md-4">
+					<h4>About Us</h4>
+					<p>TEAM Consultants is a national provider of technology
+						resource solutions to small and mid-size companies including
+						sourcing for federal and state agencies. From single development
+						resource needs to staffing entire project teams.</p>
+				</div>
+
+				<div class="col-md-2">
+					<h4>Useful Links</h4>
+					<ul style="list-style: none; padding-left: 0px;">
+						<li><a href="">Home</a></li>
+						<li><a href="">Find a Job</a></li>
+						<li><a href="">Services</a></li>
+						<li><a href="">Post Resume</a></li>
+					</ul>
+				</div>
+
+				<div class="col-md-3">
+					<h4>Subscribe to Newsletter!</h4>
+					<form role="form">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Email">
+						</div>
+						<button type="button" class="btn btn-info btn-sm">
+							<span class="glyphicon glyphicon-envelope"></span>&nbsp;
+							Subscribe
+						</button>
+
+					</form>
+				</div>
+
+				<div class="col-md-3">
+					<h4>Follow us on</h4>
+					<ul class="social-network social-circle">
+						<li><a href="#" class="icoFacebook" title="Facebook"><i
+								class="fa fa-facebook"></i></a></li>
+						<li><a href="#" class="icoTwitter" title="Twitter"><i
+								class="fa fa-twitter"></i></a></li>
+						<li><a href="#" class="icoGoogle" title="Google +"><i
+								class="fa fa-google-plus"></i></a></li>
+						<li><a href="#" class="icoLinkedin" title="Linkedin"><i
+								class="fa fa-linkedin"></i></a></li>
+					</ul>
 				</div>
 			</div>
-
-
-			<!-- Modal -->
-			<div class="modal fade" tabindex="-1" role="dialog"
-				id="signInModalID">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							<h4 class="modal-title">Modal title</h4>
-						</div>
-						<div class="modal-body">
-							<p>One fine body&hellip;</p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save
-								changes</button>
-						</div>
-					</div>
-					<!-- /.modal-content -->
-				</div>
-				<!-- /.modal-dialog -->
-			</div>
-			<!-- /.modal -->
-
-
-			<hr style="margin-top: 0px;">
-			<footer id="footerID" class="section section-primary bg-primary">
-				<div class="container">
-					<div class="row small">
-						<div class="col-md-4">
-							<h4>About Us</h4>
-							<p>TEAM Consultants is a national provider of technology
-								resource solutions to small and mid-size companies including
-								sourcing for federal and state agencies. From single development
-								resource needs to staffing entire project teams.</p>
-						</div>
-
-						<div class="col-md-2">
-							<h4>Useful Links</h4>
-							<ul style="list-style: none; padding-left: 0px;">
-								<li><a href="">Home</a></li>
-								<li><a href="">Find a Job</a></li>
-								<li><a href="">Services</a></li>
-								<li><a href="">Post Resume</a></li>
-							</ul>
-						</div>
-
-						<div class="col-md-3">
-							<h4>Subscribe to Newsletter!</h4>
-							<form role="form">
-								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Email">
-								</div>
-								<button type="button" class="btn btn-info btn-sm">
-									<span class="glyphicon glyphicon-envelope"></span>&nbsp;
-									Subscribe
-								</button>
-
-							</form>
-						</div>
-
-						<div class="col-md-3">
-							<h4>Follow us on</h4>
-							<ul class="social-network social-circle">
-								<li><a href="#" class="icoFacebook" title="Facebook"><i
-										class="fa fa-facebook"></i></a></li>
-								<li><a href="#" class="icoTwitter" title="Twitter"><i
-										class="fa fa-twitter"></i></a></li>
-								<li><a href="#" class="icoGoogle" title="Google +"><i
-										class="fa fa-google-plus"></i></a></li>
-								<li><a href="#" class="icoLinkedin" title="Linkedin"><i
-										class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				</footer>
-					<script src="resources/js/bootstrap.min.js"></script>
+		</div>
+	</footer>
+	<script src="resources/js/bootstrap.min.js"></script>
 </body>
 </html>
