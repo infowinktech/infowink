@@ -13,6 +13,8 @@
 		<log4j.version>1.2.17</log4j.version>
 		<servlet.api.version>2.5</servlet.api.version>
 		<org.hibernate.version>4.3.11.Final</org.hibernate.version>
+		<org.database.connector>5.1.39</org.database.connector>
+		<commons-dbcp.version>1.4</commons-dbcp.version>
 	</properties>
 	<dependencies>
 
@@ -69,19 +71,19 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.39</version>
+			<version>${org.database.connector}</version>
 		</dependency>
 		<!-- http://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
+			<version>${commons-dbcp.version}</version>
 		</dependency>
 		<!-- http://mvnrepository.com/artifact/org.springframework/spring-orm -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>4.2.6.RELEASE</version>
+			<version>${org.springframework.version}</version>
 		</dependency>
 
 
