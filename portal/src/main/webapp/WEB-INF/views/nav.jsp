@@ -11,7 +11,7 @@
 						class="icon-bar"></span>
 				</button>
 
-				<a class="navbar-brand" href="#">
+				<a class="navbar-brand" href="home">
 				 <b>Team</b> Consultants <small>Solution
 						for your IT needs</small>
 				</a>
@@ -39,14 +39,13 @@
 							<li><a href="#">Application Development</a></li>
 						</ul></li>
 
-					<li><a href="#">Careers</a></li>
+					<li><a href="careers">Careers</a></li>
 					<li><a href="#">Post a Job</a></li>
 					<li><a href="#">Post a Resume</a></li>
 					<li><a href="#">About Us</a></li>
 					<li><a href="#">Contact Us</a></li>
 
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-							Sign Up</a></li>
+					
 					<li><a data-toggle="modal" href="#"
 						data-target="#signInModalID"><span
 							class="glyphicon glyphicon-log-in"></span> Login</a></li>

@@ -20,14 +20,20 @@ public class HomeController {
 	@Autowired(required=true)
 	private ApplicationContext context;	
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = {"/", "home"}, method = RequestMethod.GET)
 	public String home() {
 		log.info("Home!...");
-		HomeService service = (HomeService) context.getBean("homeServiceImpl");
+		/*HomeService service = (HomeService) context.getBean("homeServiceImpl");
 		List<User> userList = service.getUsers();
 		for(User user : userList){
 			log.info("User:"+user.getUsername());
-		}
+		}*/
 		return "home";
+	}
+	
+	@RequestMapping(value = "/careers", method = RequestMethod.GET)
+	public String careers() {
+		
+		return "careers";
 	}
 }

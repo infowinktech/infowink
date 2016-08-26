@@ -10,9 +10,12 @@
 <link href='https://fonts.googleapis.com/css?family=Questrial'
 	rel='stylesheet' type='text/css'>
 <script src="resources/js/jquery.min.js"></script>
-
-
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
 <link rel="stylesheet" href="resources/css/custom.css">
+<style type="text/css">
+.input-sm{font-size: 15px;}
+</style>
 <title>Portal</title>
 </head>
 <body>
@@ -99,8 +102,10 @@
 
 	<!-- Content -->
 	<div class="container">
+	
+
 		<div class="row">
-			<div class="col-md-9" style="border-right: 1px solid #e0e0e0;">
+			<div class="col-sm-9" style="border-right: 1px solid #e0e0e0;">
 				<h3>Technology at your finger tips!</h3>
 				<p>TEAM Consultants is a national provider of technology
 					resource solutions to small and mid-size companies including
@@ -121,7 +126,7 @@
 					our employees, and our community.</p>
 			</div>
 
-			<div class="col-md-3">
+			<div class="col-sm-3">
 				<h3>Tech Partners</h3>
 
 				<table class="table">
@@ -146,66 +151,8 @@
 
 		</div>
 	</div>
-
-
-	<!-- Modal -->
-	<div class="modal fade" tabindex="-1" role="dialog" id="signInModalID">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title">Login/Register</h4>
-				</div>
-				<div class="modal-body">
-
-					<form role="form">
-						<div class="form-group">
-							<input type="email" class="form-control input-sm" id="email"
-								placeholder="Enter your Email">
-
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control input-sm" id="pwd"
-								placeholder="Enter your Password">
-
-						</div>
-						<button type="submit" class="btn btn-primary btn-sm">Log
-							in</button>
-						
-						<div class="hr-sect">Or</div>
-						
-						
-
-    <ul class="list-inline">
-        <li>
-			 <a class="btn btn-block btn-social btn-google btn-sm">
-				<span class="fa fa-google"></span>Google
-			</a>
-		</li>
-        <li>
-			 <a class="btn btn-block btn-social btn-facebook btn-sm">
-				<span class="fa fa-facebook"></span>Facebook
-			</a>
-		</li>
-    </ul>
-
-
-						
-					</form>
-
-				</div>
-				
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal-dialog -->
-	</div>
-	<!-- /.modal -->
-
-
+	
+	<jsp:include page="signin.jsp"></jsp:include>
 	<jsp:include page="footer.jsp"></jsp:include>
 	
 	
