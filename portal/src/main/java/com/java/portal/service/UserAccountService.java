@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import com.java.portal.entity.User;
 
 @Service
-public interface HomeService {
+public interface UserAccountService {
 	public List<User> getUsers();
+	public boolean isUserAuthentic(User user);
+	public String registerUser(User user);
 }

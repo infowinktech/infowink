@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -45,11 +46,22 @@
 					<li><a href="#">About Us</a></li>
 					<li><a href="#">Contact Us</a></li>
 
-					
-					<li><a data-toggle="modal" href="#"
+					<li id="loginLinkID"><a data-toggle="modal" href="#"
 						data-target="#signInModalID"><span
 							class="glyphicon glyphicon-log-in"></span> Login</a></li>
-
+							
+					<li class="dropdown" id="accountLinkID">
+					<a role="button" data-toggle="dropdown" class="dropdown-toggle" href="#" id="profileLinkID">
+	                <span class="glyphicon glyphicon-user"></span>
+	                </a>
+	                <ul class="dropdown-menu">
+	                  <li><a href="#"><span class="glyphicon glyphicon-briefcase">&nbsp;</span>My Jobs</a></li>
+	                  <li class="divider" role="separator"></li>
+	                  <li><a href="#"><span class="glyphicon glyphicon-wrench">&nbsp;</span>Change Password</a></li>
+	                  <li><a href="logout" id="logoutID"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Log out</a></li>
+	                </ul>
+	              </li>
+				
 				</ul>
 			</div>
 			<!-- /.navbar -->

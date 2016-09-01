@@ -13,12 +13,12 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
 <link rel="stylesheet" href="resources/css/custom.css">
-<style type="text/css">
-.input-sm{font-size: 15px;}
-</style>
+
+
 <title>Portal</title>
 </head>
 <body>
+
 
 	<jsp:include page="nav.jsp"></jsp:include>
 
