@@ -13,12 +13,13 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
 <link rel="stylesheet" href="resources/css/custom.css">
+<style type="text/css">
 
+</style>
 
 <title>Portal</title>
 </head>
 <body>
-
 
 	<jsp:include page="nav.jsp"></jsp:include>
 
@@ -101,55 +102,36 @@
 
 
 	<!-- Content -->
-	<div class="container">
+	<div class="container-fluid">
 	
-
-		<div class="row">
-			<div class="col-sm-9" style="border-right: 1px solid #e0e0e0;">
-				<h3>Technology at your finger tips!</h3>
-				<p>TEAM Consultants is a national provider of technology
-					resource solutions to small and mid-size companies including
-					sourcing for federal and state agencies. From single development
-					resource needs to staffing entire project teams.</p>
-				<p>At TEAM Consultants, we believe that hard work is the key to
-					sustainable and user friendly technology. By understanding what
-					drives our specialty industries, becoming involved in our
-					communities on a professional and personal basis, following a
-					disciplined process of identifying quality candidates, partnering
-					with employers to understand their core business and their
-					employment requirements, and delivering exceptional service, we
-					achieve great results for all.</p>
-
-				<h3>Company</h3>
-				<p>What sets Team Consultants apart is not only our commitment
-					to our clients, but a commitment to every aspect of our business,
-					our employees, and our community.</p>
-			</div>
-
-			<div class="col-sm-3">
-				<h3>Tech Partners</h3>
-
-				<table class="table">
-					<tr>
-						<td><img src="resources/img/microsoft.png"
-							style="height: 40px;"></td>
-						<td><img src="resources/img/techdata.png"
-							style="height: 40px;"></td>
-					</tr>
-					<tr>
-						<td><img src="resources/img/dell.png" style="height: 40px;"></td>
-						<td><img src="resources/img/cisco.png" style="height: 40px;"></td>
-					</tr>
-					<tr>
-						<td><img src="resources/img/toshiba.png"
-							style="height: 40px;"></td>
-						<td><img src="resources/img/force.png" style="height: 40px;"></td>
-					</tr>
-				</table>
-
-			</div>
-
+	<div class="row">
+		<div class="col-sm-3" style="border-right: 1px solid #e0e0e0;">
+			<h3>Ad Space</h3>
+			<p> Quisque sed ultricies arcu. Duis tempor gravida volutpat. In id lectus suscipit, pulvinar lacus ac, viverra velit. Morbi justo justo, semper non suscipit sit amet, ullamcorper non lacus. Donec vel lectus nisi. Phasellus vel posuere metus. Nullam ac ante eleifend, malesuada sem fermentum, commodo nisi. Etiam dignissim dui ipsum, in vulputate ex luctus et. Etiam a consequat purus, ut placerat nisl. </p>
+			<p> Duis faucibus convallis nisl, non auctor leo condimentum facilisis. Aliquam efficitur leo ac mi elementum, a fringilla felis aliquet. Suspendisse massa nisielementum, a fringilla felis aliquet. Suspendisse massa nisi</p>
 		</div>
+    	<div class="col-sm-6" style="border-right: 1px solid #e0e0e0;">
+			<h3>Technology at your finger tips!</h3>
+			<p>TEAM Consultants is a national provider of technology resource solutions to small and mid-size companies including sourcing for federal and state agencies. From single development resource needs to staffing entire project teams.</p>
+			<p>At TEAM Consultants, we believe that hard work is the key to sustainable and user friendly technology. By understanding what drives our specialty industries, becoming involved in our communities on a professional and personal basis, following a disciplined process of identifying quality candidates, partnering with employers to understand their core business and their employment requirements, and delivering exceptional service, we achieve great results for all.</p>
+			<h3>Company</h3>
+			<p>What sets Team Consultants apart is not only our commitment to our clients, but a commitment to every aspect of our business, our employees, and our community.</p>
+		</div>
+		<div class="col-sm-3" style="border-right: 1px solid #e0e0e0;">
+			<h3>Tech Partners</h3>
+			<div class="card">
+				  <img class="card-img-top" src="resources/img/cisco.png" alt="Card image cap" class="thumbnail" height="220px" width="100%">
+				</div>
+			<h4 class="text-center" style="font-weight:600;">NAICS CODES</h4>
+			<p class="text-center" style="font-weight: 600; margin-bottom: 0px;">238210 &nbsp; 541511</p>
+			<p class="text-center" style="font-weight: 600; margin-bottom: 0px;">541512 &nbsp; 541519</p>
+			<p class="text-center" style="font-weight: 600; margin-bottom: 0px;">611420 &nbsp; 811212</p>
+		</div>
+  	</div>
+  	
+  	
+
+		
 	</div>
 	
 	<jsp:include page="signin.jsp"></jsp:include>

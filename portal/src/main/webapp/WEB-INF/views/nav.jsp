@@ -1,5 +1,32 @@
+<style>
+.v4-tease {
+    
+    color: #fff;
+    display: block;
+    padding: 5px 0px;
+    text-align: center;
+    
+    font-family: 'Questrial', sans-serif;
+    
+}
 
-<nav class="navbar navbar-default navbar-fixed-top">
+.v4-tease span{
+	margin-left: 8px;
+}
+
+</style>
+
+<div class="container-fluid visible-lg" style="background-color: #2c3e50;opacity: 0.8;">
+<ul class="v4-tease list-inline text-right" style="margin-bottom: 0px;">
+  <li class="glyphicon glyphicon-map-marker" style="color: #18bc9c;"></li>
+  <li>5150 Crescent Oaks Dr, Madison, WI 53704 US</li>
+  <li class="glyphicon glyphicon-time" style="margin-left: 20px;color: #18bc9c;"></li>
+  <li>Mon - Sat 8.00 - 18.00. Sunday CLOSED</li>
+  <li class="glyphicon glyphicon-earphone" style="margin-left: 20px;color: #18bc9c;"></li>
+  <li>1-888-732-4402</li>
+</ul>
+</div>
+<nav class="navbar navbar-default  navbar-static-top" style="margin-bottom: 0px;;">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<!-- .navbar-->
