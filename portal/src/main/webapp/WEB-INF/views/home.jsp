@@ -105,10 +105,13 @@
 	<div class="container-fluid">
 	
 	<div class="row">
-		<div class="col-sm-3" style="border-right: 1px solid #e0e0e0;">
-			<h3>Ad Space</h3>
-			<p> Quisque sed ultricies arcu. Duis tempor gravida volutpat. In id lectus suscipit, pulvinar lacus ac, viverra velit. Morbi justo justo, semper non suscipit sit amet, ullamcorper non lacus. Donec vel lectus nisi. Phasellus vel posuere metus. Nullam ac ante eleifend, malesuada sem fermentum, commodo nisi. Etiam dignissim dui ipsum, in vulputate ex luctus et. Etiam a consequat purus, ut placerat nisl. </p>
-			<p> Duis faucibus convallis nisl, non auctor leo condimentum facilisis. Aliquam efficitur leo ac mi elementum, a fringilla felis aliquet. Suspendisse massa nisielementum, a fringilla felis aliquet. Suspendisse massa nisi</p>
+		<div class="col-sm-3" style="border-right: 1px solid #e0e0e0;margin-top: 5px;">
+			<div class="card">
+				  <a href="careers"><img class="card-img-top" src="resources/img/jobs.png" alt="Card image cap" class="thumbnail" height="150px" width="100%" /></a>
+			</div>
+			<div class="card">
+				  <a href="careers"><img class="card-img-top" src="resources/img/nowhiring.png" alt="Card image cap" class="thumbnail" height="150px" width="100%"></a>
+			</div>
 		</div>
     	<div class="col-sm-6" style="border-right: 1px solid #e0e0e0;">
 			<h3>Technology at your finger tips!</h3>
