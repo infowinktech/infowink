@@ -1,7 +1,7 @@
 <style type="text/css">
 
 .inputError{
-		border-bottom: 1px solid #ff3232;
+		border-bottom: 2px solid #ff4c4c;
 	}
 .input-sm{font-size: 15px;}
 </style>
@@ -36,9 +36,11 @@ $(document).ready(function() {
 
 	$("#emailID").keypress(function() {
 		$(this).removeClass("inputError");
+		$("#msgID1").hide();
 	});
 	$("#passwordID").keypress(function() {
 		$(this).removeClass("inputError");
+		$("#msgID1").hide();
 	});
 
 	
@@ -83,7 +85,16 @@ $(document).ready(function() {
 					$("#accountLinkID").show();
 
 					$("#modalCloseID").click();
+				}else{
+					$("#loadingID").hide();
+					$("#loginID").show();
+
+					$("#msgID1").html("Invalid credentials");
+					$("#msgID1").show();
+					$("#msgID1").css("color", "#ff4c4c");
+					
 				}
+				
 			},
 			error : function(xhr, status, error) {
 					console.log("Error occured...");
@@ -98,8 +109,8 @@ $(document).ready(function() {
 
 	$("#rfirstNameID").keypress(function() {$(this).removeClass("inputError");});
 	$("#rlastNameID").keypress(function() {$(this).removeClass("inputError");});
-	$("#remail").keypress(function() {$(this).removeClass("inputError");});
-	$("#rpassword").keypress(function() {$(this).removeClass("inputError");});
+	$("#remailID").keypress(function() {$(this).removeClass("inputError");});
+	$("#rpasswordID").keypress(function() {$(this).removeClass("inputError");});
 
 	$( "#registerID" ).click(function() {
 		$rfirstName=$('#rfirstNameID').val();
@@ -175,6 +186,7 @@ $(document).ready(function() {
 						</div>
 						<button type="button" class="btn btn-primary btn-sm" id="loginID">Log in</button>
 						<img alt="" src="resources/img/loading.gif" style="height: 40px;display:none;" id="loadingID">
+						<p id="msgID1" class="text-center" style="dislpay:none;"></p>
 						
 						<div class="hr-sect">Or</div>
 						<div class="g-signin2" data-onsuccess="onSignIn"></div>

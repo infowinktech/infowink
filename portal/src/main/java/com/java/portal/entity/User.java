@@ -9,7 +9,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="user")
+@Table(name = "USER", schema = "PORTALDB")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
