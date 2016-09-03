@@ -13,10 +13,19 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
 <link rel="stylesheet" href="resources/css/custom.css">
+
+<script src="resources/js/jquery.webticker.min.js"></script>
+
 <style type="text/css">
 
 </style>
+<script type="text/javascript">
+$(document).ready(function() {
+$('#webTicker,#webTicker1').webTicker();
 
+
+});
+</script>
 <title>Portal</title>
 </head>
 <body>
@@ -108,9 +117,18 @@
 		<div class="col-sm-3" style="border-right: 1px solid #e0e0e0;margin-top: 5px;">
 			<div class="card">
 				  <a href="careers"><img class="card-img-top" src="resources/img/jobs.png" alt="Card image cap" class="thumbnail" height="150px" width="100%" /></a>
+				  
+				  <ul id="webTicker" class="list-inline text-rightlist-inline text-right">
+					    <li> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed viverra nulla, et sodales lorem. Aenean dignissim diam lacinia consectetur sagittis. Pellentesque interdum pulvinar finibus. Aenean tincidunt nisl sit amet tortor vehicula, sed condimentum eros rhoncus. Vestibulum dui magna, lacinia eget cursus id, interdum sed velit. Quisque vitae congue velit. Fusce cursus elementum quam et cursus. Donec a odio eleifend, euismod justo non, porta justo. Suspendisse potenti. </li>
+					    
+					</ul>
+
 			</div>
 			<div class="card">
 				  <a href="careers"><img class="card-img-top" src="resources/img/nowhiring.png" alt="Card image cap" class="thumbnail" height="150px" width="100%"></a>
+				   <ul id="webTicker1" class="list-inline text-rightlist-inline text-right">
+					    <li> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed viverra nulla, et sodales lorem. Aenean dignissim diam lacinia consectetur sagittis. Pellentesque interdum pulvinar finibus. Aenean tincidunt nisl sit amet tortor vehicula, sed condimentum eros rhoncus. Vestibulum dui magna, lacinia eget cursus id, interdum sed velit. Quisque vitae congue velit. Fusce cursus elementum quam et cursus. Donec a odio eleifend, euismod justo non, porta justo. Suspendisse potenti. </li>
+					</ul>
 			</div>
 		</div>
     	<div class="col-sm-6" style="border-right: 1px solid #e0e0e0;">
