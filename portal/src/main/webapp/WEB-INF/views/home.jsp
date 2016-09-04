@@ -114,7 +114,7 @@ $('#webTicker,#webTicker1').webTicker();
 	<div class="container-fluid">
 	
 	<div class="row">
-		<div class="col-sm-3" style="border-right: 1px solid #e0e0e0;padding-top: 5px;">
+		<div class="col-sm-3" style="padding-top: 5px;">
 			<div class="card">
 				  <a href="careers"><img class="card-img-top" src="resources/img/jobs.png" alt="Card image cap" class="thumbnail" height="150px" width="100%" /></a>
 				  
@@ -130,11 +130,9 @@ $('#webTicker,#webTicker1').webTicker();
 					    <li> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed viverra nulla, et sodales lorem. Aenean dignissim diam lacinia consectetur sagittis. Pellentesque interdum pulvinar finibus. Aenean tincidunt nisl sit amet tortor vehicula, sed condimentum eros rhoncus. Vestibulum dui magna, lacinia eget cursus id, interdum sed velit. Quisque vitae congue velit. Fusce cursus elementum quam et cursus. Donec a odio eleifend, euismod justo non, porta justo. Suspendisse potenti. </li>
 					</ul>
 			</div>
-			<br/>
-			<br/>
-			<br/>
+			
 		</div>
-    	<div class="col-sm-6" style="border-right: 1px solid #e0e0e0;">
+    	<div class="col-sm-6" style="border-right: 1px solid #e0e0e0;border-left: 1px solid #e0e0e0;">
 			<h3>Technology at your finger tips!</h3>
 			<p>TEAM Consultants is a national provider of technology resource solutions to small and mid-size companies including sourcing for federal and state agencies. From single development resource needs to staffing entire project teams.</p>
 			<p>At TEAM Consultants, we believe that hard work is the key to sustainable and user friendly technology. By understanding what drives our specialty industries, becoming involved in our communities on a professional and personal basis, following a disciplined process of identifying quality candidates, partnering with employers to understand their core business and their employment requirements, and delivering exceptional service, we achieve great results for all.</p>
@@ -146,7 +144,7 @@ $('#webTicker,#webTicker1').webTicker();
 			<br/>
 			<br/>
 		</div>
-		<div class="col-sm-3" style="border-right: 1px solid #e0e0e0;">
+		<div class="col-sm-3" >
 			<h3>Tech Partners</h3>
 			<div class="card">
 				  <img class="card-img-top" src="resources/img/partners.png" alt="Card image cap" class="thumbnail" height="220px" width="100%">
