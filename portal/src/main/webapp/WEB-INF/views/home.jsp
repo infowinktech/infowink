@@ -138,11 +138,17 @@ $('#webTicker,#webTicker1').webTicker();
 			<p>At TEAM Consultants, we believe that hard work is the key to sustainable and user friendly technology. By understanding what drives our specialty industries, becoming involved in our communities on a professional and personal basis, following a disciplined process of identifying quality candidates, partnering with employers to understand their core business and their employment requirements, and delivering exceptional service, we achieve great results for all.</p>
 			<h3>Company</h3>
 			<p>What sets Team Consultants apart is not only our commitment to our clients, but a commitment to every aspect of our business, our employees, and our community.</p>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
+			<h4>Corporate Values</h4>
+				<ul>
+					<li>Integrity</li>
+					<li>Commitment</li>
+					<li>Innovation</li>
+					<li>Personal Satisfaction</li>
+					<li>Community Service</li>
+					<li>Respect</li>
+					<li>Leadership</li>
+				</ul>
+				 
 		</div>
 		<div class="col-sm-3" >
 			<h3>Tech Partners</h3>

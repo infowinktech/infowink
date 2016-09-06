@@ -106,4 +106,10 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping(value = "/about", method = RequestMethod.GET)
+	public String about() {
+		
+		return "aboutus";
+	}
+	
 }
