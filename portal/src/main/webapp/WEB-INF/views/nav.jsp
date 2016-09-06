@@ -5,7 +5,6 @@
     display: block;
     padding: 5px 0px;
     text-align: center;
-    
     font-family: 'Questrial', sans-serif;
     
 }
@@ -16,17 +15,23 @@
 
 </style>
 
-<div class="container-fluid visible-lg" style="background-color: #2c3e50;opacity: 0.8;">
-<ul class="v4-tease list-inline text-right" style="margin-bottom: 0px;">
-  <li class="glyphicon glyphicon-map-marker" style="color: #18bc9c;"></li>
-  <li>5150 Crescent Oaks Dr, Madison, WI 53704 US</li>
-  <li class="glyphicon glyphicon-time" style="margin-left: 20px;color: #18bc9c;"></li>
-  <li>Mon - Sat 8.00 - 18.00. Sunday CLOSED</li>
-  <li class="glyphicon glyphicon-earphone" style="margin-left: 20px;color: #18bc9c;"></li>
-  <li>1-888-732-4402</li>
-</ul>
-</div>
-<nav class="navbar navbar-default  navbar-static-top" style="margin-bottom: 0px;;">
+
+<nav class="navbar navbar-default  navbar-fixed-top" style="margin-bottom: 0px;;">
+		<div class="container-fluid"  style="background-color: #476481;opacity:0.6;">
+			<div class="visible-lg">
+				<ul class="v4-tease list-inline text-right" style="margin-bottom: 0px;">
+				  <li class="glyphicon glyphicon-map-marker" style="color: #18bc9c;"></li>
+				  <li>5150 Crescent Oaks Dr, Madison, WI 53704 US</li>
+				  <li class="glyphicon glyphicon-time" style="margin-left: 20px;color: #18bc9c;"></li>
+				  <li>Mon - Sat 8.00 - 18.00. Sunday CLOSED</li>
+				  <li class="glyphicon glyphicon-earphone" style="margin-left: 20px;color: #18bc9c;"></li>
+				  <li>1-888-732-4402</li>
+				</ul>
+		</div>
+		
+		
+		</div>
+		
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<!-- .navbar-->
@@ -49,7 +54,7 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Home</a></li>
+					<li><a href="home">Home</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Services <span class="caret"></span></a>
@@ -71,8 +76,8 @@
 					<li><a href="#">Post a Job</a></li>
 					<li><a href="#">Post a Resume</a></li>
 					<li><a href="about">About Us</a></li>
-					<li><a href="#">Contact Us</a></li>
-
+					<li><a href="contact">Contact Us</a></li>
+					
 					<li id="loginLinkID"><a data-toggle="modal" href="#"
 						data-target="#signInModalID"><span
 							class="glyphicon glyphicon-log-in"></span> Login</a></li>
