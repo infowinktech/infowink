@@ -73,8 +73,17 @@
 						</ul></li>
 
 					<li><a href="careers">Careers</a></li>
-					<li><a href="#">Post a Job</a></li>
-					<li><a href="#">Post a Resume</a></li>
+					
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Admin <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Manage Users</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Manage Jobs</a></li>
+						</ul>
+					</li>
+						
 					<li><a href="about">About Us</a></li>
 					<li><a href="contact">Contact Us</a></li>
 					
