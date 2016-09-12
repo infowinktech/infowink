@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.java.portal.entity.Role;
 import com.java.portal.entity.User;
 import com.java.portal.service.UserAccountService;
-import com.java.portal.utilities.MD5Hashing;
+import com.java.portal.utilities.MD5Encryption;
 
 @Controller
 public class HomeController {
@@ -53,9 +54,10 @@ public class HomeController {
 		UserAccountService userAccntService = (UserAccountService) context.getBean("userAccountServiceImpl");
 		User user = new User();
 		user.setEmail(email);
-		user.setPassword(MD5Hashing.generateMD5Hash(password));
+		user.setPassword(MD5Encryption.generateMD5Hash(password));
 		if(userAccntService.isUserAuthentic(user)){
 			user = (User)session.getAttribute("USER_BEAN");
+			log.info("Role:"+user.getRole().getRole());
 			return user.getFirstName();
 		}else{
 			return "";
@@ -88,11 +90,17 @@ public class HomeController {
 			String lastName = request.getParameter("rlastName");
 			String email = request.getParameter("remail");
 			String password = request.getParameter("rpassword");
+			Role role = new Role();
+			role.setId(2);
+			role.setRole("User");
+			
+			
 			User user = new User();
 			user.setEmail(email);
 			user.setFirstName(firstName);
 			user.setLastName(lastName);
-			user.setPassword(MD5Hashing.generateMD5Hash(password));
+			user.setPassword(MD5Encryption.generateMD5Hash(password));
+			user.setRole(role);
 			
 			UserAccountService userAccntService = (UserAccountService) context.getBean("userAccountServiceImpl");
 			output=userAccntService.registerUser(user);

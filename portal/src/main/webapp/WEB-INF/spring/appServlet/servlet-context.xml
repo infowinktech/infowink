@@ -48,7 +48,7 @@
 	
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"	destroy-method="close">
 		<beans:property name="driverClassName" value="org.h2.Driver" />
-		<beans:property name="url" value="jdbc:h2:file:///D:/PROJECTS/PROTOCOLDB-H2/PROTOCOLDB" />
+		<beans:property name="url" value="jdbc:h2:file:///D:/PROJECTS/portaldb" />
 		<beans:property name="username" value="sa" />
 		<beans:property name="password" value="sa" />
 	</beans:bean>
@@ -60,6 +60,7 @@
 		<beans:property name="annotatedClasses">
 			<beans:list>
 				<beans:value>com.java.portal.entity.User</beans:value>
+				<beans:value>com.java.portal.entity.Role</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">

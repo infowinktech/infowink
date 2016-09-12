@@ -13,7 +13,7 @@ import com.java.portal.service.UserAccountService;
 
 @Service
 public class UserAccountServiceImpl implements UserAccountService {
-	private static final Logger log = Logger.getLogger(UserAccountService.class);
+	private static final Logger log = Logger.getLogger(UserAccountServiceImpl.class);
 
 	@Autowired(required=true)
 	private ApplicationContext context;	
@@ -32,6 +32,7 @@ public class UserAccountServiceImpl implements UserAccountService {
 		StringBuffer sb = new StringBuffer();
 		UserAccountDao dao = (UserAccountDao) context.getBean("userAccountDaoImpl");
 		String statusCode = null;
+		log.info("role:");
 		try{
 			sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
 			String status = dao.insertUser(user);

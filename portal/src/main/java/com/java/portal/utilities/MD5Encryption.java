@@ -2,22 +2,7 @@ package com.java.portal.utilities;
 
 import java.security.MessageDigest;
 
-import org.springframework.stereotype.Component;
-
-/**
- * @author rjk6kor
- *
- */
-@Component
-public class MD5Hashing {
-
-	/**
-	 * generateMD5Hash generates MD5 hashcode for the input
-	 * 
-	 * @param input
-	 * @return
-	 */
-
+public class MD5Encryption {
 	public static String generateMD5Hash(String input) {
 
 		String md5 = null;
@@ -44,10 +29,6 @@ public class MD5Hashing {
 			return md5;
 		}
 
-	}
-	
-	public static void main(String[] args){
-		System.out.println(generateMD5Hash("nvidia"));
 	}
 	
 	

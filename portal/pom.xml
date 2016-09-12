@@ -104,6 +104,6 @@
 
 	</dependencies>
 	<build>
-		<finalName>portal-team-consultants-build009</finalName>
+		<finalName>portal</finalName>
 	</build>
 </project>

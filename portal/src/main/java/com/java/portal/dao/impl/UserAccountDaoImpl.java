@@ -62,6 +62,8 @@ public class UserAccountDaoImpl implements UserAccountDao {
 		if(results.size()>0){
 			return "Email already in use!";
 		}else{
+			log.info(user.getRole().getId());
+			log.info(user.getRole().getRole());
 			session.save(user);
 			return "Succesfully registered";
 		}
