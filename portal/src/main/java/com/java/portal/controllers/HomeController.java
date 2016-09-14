@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.java.portal.entity.Jobs;
 import com.java.portal.entity.Role;
 import com.java.portal.entity.User;
+import com.java.portal.service.AdminService;
 import com.java.portal.service.UserAccountService;
+import com.java.portal.service.impl.AdminServiceImpl;
 import com.java.portal.utilities.MD5Encryption;
 
 @Controller
@@ -32,20 +35,28 @@ public class HomeController {
 	
 	@RequestMapping(value = {"/", "home"}, method = RequestMethod.GET)
 	public String home() {
-		
-		log.info("Home!...");
-		/*UserAccountService service = (UserAccountService) context.getBean("userAccountServiceImpl");
-		List<User> userList = service.getUsers();
-		for(User user : userList){
-			log.info("User:"+user.getFirstName());
-		}*/
 		return "home";
 	}
-	
 	@RequestMapping(value = "/careers", method = RequestMethod.GET)
 	public String careers() {
-		
 		return "careers";
+	}
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout() {
+		session.invalidate();
+		return "home";
+	}
+	@RequestMapping(value = "/about", method = RequestMethod.GET)
+	public String about() {
+		return "aboutus";
+	}
+	@RequestMapping(value = "/contact", method = RequestMethod.GET)
+	public String contact() {
+		return "contact";
+	}
+	@RequestMapping(value = "/addjob", method = RequestMethod.GET)
+	public String addjob() {
+		return "addjob";
 	}
 
 	@RequestMapping(value = "/authenticate", method = { RequestMethod.GET }, produces = { "text/plain" })
@@ -75,12 +86,7 @@ public class HomeController {
 			return "";
 		}
 	}
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout() {
-		session.invalidate();
-		
-		return "home";
-	}
+	
 	
 	@RequestMapping(value = "/register", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
 	public @ResponseBody String register() {
@@ -114,15 +120,46 @@ public class HomeController {
 		
 	}
 	
-	@RequestMapping(value = "/about", method = RequestMethod.GET)
-	public String about() {
+	
+	@RequestMapping(value = "/addJobtoDB", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String addJobtoDB() {
+		String output = null;
+		try{
+			String jobCategory = request.getParameter("jobCategory");
+			String jobCode = request.getParameter("jobCode");
+			String jobTitle = request.getParameter("jobTitle");
+			String jobRequirements = request.getParameter("jobRequirements");
+			String jobType = request.getParameter("jobType");
+			String jobDescription = request.getParameter("jobDescription");
+			String jobLocation = request.getParameter("jobLocation");
+			
+			log.info("jobCategory:"+jobCategory);
+			log.info("jobCode:"+jobCode);
+			log.info("jobTitle:"+jobTitle);
+			log.info("jobRequirements:"+jobRequirements);
+			log.info("jobType:"+jobType);
+			log.info("jobDescription:"+jobDescription);
+			Jobs jobs = new Jobs();
+			jobs.setActive("true");
+			jobs.setJobCategory(jobCategory);
+			jobs.setJobCode(jobCode);
+			jobs.setJobDescription(jobDescription);
+			jobs.setJobLocation(jobLocation);
+			jobs.setJobRequirements(jobRequirements);
+			jobs.setJobTitle(jobTitle);
+			jobs.setJobType(jobType);
+			
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output=adminService.addJob(jobs);
+			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+
 		
-		return "aboutus";
 	}
-	@RequestMapping(value = "/contact", method = RequestMethod.GET)
-	public String contact() {
-		
-		return "contact";
-	}
+
 	
 }

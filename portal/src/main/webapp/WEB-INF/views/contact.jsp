@@ -13,7 +13,7 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
 <link rel="stylesheet" href="resources/css/custom.css">
-<title>Portal</title>
+<title>Team Consultants | Solution for your IT needs</title>
 </head>
 <body>
 

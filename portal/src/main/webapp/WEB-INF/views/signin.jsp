@@ -1,5 +1,4 @@
 <style type="text/css">
-
 .inputError{
 		border-bottom: 2px solid #ff4c4c;
 	}
