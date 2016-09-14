@@ -9,11 +9,13 @@ import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.java.portal.dao.AdminDao;
 import com.java.portal.entity.Jobs;
+import com.java.portal.entity.User;
 @Repository
 @Transactional
 public class AdminDaoImpl implements AdminDao {
@@ -42,6 +44,24 @@ public class AdminDaoImpl implements AdminDao {
 		List<Jobs> jobsList = (List<Jobs>)criteria.list();
 		return jobsList;
 	}
+
+	public Jobs getJobDetails(int jobId) {
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Jobs.class);
+		criteria.add(Restrictions.eq("pkid", jobId));
+		List<Jobs> results = (List<Jobs>)criteria.list();
+		
+		return results.get(0);
+	}
+
+	public List<Jobs> selectActiveJobs() {
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Jobs.class);
+		criteria.add(Restrictions.eq("active", "true"));
+		List<Jobs> results = (List<Jobs>)criteria.list();
+		return results;
+	}
+
 	
 	
 }

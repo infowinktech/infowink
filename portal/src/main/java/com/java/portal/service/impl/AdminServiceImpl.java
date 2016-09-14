@@ -74,5 +74,64 @@ public class AdminServiceImpl implements AdminService {
 		
 		return sb.toString();
 	}
+
+	public String getJobDetails(int jobId) {
+		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+		Jobs job = dao.getJobDetails(jobId);
+		StringBuffer tableContent = new StringBuffer();
+		tableContent.append("<tr><td>Job Code</td><td>"+job.getJobCode()+"</td></tr>");
+		tableContent.append("<tr><td>Title</td><td>"+job.getJobTitle()+"</td></tr>");
+		tableContent.append("<tr><td>Location</td><td>"+job.getJobLocation()+"</td></tr>");
+		tableContent.append("<tr><td>Job Type</td><td>"+job.getJobType()+"</td></tr>");
+		tableContent.append("<tr><td>Requirements</td><td>"+job.getJobRequirements()+"</td></tr>");
+		tableContent.append("<tr><td>Description</td><td>"+job.getJobDescription()+"</td></tr>");
+		tableContent.append("<tr><td><button type='button' class='btn btn-primary btn-sm'>Apply</button></td><td></td></tr>");
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+		sb.append("<tableContent>");
+			sb.append("<![CDATA[");
+				sb.append(tableContent.toString());
+			sb.append("]]>");
+		sb.append("</tableContent>");
+		sb.append("</data>");
+
+		return sb.toString();
+	}
+
+	public String getActiveJobs() {
+		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+		List<Jobs> jobList = dao.selectActiveJobs();
+		/**
+		 * <div>
+				  <table class="table jobTable">
+				    <tbody>
+				      
+				    </tbody>
+				  </table>
+				</div>
+		 */
+		StringBuffer tableContent = new StringBuffer();
+		for(Jobs job:jobList){
+			tableContent.append("<div><table class='table jobTable'><tbody>");
+			tableContent.append("<tr><td>Job Code</td><td>"+job.getJobCode()+"</td></tr>");
+			tableContent.append("<tr><td>Title</td><td>"+job.getJobTitle()+"</td></tr>");
+			tableContent.append("<tr><td>Location</td><td>"+job.getJobLocation()+"</td></tr>");
+			tableContent.append("<tr><td>Job Type</td><td>"+job.getJobType()+"</td></tr>");
+			tableContent.append("<tr><td>Requirements</td><td>"+job.getJobRequirements()+"</td></tr>");
+			tableContent.append("<tr><td><a type='button' href=\"javascript:jobDetails('"+job.getPkid()+"')\" class='btn btn-primary btn-sm'>Details</a></td><td></td></tr>");
+			tableContent.append("</tbody></table></div>");
+		}
+		StringBuffer sb = new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+		sb.append("<tableContent>");
+			sb.append("<![CDATA[");
+				sb.append(tableContent.toString());
+			sb.append("]]>");
+		sb.append("</tableContent>");
+		sb.append("</data>");
+		
+		return sb.toString();
+	}
 	
 }

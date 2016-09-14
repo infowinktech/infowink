@@ -62,6 +62,11 @@ public class HomeController {
 	public String managejobs() {
 		return "managejobs";
 	}
+	@RequestMapping(value = "/jobdetails", method = RequestMethod.GET)
+	public String jobdetails() {
+		return "jobdetails";
+	}
+
 
 
 	@RequestMapping(value = "/authenticate", method = { RequestMethod.GET }, produces = { "text/plain" })
@@ -178,6 +183,39 @@ public class HomeController {
 		return output;
 
 		
+	}
+	
+	@RequestMapping(value = "/loadJobDetails", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String loadJobDetails() {
+		int jobId = (Integer)session.getAttribute("JOB_DETAILS_ID");
+		String output = null;
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output=adminService.getJobDetails(jobId);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+	}
+	
+	@RequestMapping(value = "/loadActiveJobs", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String loadActiveJobs() {
+		String output = null;
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output = adminService.getActiveJobs();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+	}
+	
+	@RequestMapping(value = "/saveJobId", method = { RequestMethod.POST }, produces = { "text/plain" })
+	public @ResponseBody String saveJobId(@RequestParam("jobId") int jobId) {
+		log.info("JobId:"+jobId);
+		session.setAttribute("JOB_DETAILS_ID", jobId);
+		
+		return "";
 	}
 
 	

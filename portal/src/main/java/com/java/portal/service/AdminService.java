@@ -1,7 +1,5 @@
 package com.java.portal.service;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import com.java.portal.entity.Jobs;
@@ -9,4 +7,6 @@ import com.java.portal.entity.Jobs;
 public interface AdminService {
 	public String addJob(Jobs jobs);
 	public String getAllJobs();
+	public String getJobDetails(int jobId);
+	public String getActiveJobs();
 }
