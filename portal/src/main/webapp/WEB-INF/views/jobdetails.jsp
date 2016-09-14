@@ -45,6 +45,24 @@ $(document).ready(function() {
 	});
 	
 });
+
+function checkUser(){
+	$.ajax({
+		url : "checkUser",
+		dataType : "text",
+		type : "POST",
+		success : function(data){
+			if(data=='false'){
+				$("#signInModalID").modal();
+			}else{
+				console.log("user logged in");	
+			}
+		},
+		error : function(xhr, status, error) {
+				console.log("Error occured...");
+		}
+	});
+}
 </script>
 <title>Team Consultants | Solution for your IT needs</title>
 </head>

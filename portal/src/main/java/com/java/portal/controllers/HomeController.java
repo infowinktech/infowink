@@ -217,6 +217,17 @@ public class HomeController {
 		
 		return "";
 	}
+	
+	@RequestMapping(value = "/checkUser", method = { RequestMethod.POST }, produces = { "text/plain" })
+	public @ResponseBody String checkUser() {
+		User user = (User)session.getAttribute("USER_BEAN");
+		if(user==null){
+			return "false";
+		}else{
+			return "true";
+		}
+		
+	}
 
 	
 }

@@ -85,7 +85,7 @@ public class AdminServiceImpl implements AdminService {
 		tableContent.append("<tr><td>Job Type</td><td>"+job.getJobType()+"</td></tr>");
 		tableContent.append("<tr><td>Requirements</td><td>"+job.getJobRequirements()+"</td></tr>");
 		tableContent.append("<tr><td>Description</td><td>"+job.getJobDescription()+"</td></tr>");
-		tableContent.append("<tr><td><button type='button' class='btn btn-primary btn-sm'>Apply</button></td><td></td></tr>");
+		tableContent.append("<tr><td><a type='button' href=\"javascript:checkUser()\" class='btn btn-primary btn-sm'>Apply</a></td><td></td></tr>");
 		
 		StringBuffer sb = new StringBuffer();
 		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
