@@ -105,7 +105,7 @@ $(document).ready(function() {
 	
 	<div class="row">
 		
-    	<div class="col-sm-9" style="border-right: 1px solid #e0e0e0;">
+    	<div class="col-sm-9">
 			<h3>Add a Job</h3>
 			<form role="form" id="addJobFormID">
 						<div class="form-group">
@@ -133,19 +133,11 @@ $(document).ready(function() {
 						<button id="registerID" type="button" class="btn btn-primary btn-sm" data-toggle="modal">Submit</button>
 						<img alt="" src="resources/img/loading.gif" style="height: 40px;display:none;" id="loadingID1">
 						<p id="msgID" class="text-center" style="dislpay:none;"></p>
-					</form>			
+			</form>			
 				 
 		</div>
 		<div class="col-sm-3" >
-			<h3>Tech Partners</h3>
-			<div class="card">
-				  <img class="card-img-top" src="resources/img/partners.png" alt="Card image cap" class="thumbnail" height="220px" width="100%">
-				</div>
-			<h4 class="text-center" style="font-weight:600;">NAICS CODES</h4>
-			<p class="text-center" style="font-weight: 600; margin-bottom: 0px;">238210 &nbsp; 541511</p>
-			<p class="text-center" style="font-weight: 600; margin-bottom: 0px;">541512 &nbsp; 541519</p>
-			<p class="text-center" style="font-weight: 600; margin-bottom: 0px;">611420 &nbsp; 811212</p>
-			<h5 class="text-center" style="font-weight:600;">MBE Certified</h5>
+			
 		</div>
   	</div>
   </div>

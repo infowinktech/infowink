@@ -5202,7 +5202,7 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 	.pagination>.disabled>span:focus, .pagination>.disabled>a, .pagination>.disabled>a:hover,
 	.pagination>.disabled>a:focus {
 	color: #ecf0f1;
-	background-color: #3be6c4;
+	background-color: #149c82;
 	border-color: transparent;
 	cursor: not-allowed
 }

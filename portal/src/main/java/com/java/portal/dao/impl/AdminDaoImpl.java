@@ -1,5 +1,7 @@
 package com.java.portal.dao.impl;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
@@ -32,6 +34,13 @@ public class AdminDaoImpl implements AdminDao {
 		}
 		return true;
 	
+	}
+
+	public List<Jobs> selectAllJobs() {
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Jobs.class);
+		List<Jobs> jobsList = (List<Jobs>)criteria.list();
+		return jobsList;
 	}
 	
 	

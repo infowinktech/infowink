@@ -58,6 +58,11 @@ public class HomeController {
 	public String addjob() {
 		return "addjob";
 	}
+	@RequestMapping(value = "/managejobs", method = RequestMethod.GET)
+	public String managejobs() {
+		return "managejobs";
+	}
+
 
 	@RequestMapping(value = "/authenticate", method = { RequestMethod.GET }, produces = { "text/plain" })
 	public @ResponseBody String authenticate(@RequestParam("email") String email,
@@ -153,6 +158,20 @@ public class HomeController {
 			output=adminService.addJob(jobs);
 			
 			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+
+		
+	}
+	
+	@RequestMapping(value = "/loadJobs", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String loadJobs() {
+		String output = null;
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output=adminService.getAllJobs();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
