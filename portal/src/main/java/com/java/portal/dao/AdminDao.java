@@ -7,6 +7,6 @@ import com.java.portal.entity.Jobs;
 public interface AdminDao {
 	public boolean insertJob(Jobs jobs);
 	public List<Jobs> selectAllJobs();
-	public Jobs getJobDetails(int jobId);
+	public Jobs getJobDetails(String jobId);
 	public List<Jobs> selectActiveJobs();
 }

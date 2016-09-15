@@ -45,10 +45,10 @@ public class AdminDaoImpl implements AdminDao {
 		return jobsList;
 	}
 
-	public Jobs getJobDetails(int jobId) {
+	public Jobs getJobDetails(String jobId) {
 		Session session = sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(Jobs.class);
-		criteria.add(Restrictions.eq("pkid", jobId));
+		criteria.add(Restrictions.eq("jobCode", jobId));
 		List<Jobs> results = (List<Jobs>)criteria.list();
 		
 		return results.get(0);

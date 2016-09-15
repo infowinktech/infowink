@@ -38,6 +38,7 @@ $(document).ready(function() {
 		type : "POST",
 		success : function(xml){
 			$("#jobsBodyID").html($(xml).find("tableContent").text());
+			$("#overviewID").html($(xml).find("overviewContent").text());
 		},
 		error : function(xhr, status, error) {
 				console.log("Error occured...");
@@ -55,7 +56,8 @@ function checkUser(){
 			if(data=='false'){
 				$("#signInModalID").modal();
 			}else{
-				console.log("user logged in");	
+				console.log("user logged in");
+				$("#formID").submit();	
 			}
 		},
 		error : function(xhr, status, error) {
@@ -69,14 +71,14 @@ function checkUser(){
 <body>
 
 	<jsp:include page="nav.jsp"></jsp:include>
-	
+	<form action ="apply" id="formID"></form>
 
 	<!-- Content -->
 	<div class="container" style="margin-top: 80px;">
 	
 	<div class="row">
 		
-    	<div class="col-sm-9" style="border-right: 1px solid #e0e0e0;min-height: 550px;">
+    	<div class="col-sm-9" style="min-height: 550px;">
 			<h3>Job Details</h3>
 			<div>
 				  <table class="table jobTable">
@@ -87,17 +89,7 @@ function checkUser(){
 				</div>		
 				 
 		</div>
-		<div class="col-sm-3" >
-			<h3>Tech Partners</h3>
-			<div class="card">
-				  <img class="card-img-top" src="resources/img/partners.png" alt="Card image cap" class="thumbnail" height="220px" width="100%">
-				</div>
-			<h4 class="text-center" style="font-weight:600;">NAICS CODES</h4>
-			<p class="text-center" style="font-weight: 600; margin-bottom: 0px;">238210 &nbsp; 541511</p>
-			<p class="text-center" style="font-weight: 600; margin-bottom: 0px;">541512 &nbsp; 541519</p>
-			<p class="text-center" style="font-weight: 600; margin-bottom: 0px;">611420 &nbsp; 811212</p>
-			<h5 class="text-center" style="font-weight:600;">MBE Certified</h5>
-			
+		<div class="col-sm-3" style="border: 1px solid #e0e0e0;margin-top: 21px;background-color: #fdfdfd;" id="overviewID">
 			
 		</div>
   	</div>

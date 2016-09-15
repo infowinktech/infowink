@@ -7,6 +7,6 @@ import com.java.portal.entity.Jobs;
 public interface AdminService {
 	public String addJob(Jobs jobs);
 	public String getAllJobs();
-	public String getJobDetails(int jobId);
+	public String getJobDetails(String jobId);
 	public String getActiveJobs();
 }

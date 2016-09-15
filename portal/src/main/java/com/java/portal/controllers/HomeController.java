@@ -1,6 +1,8 @@
 package com.java.portal.controllers;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.java.portal.entity.Jobs;
 import com.java.portal.entity.Role;
@@ -66,6 +69,11 @@ public class HomeController {
 	public String jobdetails() {
 		return "jobdetails";
 	}
+	@RequestMapping(value = "/apply", method = RequestMethod.GET)
+	public String apply() {
+		return "apply";
+	}
+
 
 
 
@@ -187,7 +195,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/loadJobDetails", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
 	public @ResponseBody String loadJobDetails() {
-		int jobId = (Integer)session.getAttribute("JOB_DETAILS_ID");
+		String jobId = (String)session.getAttribute("JOB_DETAILS_ID");
 		String output = null;
 		try{
 			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
@@ -211,10 +219,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/saveJobId", method = { RequestMethod.POST }, produces = { "text/plain" })
-	public @ResponseBody String saveJobId(@RequestParam("jobId") int jobId) {
+	public @ResponseBody String saveJobId(@RequestParam("jobId") String jobId) {
 		log.info("JobId:"+jobId);
 		session.setAttribute("JOB_DETAILS_ID", jobId);
-		
 		return "";
 	}
 	
@@ -227,6 +234,13 @@ public class HomeController {
 			return "true";
 		}
 		
+	}
+	
+	@RequestMapping(value = "/applyJob", method = { RequestMethod.POST })
+	public @ResponseBody String upload(@RequestParam("resume") MultipartFile resume) {
+		log.info("File name=" + resume.getOriginalFilename());
+		
+		return "true";
 	}
 
 	
