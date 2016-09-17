@@ -1,8 +1,6 @@
 package com.java.portal.controllers;
 
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -43,6 +41,10 @@ public class HomeController {
 	@RequestMapping(value = "/careers", method = RequestMethod.GET)
 	public String careers() {
 		return "careers";
+	}
+	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+	public String dashboard() {
+		return "dashboard";
 	}
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout() {

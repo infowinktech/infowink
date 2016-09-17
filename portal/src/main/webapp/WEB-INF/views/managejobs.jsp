@@ -14,10 +14,12 @@
 <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
 <link rel="stylesheet" href="resources/css/custom.css">
 
-
+<!-- datatables -->
 <script src="resources/js/jquery.dataTables.min.js"></script>
 <script src="resources/js/dataTables.bootstrap.min.js"></script>
 <link rel="stylesheet" href="resources/css/dataTables.bootstrap.min.css">
+
+
 <style type="text/css">
 .input-sm{
 border:1px solid #dce4ec;
