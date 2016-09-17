@@ -78,6 +78,10 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Admin <span class="caret"></span></a>
 						<ul class="dropdown-menu">
+							<li><a href="#">Manage Users</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="managejobs">Manage Jobs</a></li>
+							<li role="separator" class="divider"></li>
 							<li><a href="dashboard">Dashboard</a></li>
 						</ul>
 					</li>
