@@ -1,10 +1,15 @@
 package com.java.portal.controllers;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.sql.rowset.serial.SerialBlob;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.java.portal.entity.JobApplication;
 import com.java.portal.entity.Jobs;
 import com.java.portal.entity.Role;
 import com.java.portal.entity.User;
@@ -153,14 +159,8 @@ public class HomeController {
 			String jobDescription = request.getParameter("jobDescription");
 			String jobLocation = request.getParameter("jobLocation");
 			
-			log.info("jobCategory:"+jobCategory);
-			log.info("jobCode:"+jobCode);
-			log.info("jobTitle:"+jobTitle);
-			log.info("jobRequirements:"+jobRequirements);
-			log.info("jobType:"+jobType);
-			log.info("jobDescription:"+jobDescription);
 			Jobs jobs = new Jobs();
-			jobs.setActive("true");
+			jobs.setJobStatus("OPEN");
 			jobs.setJobCategory(jobCategory);
 			jobs.setJobCode(jobCode);
 			jobs.setJobDescription(jobDescription);
@@ -239,10 +239,39 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/applyJob", method = { RequestMethod.POST })
-	public @ResponseBody String upload(@RequestParam("resume") MultipartFile resume) {
-		log.info("File name=" + resume.getOriginalFilename());
-		
-		return "true";
+	public @ResponseBody String upload(@RequestParam("resume") MultipartFile resume, @RequestParam("coverLetter") String coverLetter) {
+		boolean output = false;
+		try{
+			String pattern = "yyyy-MM-dd";
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+			String currentDate = simpleDateFormat.format(new Date());
+			Date applicationDate = new Date();
+			applicationDate = simpleDateFormat.parse(currentDate);
+			
+			String jobId = (String)session.getAttribute("JOB_DETAILS_ID");
+			Jobs jobs = new Jobs();
+			jobs.setJobCode(jobId);
+
+			User user = (User)session.getAttribute("USER_BEAN");
+			JobApplication jba = new JobApplication();
+			
+			byte[] bytes = resume.getBytes();
+			SerialBlob resumeBlob = new SerialBlob(bytes);
+			
+			jba.setApplicationDate(applicationDate);
+			jba.setApplicationStatus("OPEN");
+			jba.setCoverLetter(coverLetter);
+			jba.setJobs(jobs);
+			jba.setUser(user);
+			jba.setResume(resumeBlob);
+			
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output = adminService.saveApplication(jba);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return Boolean.toString(output);
 	}
 
 	

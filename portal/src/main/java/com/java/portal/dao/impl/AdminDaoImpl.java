@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.java.portal.dao.AdminDao;
+import com.java.portal.entity.JobApplication;
 import com.java.portal.entity.Jobs;
 import com.java.portal.entity.User;
 @Repository
@@ -57,9 +58,21 @@ public class AdminDaoImpl implements AdminDao {
 	public List<Jobs> selectActiveJobs() {
 		Session session = sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(Jobs.class);
-		criteria.add(Restrictions.eq("active", "true"));
+		criteria.add(Restrictions.eq("jobStatus", "OPEN"));
 		List<Jobs> results = (List<Jobs>)criteria.list();
 		return results;
+	}
+
+	public boolean insertJobApplication(JobApplication jba) {
+		try{
+			Session session = sessionFactory.getCurrentSession();
+			Criteria criteria = session.createCriteria(JobApplication.class);
+			session.save(jba);
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 	

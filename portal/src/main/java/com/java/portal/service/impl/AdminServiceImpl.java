@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.java.portal.dao.AdminDao;
 import com.java.portal.dao.UserAccountDao;
+import com.java.portal.entity.JobApplication;
 import com.java.portal.entity.Jobs;
 import com.java.portal.service.AdminService;
 
@@ -46,21 +47,19 @@ public class AdminServiceImpl implements AdminService {
 		List<Jobs> jobsList = dao.selectAllJobs();
 		StringBuffer tableContent = new StringBuffer();
 		String iconClass  = null;
-		for(Jobs jobs:jobsList){
-			tableContent.append("<tr id='"+jobs.getPkid()+"'>");
-			tableContent.append("<td>"+jobs.getPkid()+"</td>");
+		int slNo = 0;
+		for(int i=0;i<jobsList.size();i++){
+			Jobs jobs = jobsList.get(i);
+			slNo=i+1;
+			tableContent.append("<tr id='"+jobs.getJobCode()+"'>");
+			tableContent.append("<td>"+slNo+"</td>");
 			tableContent.append("<td>"+jobs.getJobCode()+"</td>");
 			tableContent.append("<td>"+jobs.getJobTitle()+"</td>");
 			tableContent.append("<td>"+jobs.getJobLocation()+"</td>");
 			tableContent.append("<td>"+jobs.getJobType()+"</td>");
-			if(jobs.getActive().equalsIgnoreCase("true")){
-				iconClass = "glyphicon glyphicon-ok";
-			}else{
-				iconClass = "glyphicon glyphicon-remove";
-			}
-			tableContent.append("<td><a <span class=\""+iconClass+"\"></span></a></td>");
-			tableContent.append("<td><a href=\"javascript:editRecord('"+jobs.getPkid()+"')\"><span class=\"glyphicon glyphicon-pencil\"></span></a></td>");
-			tableContent.append("<td><a href=\"javascript:deleteRecord('"+jobs.getPkid()+"')\"><span class=\"glyphicon glyphicon-trash\"></span></a></td>");
+			tableContent.append("<td>"+jobs.getJobStatus()+"</td>");
+			tableContent.append("<td><a href=\"javascript:editRecord('"+jobs.getJobCode()+"')\"><span class=\"glyphicon glyphicon-pencil\"></span></a></td>");
+			tableContent.append("<td><a href=\"javascript:deleteRecord('"+jobs.getJobCode()+"')\"><span class=\"glyphicon glyphicon-trash\"></span></a></td>");
 			tableContent.append("</tr>");
 		}
 		StringBuffer sb = new StringBuffer();
@@ -165,7 +164,6 @@ public class AdminServiceImpl implements AdminService {
 		
 		for(Jobs job:jobList){
 			jobDetails = job.getJobRequirements();
-			log.info("len:"+jobDetails.length());
 			if(jobDetails!=null){jobDetails=jobDetails.substring(0, 200);}
 			
 			tableContent.append("<li class='list-group-item'>");
@@ -188,6 +186,11 @@ public class AdminServiceImpl implements AdminService {
 		sb.append("</data>");
 		
 		return sb.toString();
+	}
+
+	public boolean saveApplication(JobApplication jba) {
+		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+		return dao.insertJobApplication(jba);
 	}
 	
 }

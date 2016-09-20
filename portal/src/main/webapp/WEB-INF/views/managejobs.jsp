@@ -137,10 +137,24 @@ $(document).ready(function() {
 			
 		<p class="text-right">
 			<span class="button-checkbox">
-		        <button type="button" class="btn btn-primary btn-sm btn-success">Show only active Jobs</button>
+		        <button type="button" class="btn btn-primary btn-sm btn-success">OPEN Jobs</button>
 		        <input type="checkbox" class="hidden" checked />
 		    </span>
+		    
+		    <span class="button-checkbox">
+		        <button type="button" class="btn btn-primary btn-sm btn-success">CLOSED Jobs</button>
+		        <input type="checkbox" class="hidden" />
+		    </span>
+		    
+		    <span class="button-checkbox">
+		        <button type="button" class="btn btn-primary btn-sm btn-success">ON-HOLD Jobs</button>
+		        <input type="checkbox" class="hidden" />
+		    </span>
+		    
 		    <a href="addjob" class="btn btn-primary btn-sm " >Add a new Job</a>
+        </p>
+        <p class="text-center">
+			<img alt="" src="resources/img/loading.gif" style="height: 40px;display:none;" id="loadingID">
         </p>
 			<table class="table table-bordered table-hover" id="jobsTable">
 						<thead style="background-color: #f8f9fa;">
@@ -150,7 +164,7 @@ $(document).ready(function() {
 								<th>Title</th>
 								<th>Location</th>
 								<th>Job Type</th>
-								<th>Active</th>
+								<th>Job Status</th>
 								<th></th>
 								<th></th>
 							</tr>
@@ -162,7 +176,7 @@ $(document).ready(function() {
 								<th>Title</th>
 								<th>Location</th>
 								<th>Job Type</th>
-								<th>Active</th>
+								<th>Job Status</th>
 								<th></th>
 								<th></th>
 							</tr>

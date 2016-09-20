@@ -35,7 +35,7 @@
   	      
             function drawChart() {
               var data = google.visualization.arrayToDataTable([
-                ['Month', 'User Registrations'],
+                ['Month', 'Job Applications'],
                 ['January', 20],
                 ['February', 12],
                 ['March', 14],
@@ -45,7 +45,7 @@
               var options = {
                 chart: {
                   title: 'Team Consultants | Solution for your IT needs',
-                  subtitle: 'New User Registrations for the last 4 months',
+                  subtitle: 'Job applications received for last 4 months',
                 },
                 bars: 'vertical',
                 vAxis: {format: 'decimal'},

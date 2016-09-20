@@ -20,12 +20,22 @@
 .form-control-static{
 padding-bottom: 0px;
 }
+
+.inputError{
+		border-bottom: 2px solid #ff4c4c;
+}
+
+.form-horizontal .control-label {
+   
+    text-align: left;
+}
 </style>
 
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#fileID").change(function() {
 		$("#fileNameID").val($("#fileID").val());	
+		$("#fileNameID").removeClass("inputError");
 	});
 
 	$("#browseID","#fileNameID").bind("click", function() {
@@ -33,6 +43,13 @@ $(document).ready(function() {
 	});
 	$("#fileNameID").bind("click", function() {
 		$("#fileID").click();
+	});
+
+	$("#iframeID").unbind().load(function () {
+		$output=$('#iframeID').contents().find('body').text();
+		if($output=="true"){
+			$("#msgID").show();		
+		}
 	});
 
 	$.ajax({
@@ -46,7 +63,30 @@ $(document).ready(function() {
 				console.log("Error occured...");
 		}
 	});
+
+	$("#coverLetterID").keypress(function() {
+		$(this).removeClass("inputError");
+	});
+	
 });
+
+function validate(){
+	$fileNameID = $("#fileNameID").val();
+	$coverLetterID = $("#coverLetterID").val();
+
+	if($fileNameID.length<=0){
+		$("#fileNameID").addClass("inputError");		
+	}
+	if($coverLetterID.length<=0){
+		$("#coverLetterID").addClass("inputError");		
+	}
+	
+	if($fileNameID.length>0 && $coverLetterID.length>0){
+		console.log("file and cover letter added...");
+		$("#formID").submit();
+	}
+
+}
 </script>
 <title>Team Consultants | Solution for your IT needs</title>
 </head>
@@ -64,7 +104,7 @@ $(document).ready(function() {
 		
     	<div class="col-sm-9" style="min-height: 550px;">
 			<h3>Application for Job Code : <%=session.getAttribute("JOB_DETAILS_ID") %></h3>
-			<form class="form-horizontal" enctype="multipart/form-data" target="iframe" action="applyJob" method="post">
+			<form class="form-horizontal" enctype="multipart/form-data" target="iframe" action="applyJob" method="post" id="formID">
 				  <div class="form-group">
 				    <label class="col-sm-2 control-label text-left">First Name</label>
 				    <div class="col-sm-10">
@@ -89,7 +129,7 @@ $(document).ready(function() {
 				  <div class="form-group">
 				    <label class="col-sm-2 control-label">Cover Letter</label>
 				    <div class="col-sm-10">
-				     	<textarea class="form-control input-sm" rows="2" name="coverLetter"></textarea>
+				     	<textarea class="form-control input-sm" rows="2" name="coverLetter" maxlength="2500" id="coverLetterID"></textarea>
 				    </div>
 				    
 				  </div>
@@ -105,8 +145,9 @@ $(document).ready(function() {
 				
 				
 				<p style="margin-top: 20px;">  
-				<button type="submit" class="btn btn-primary btn-sm">Apply</button>  
+				<button type="button" class="btn btn-primary btn-sm" onclick="javascript:validate();">Apply</button>
 				</p>
+				<p style="display: none;" id="msgID" class="text-center"><span class="fa fa-check" style="padding-right: 10px;"></span>Thanks for applying. <a href="careers">Click here </a> for Careers to find more Jobs!</p>
 			</form>		
 				 
 		</div>
