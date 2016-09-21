@@ -1,5 +1,6 @@
 package com.java.portal.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -191,6 +192,58 @@ public class AdminServiceImpl implements AdminService {
 	public boolean saveApplication(JobApplication jba) {
 		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
 		return dao.insertJobApplication(jba);
+	}
+
+	public String getOpenApplications() {
+		try{
+			StringBuffer tableContent = new StringBuffer();
+			List<JobApplication> appList = new ArrayList<JobApplication>();
+			/**
+			 * <tr>
+								<th>Sl.No</th>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Job Code</th>
+								<th>Job Location</th>
+								<th>Application Status</th>
+								<th>Date submitted</th>
+								<th></th>
+							</tr>
+			 */
+			AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+			appList = dao.selectOpenApplications();
+			int slNo = 0;
+			for(int i=0;i<appList.size();i++){
+				JobApplication application = appList.get(i);
+				slNo=i+1;
+				tableContent.append("<tr id='"+application.getPkid()+"'>");
+				tableContent.append("<td>"+slNo+"</td>");
+				tableContent.append("<td>"+application.getUser().getFirstName()+"</td>");
+				tableContent.append("<td>"+application.getUser().getEmail()+"</td>");
+				tableContent.append("<td>"+application.getJobs().getJobCode()+"</td>");
+				tableContent.append("<td>"+application.getJobs().getJobLocation()+"</td>");
+				tableContent.append("<td>"+application.getApplicationStatus()+"</td>");
+				tableContent.append("<td>"+application.getApplicationDate()+"</td>");
+				tableContent.append("<td><a href=\"javascript:viewApplication('"+application.getPkid()+"')\"><span class=\"fa fa-eye\" title=\"View Applciation\"></span></a></td>");
+				tableContent.append("</tr>");
+			}
+			StringBuffer sb = new StringBuffer();
+			sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+			sb.append("<tableContent>");
+				sb.append("<![CDATA[");
+					sb.append(tableContent.toString());
+				sb.append("]]>");
+			sb.append("</tableContent>");
+			sb.append("</data>");
+			
+			return sb.toString();
+		}catch(Exception e){
+			e.printStackTrace();
+			return "";
+		}
+		
+		
+		
 	}
 	
 }

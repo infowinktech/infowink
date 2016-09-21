@@ -81,6 +81,10 @@ public class HomeController {
 	public String apply() {
 		return "apply";
 	}
+	@RequestMapping(value = "/manageapplications", method = RequestMethod.GET)
+	public String manageapplications() {
+		return "manageapplications";
+	}
 
 
 
@@ -274,5 +278,18 @@ public class HomeController {
 		return Boolean.toString(output);
 	}
 
+	@RequestMapping(value = "/loadApplications", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String loadApplications() {
+		String output = null;
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output=adminService.getOpenApplications();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+
+		
+	}
 	
 }

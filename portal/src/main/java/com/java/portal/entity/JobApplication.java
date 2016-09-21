@@ -55,7 +55,7 @@ public class JobApplication implements java.io.Serializable {
 		this.pkid = pkid;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "JOB_CODE")
 	public Jobs getJobs() {
 		return this.jobs;
@@ -65,7 +65,7 @@ public class JobApplication implements java.io.Serializable {
 		this.jobs = jobs;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "USER_ID")
 	public User getUser() {
 		return this.user;

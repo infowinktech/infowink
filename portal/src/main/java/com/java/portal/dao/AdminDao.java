@@ -11,4 +11,5 @@ public interface AdminDao {
 	public Jobs getJobDetails(String jobId);
 	public List<Jobs> selectActiveJobs();
 	public boolean insertJobApplication(JobApplication jba);
+	public List<JobApplication> selectOpenApplications();
 }

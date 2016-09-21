@@ -1,5 +1,6 @@
 package com.java.portal.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -73,6 +74,17 @@ public class AdminDaoImpl implements AdminDao {
 			return false;
 		}
 		return true;
+	}
+
+	public List<JobApplication> selectOpenApplications() {
+		List<JobApplication> appList = new ArrayList<JobApplication>();
+
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(JobApplication.class);
+		criteria.add(Restrictions.eq("applicationStatus", "OPEN"));
+		List<JobApplication> results = (List<JobApplication>)criteria.list();
+
+		return results;
 	}
 
 	

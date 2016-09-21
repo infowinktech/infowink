@@ -11,4 +11,5 @@ public interface AdminService {
 	public String getJobDetails(String jobId);
 	public String getActiveJobs();
 	public boolean saveApplication(JobApplication jba);
+	public String getOpenApplications();
 }
