@@ -80,7 +80,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="dashboard">Dashboard</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">Manage Users</a></li>
+							<li><a href="manageusers">Manage Users</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="managejobs">Manage Jobs</a></li>
 							<li role="separator" class="divider"></li>

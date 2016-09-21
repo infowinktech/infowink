@@ -85,6 +85,10 @@ public class HomeController {
 	public String manageapplications() {
 		return "manageapplications";
 	}
+	@RequestMapping(value = "/manageusers", method = RequestMethod.GET)
+	public String manageusers() {
+		return "manageusers";
+	}
 
 
 
@@ -284,6 +288,20 @@ public class HomeController {
 		try{
 			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
 			output=adminService.getOpenApplications();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+
+		
+	}
+	
+	@RequestMapping(value = "/loadUsers", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String loadUsers() {
+		String output = null;
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output=adminService.getUsers();
 		}catch(Exception e){
 			e.printStackTrace();
 		}

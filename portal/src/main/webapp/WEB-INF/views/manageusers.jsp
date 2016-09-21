@@ -18,7 +18,6 @@
 <script src="resources/js/jquery.dataTables.min.js"></script>
 <script src="resources/js/dataTables.bootstrap.min.js"></script>
 <link rel="stylesheet" href="resources/css/dataTables.bootstrap.min.css">
-
 <script src="resources/js/checkbox.js"></script>
 
 <style type="text/css">
@@ -34,7 +33,7 @@ padding-left: 5px;
 $(document).ready(function() {
 
 	$.ajax({
-		url : "loadJobs",
+		url : "loadUsers",
 		dataType : "xml",
 		type : "POST",
 		success : function(xml){
@@ -45,10 +44,10 @@ $(document).ready(function() {
 				console.log("Error occured...");
 		}
 	});
-	
 });
-
 </script>
+
+
 <title>Team Consultants | Solution for your IT needs</title>
 </head>
 <body>
@@ -62,26 +61,8 @@ $(document).ready(function() {
 	<div class="row">
 		
     	<div class="col-sm-12" style="min-height: 550px;">
-			<h3>List of Jobs</h3>
-			
-		<p class="text-right">
-			<span class="button-checkbox">
-		        <button type="button" class="btn btn-primary btn-sm btn-success">OPEN Jobs</button>
-		        <input type="checkbox" class="hidden" checked />
-		    </span>
-		    
-		    <span class="button-checkbox">
-		        <button type="button" class="btn btn-primary btn-sm btn-success">CLOSED Jobs</button>
-		        <input type="checkbox" class="hidden" />
-		    </span>
-		    
-		    <span class="button-checkbox">
-		        <button type="button" class="btn btn-primary btn-sm btn-success">ON-HOLD Jobs</button>
-		        <input type="checkbox" class="hidden" />
-		    </span>
-		    
-		    <a href="addjob" class="btn btn-primary btn-sm " >Add a new Job</a>
-        </p>
+			<h3>List of Users</h3>
+	
         <p class="text-center">
 			<img alt="" src="resources/img/loading.gif" style="height: 40px;display:none;" id="loadingID">
         </p>
@@ -89,24 +70,20 @@ $(document).ready(function() {
 						<thead style="background-color: #f8f9fa;">
 							<tr>
 								<th>Sl.No</th>
-								<th>Job Code</th>
-								<th>Title</th>
-								<th>Location</th>
-								<th>Job Type</th>
-								<th>Job Status</th>
-								<th></th>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Role</th>
+								<th>Applications submitted</th>
 								<th></th>
 							</tr>
 						</thead>
 						<tfoot style="background-color: #f8f9fa;">
 							<tr>
 								<th>Sl.No</th>
-								<th>Job Code</th>
-								<th>Title</th>
-								<th>Location</th>
-								<th>Job Type</th>
-								<th>Job Status</th>
-								<th></th>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Role</th>
+								<th>Applications submitted</th>
 								<th></th>
 							</tr>
 						</tfoot>

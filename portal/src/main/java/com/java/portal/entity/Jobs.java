@@ -1,11 +1,15 @@
 package com.java.portal.entity;
-// Generated Sep 20, 2016 2:19:24 PM by Hibernate Tools 4.3.1.Final
+// Generated Sep 20, 2016 3:09:31 PM by Hibernate Tools 4.3.1.Final
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,6 +30,7 @@ public class Jobs implements java.io.Serializable {
 	private String hours;
 	private String rate;
 	private String jobStatus;
+	private Set<JobApplication> jobApplications = new HashSet<JobApplication>(0);
 
 	public Jobs() {
 	}
@@ -42,6 +47,22 @@ public class Jobs implements java.io.Serializable {
 		this.hours = hours;
 		this.rate = rate;
 		this.jobStatus = jobStatus;
+	}
+
+	public Jobs(int pkid, String jobCategory, String jobTitle, String jobLocation, String jobType,
+			String jobRequirements, String jobDescription, String hours, String rate, String jobStatus,
+			Set<JobApplication> jobApplications) {
+		this.pkid = pkid;
+		this.jobCategory = jobCategory;
+		this.jobTitle = jobTitle;
+		this.jobLocation = jobLocation;
+		this.jobType = jobType;
+		this.jobRequirements = jobRequirements;
+		this.jobDescription = jobDescription;
+		this.hours = hours;
+		this.rate = rate;
+		this.jobStatus = jobStatus;
+		this.jobApplications = jobApplications;
 	}
 
 	@Id
@@ -144,6 +165,15 @@ public class Jobs implements java.io.Serializable {
 
 	public void setJobStatus(String jobStatus) {
 		this.jobStatus = jobStatus;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "jobs")
+	public Set<JobApplication> getJobApplications() {
+		return this.jobApplications;
+	}
+
+	public void setJobApplications(Set<JobApplication> jobApplications) {
+		this.jobApplications = jobApplications;
 	}
 
 }

@@ -18,7 +18,7 @@
 <script src="resources/js/jquery.dataTables.min.js"></script>
 <script src="resources/js/dataTables.bootstrap.min.js"></script>
 <link rel="stylesheet" href="resources/css/dataTables.bootstrap.min.css">
-
+<script src="resources/js/checkbox.js"></script>
 
 <style type="text/css">
 .input-sm{
@@ -44,82 +44,10 @@ $(document).ready(function() {
 				console.log("Error occured...");
 		}
 	});
-
-
-	
-
-	$(function () {
-	    $('.button-checkbox').each(function () {
-
-	        // Settings
-	        var $widget = $(this),
-	            $button = $widget.find('button'),
-	            $checkbox = $widget.find('input:checkbox'),
-	            color = $button.data('color'),
-	            settings = {
-	                on: {
-	                    icon: 'glyphicon glyphicon-check'
-	                },
-	                off: {
-	                    icon: 'glyphicon glyphicon-unchecked'
-	                }
-	            };
-
-	        // Event Handlers
-	        $button.on('click', function () {
-	            $checkbox.prop('checked', !$checkbox.is(':checked'));
-	            $checkbox.triggerHandler('change');
-	            updateDisplay();
-	        });
-	        $checkbox.on('change', function () {
-	            updateDisplay();
-	        });
-
-	        // Actions
-	        function updateDisplay() {
-	            var isChecked = $checkbox.is(':checked');
-
-	            // Set the button's state
-	            $button.data('state', (isChecked) ? "on" : "off");
-
-	            // Set the button's icon
-	            $button.find('.state-icon')
-	                .removeClass()
-	                .addClass('state-icon ' + settings[$button.data('state')].icon);
-
-	            // Update the button's color
-	            if (isChecked) {
-	                $button
-	                    .removeClass('btn-default')
-	                    .addClass('btn-' + color + ' active');
-	            }
-	            else {
-	                $button
-	                    .removeClass('btn-' + color + ' active')
-	                    .addClass('btn-default');
-	            }
-	        }
-
-	        // Initialization
-	        function init() {
-
-	            updateDisplay();
-
-	            // Inject the icon if applicable
-	            if ($button.find('.state-icon').length === 0) {
-	                $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i> ');
-	            }
-	        }
-	        init();
-	    });
-	});
-
-
-		
-	
 });
-
 </script>
+
+
 <title>Team Consultants | Solution for your IT needs</title>
 </head>
 <body>
@@ -133,7 +61,7 @@ $(document).ready(function() {
 	<div class="row">
 		
     	<div class="col-sm-12" style="min-height: 550px;">
-			<h3>List of Jobs</h3>
+			<h3>List of Applications</h3>
 			
 		<p class="text-right">
 			<span class="button-checkbox">
