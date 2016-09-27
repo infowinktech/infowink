@@ -1,7 +1,10 @@
 package com.java.portal.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -210,20 +213,30 @@ public class AdminServiceImpl implements AdminService {
 			StringBuffer tableContent = new StringBuffer();
 			UserAccountDao dao = (UserAccountDao) context.getBean("userAccountDaoImpl");
 			List<User> userList = dao.fetchUsers();
-			int slNo = 0;
-			for (int i = 0; i < userList.size(); i++) {
-				User user = userList.get(i);
-				slNo = i + 1;
-				tableContent.append("<tr id='" + user.getPkid() + "'>");
-				tableContent.append("<td>" + slNo + "</td>");
-				tableContent.append("<td>" + user.getFirstName() + " " + user.getLastName() + "</td>");
-				tableContent.append("<td>" + user.getEmail() + "</td>");
-				tableContent.append("<td>" + user.getRole().getRole() + "</td>");
-				tableContent.append("<td>" + user.getJobApplications().size() + "</td>");
-				tableContent.append("<td><a href=\"javascript:viewUser('" + user.getPkid()
-						+ "')\"><span class=\"fa fa-eye\" title=\"View User\"></span></a></td>");
-				tableContent.append("</tr>");
+			
+			Set<User> userSet = new HashSet<User>();
+			for(User user : userList){
+				userSet.add(user);
 			}
+			log.info("set size:"+userSet.size());
+			
+			int slNo = 1;
+			
+			Iterator iterator = userSet.iterator();
+			   while (iterator.hasNext()){
+				   	User user = (User)iterator.next(); 
+				   	tableContent.append("<tr id='" + user.getPkid() + "'>");
+					tableContent.append("<td>" + slNo + "</td>");
+					tableContent.append("<td>" + user.getFirstName() + " " + user.getLastName() + "</td>");
+					tableContent.append("<td>" + user.getEmail() + "</td>");
+					tableContent.append("<td>" + user.getRole().getRole() + "</td>");
+					tableContent.append("<td>" + user.getJobApplications().size() + "</td>");
+					tableContent.append("<td><a href=\"javascript:viewUser('" + user.getPkid()
+							+ "')\"><span class=\"fa fa-eye\" title=\"View User\"></span></a></td>");
+					tableContent.append("</tr>");
+					slNo = slNo + 1;
+			   }
+			
 			StringBuffer sb = new StringBuffer();
 			sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
 			sb.append("<tableContent>");

@@ -1,13 +1,16 @@
 package com.java.portal.entity;
 // Generated Sep 20, 2016 3:09:31 PM by Hibernate Tools 4.3.1.Final
 
-import java.util.HashSet;
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,7 +30,7 @@ public class User implements java.io.Serializable {
 	private String lastName;
 	private String password;
 	private String email;
-	private Set<JobApplication> jobApplications = new HashSet<JobApplication>(0);
+	private List<JobApplication> jobApplications = new ArrayList<JobApplication>(0);
 
 	public User() {
 	}
@@ -38,7 +41,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public User(Role role, String firstName, String lastName, String password, String email,
-			Set<JobApplication> jobApplications) {
+			List<JobApplication> jobApplications) {
 		this.role = role;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -59,7 +62,7 @@ public class User implements java.io.Serializable {
 		this.pkid = pkid;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY )
+	@ManyToOne(fetch = FetchType.EAGER )
 	@JoinColumn(name = "ROLE_ID", nullable = false)
 	public Role getRole() {
 		return this.role;
@@ -105,13 +108,26 @@ public class User implements java.io.Serializable {
 		this.email = email;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY , mappedBy = "user")
-	public Set<JobApplication> getJobApplications() {
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "USER_ID")
+	public List<JobApplication> getJobApplications() {
 		return this.jobApplications;
 	}
 
-	public void setJobApplications(Set<JobApplication> jobApplications) {
+	public void setJobApplications(List<JobApplication> jobApplications) {
 		this.jobApplications = jobApplications;
 	}
+	
+	 public boolean equals(Object obj){
+	        System.out.println("In equals");
+	        if (obj instanceof User) {
+	        	User user = (User) obj;
+	            return (user.email.equals(this.email) && user.email == this.email);
+	        } else {
+	            return false;
+	        }
+	    }
+	 
+	
 
 }

@@ -49,30 +49,38 @@ $(document).ready(function() {
 	<div class="row visible-lg">
 	
 		<div class="col-sm-2" style="border: 1px solid #e0e0e0;padding-left: 0px;background-color: #ffffff;">
+		<a href="manageusers" >
 				<div class="col-sm-6 fa fa-user fa-5x" style="background-color:  #008080 ;color: #ffffff"></div>
 				<div class="col-sm-6"><h3 style="margin-top: 10px; margin-bottom: 0px;">2414</h3><p class="help-block">USERS</p></div>
+		</a>		
 		</div>
 		
 		<div class="col-sm-1"></div>
 		
 		<div class="col-sm-2" style="border: 1px solid #e0e0e0;padding-left: 0px;background-color: #ffffff;">
+		<a href="managejobs" >
 				<div class="col-sm-7 fa fa-briefcase fa-5x" style="background-color: #8b9dc3;color: #ffffff"></div>
 				<div class="col-sm-5"><h3 style="margin-top: 10px; margin-bottom: 0px;">245</h3><p class="help-block">JOBS</p></div>
+		</a>		
 		</div>
 		
 		<div class="col-sm-1"></div>
 	
 		<div class="col-sm-3" style="border: 1px solid #e0e0e0;padding-left: 0px;background-color: #ffffff;">
+		<a href="manageapplications" >
 				<div class="col-sm-5 fa fa-thumbs-up fa-5x" style="background-color: #D01A55;color: #ffffff"></div>
 				<div class="col-sm-7"><h3 style="margin-top: 10px; margin-bottom: 0px;">78</h3><p class="help-block">APPLICATIONS</p></div>
+		</a>
 		</div>
 		
 		<div class="col-sm-1"></div>
 		
 		
 		<div class="col-sm-2" style="border: 1px solid #e0e0e0;padding-left: 0px;background-color: #ffffff;">
+		<a href="manageapplications" >
 				<div class="col-sm-7 fa fa-envelope fa-5x" style="background-color:#65737e;color: #ffffff"></div>
 				<div class="col-sm-5"><h3 style="margin-top: 10px; margin-bottom: 0px;">2414</h3><p class="help-block">INBOX</p></div>
+		</a>		
 		</div>
 		
 		
