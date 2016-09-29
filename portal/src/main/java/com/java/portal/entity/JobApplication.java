@@ -1,5 +1,5 @@
 package com.java.portal.entity;
-// Generated Sep 20, 2016 3:09:31 PM by Hibernate Tools 4.3.1.Final
+// Generated Sep 28, 2016 9:55:28 AM by Hibernate Tools 4.3.1.Final
 
 import java.sql.Blob;
 import java.util.Date;
@@ -29,18 +29,20 @@ public class JobApplication implements java.io.Serializable {
 	private String coverLetter;
 	private Date applicationDate;
 	private String applicationStatus;
+	private String resumeName;
 
 	public JobApplication() {
 	}
 
 	public JobApplication(Jobs jobs, User user, Blob resume, String coverLetter, Date applicationDate,
-			String applicationStatus) {
+			String applicationStatus, String resumeName) {
 		this.jobs = jobs;
 		this.user = user;
 		this.resume = resume;
 		this.coverLetter = coverLetter;
 		this.applicationDate = applicationDate;
 		this.applicationStatus = applicationStatus;
+		this.resumeName = resumeName;
 	}
 
 	@Id
@@ -110,6 +112,15 @@ public class JobApplication implements java.io.Serializable {
 
 	public void setApplicationStatus(String applicationStatus) {
 		this.applicationStatus = applicationStatus;
+	}
+
+	@Column(name = "RESUME_NAME", length = 400)
+	public String getResumeName() {
+		return this.resumeName;
+	}
+
+	public void setResumeName(String resumeName) {
+		this.resumeName = resumeName;
 	}
 
 }

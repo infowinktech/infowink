@@ -272,7 +272,9 @@ public class HomeController {
 			jba.setJobs(jobs);
 			jba.setUser(user);
 			jba.setResume(resumeBlob);
+			jba.setResumeName(resume.getOriginalFilename());
 			
+			log.info(resume.getOriginalFilename());
 			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
 			output = adminService.saveApplication(jba);
 			
