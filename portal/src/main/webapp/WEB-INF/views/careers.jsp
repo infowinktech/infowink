@@ -148,9 +148,9 @@ function jobDetails(id){
 		        
 		        <div class="checkbox">
 			          <label>
-			            <input type="checkbox" value="CONTRACTOR" >
+			            <input type="checkbox" value="CONTRACT" >
 			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-			            CONTRACTOR
+			            CONTRACT
 			          </label>
 		        </div>
 		        

@@ -1,13 +1,16 @@
 package com.java.portal.entity;
 // Generated Sep 20, 2016 3:09:31 PM by Hibernate Tools 4.3.1.Final
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -29,6 +32,7 @@ public class Jobs implements java.io.Serializable {
 	private String jobDescription;
 	private String hours;
 	private String rate;
+	private String active;
 	private String jobStatus;
 	private Set<JobApplication> jobApplications = new HashSet<JobApplication>(0);
 
@@ -36,7 +40,7 @@ public class Jobs implements java.io.Serializable {
 	}
 
 	public Jobs(int pkid, String jobCategory, String jobTitle, String jobLocation, String jobType,
-			String jobRequirements, String jobDescription, String hours, String rate, String jobStatus) {
+			String jobRequirements, String jobDescription, String hours, String rate, String active, String jobStatus, String jobCode) {
 		this.pkid = pkid;
 		this.jobCategory = jobCategory;
 		this.jobTitle = jobTitle;
@@ -46,11 +50,13 @@ public class Jobs implements java.io.Serializable {
 		this.jobDescription = jobDescription;
 		this.hours = hours;
 		this.rate = rate;
+		this.active = active;
 		this.jobStatus = jobStatus;
+		this.jobCode = jobCode;
 	}
 
 	public Jobs(int pkid, String jobCategory, String jobTitle, String jobLocation, String jobType,
-			String jobRequirements, String jobDescription, String hours, String rate, String jobStatus,
+			String jobRequirements, String jobDescription, String hours, String rate, String active, String jobStatus,
 			Set<JobApplication> jobApplications) {
 		this.pkid = pkid;
 		this.jobCategory = jobCategory;
@@ -61,14 +67,13 @@ public class Jobs implements java.io.Serializable {
 		this.jobDescription = jobDescription;
 		this.hours = hours;
 		this.rate = rate;
+		this.active = active;
 		this.jobStatus = jobStatus;
 		this.jobApplications = jobApplications;
 	}
 
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
-
-	@Column(name = "JOB_CODE", unique = true, nullable = false, length = 400)
+	@Column(name = "JOB_CODE", unique = true, nullable = false, length = 400, columnDefinition="VARCHAR(400)")
 	public String getJobCode() {
 		return this.jobCode;
 	}
@@ -158,6 +163,15 @@ public class Jobs implements java.io.Serializable {
 		this.rate = rate;
 	}
 
+	@Column(name = "ACTIVE", nullable = false, length = 20)
+	public String getActive() {
+		return this.active;
+	}
+
+	public void setActive(String active) {
+		this.active = active;
+	}
+
 	@Column(name = "JOB_STATUS", nullable = false, length = 20)
 	public String getJobStatus() {
 		return this.jobStatus;
@@ -167,7 +181,7 @@ public class Jobs implements java.io.Serializable {
 		this.jobStatus = jobStatus;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "jobs")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "jobs")
 	public Set<JobApplication> getJobApplications() {
 		return this.jobApplications;
 	}

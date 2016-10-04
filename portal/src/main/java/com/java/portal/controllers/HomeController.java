@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import javax.sql.rowset.serial.SerialBlob;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -166,7 +165,19 @@ public class HomeController {
 			String jobType = request.getParameter("jobType");
 			String jobDescription = request.getParameter("jobDescription");
 			String jobLocation = request.getParameter("jobLocation");
+			String hours = request.getParameter("hours");
+			String rate = request.getParameter("rate");
 			
+			/*log.info("jobCode:"+jobCode);
+			log.info("jobCategory:"+jobCategory);
+			log.info("jobTitle:"+jobTitle);
+			log.info("jobRequirements:"+jobRequirements);
+			log.info("jobType:"+jobType);
+			log.info("jobDescription:"+jobDescription);
+			log.info("jobLocation:"+jobLocation);
+			log.info("hours:"+hours);
+			log.info("rate:"+rate);
+			*/
 			Jobs jobs = new Jobs();
 			jobs.setJobStatus("OPEN");
 			jobs.setJobCategory(jobCategory);
@@ -176,6 +187,10 @@ public class HomeController {
 			jobs.setJobRequirements(jobRequirements);
 			jobs.setJobTitle(jobTitle);
 			jobs.setJobType(jobType);
+			jobs.setHours(hours);
+			jobs.setRate(rate);
+			jobs.setActive("true");
+			
 			
 			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
 			output=adminService.addJob(jobs);

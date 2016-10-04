@@ -34,6 +34,8 @@ $(document).ready(function() {
 	$("#jobTypeID").keypress(function() {$(this).removeClass("inputError");});
 	$("#jobRequirementsID").keypress(function() {$(this).removeClass("inputError");});
 	$("#jobDescriptionID").keypress(function() {$(this).removeClass("inputError");});
+	$("#rateID").keypress(function() {$(this).removeClass("inputError");});
+	$("#hoursID").keypress(function() {$(this).removeClass("inputError");});
 	
 	$( "#registerID" ).click(function() {
 		$jobCategoryID=$('#jobCategoryID').val();
@@ -43,6 +45,8 @@ $(document).ready(function() {
 		$jobTypeID=$('#jobTypeID').val();
 		$jobRequirementsID=$('#jobRequirementsID').val();
 		$jobDescriptionID=$('#jobDescriptionID').val();
+		$hoursID=$('#hoursID').val();
+		$rateID=$('#rateID').val();
 		
 		if($jobCategoryID.trim().length==0){$("#jobCategoryID").addClass("inputError");}
 		if($jobCodeID.trim().length==0){$("#jobCodeID").addClass("inputError");}
@@ -51,6 +55,8 @@ $(document).ready(function() {
 		if($jobTypeID.trim().length==0){$("#jobTypeID").addClass("inputError");}
 		if($jobDescriptionID.trim().length==0){$("#jobDescriptionID").addClass("inputError");}
 		if($jobRequirementsID.trim().length==0){$("#jobRequirementsID").addClass("inputError");}
+		if($hoursID.trim().length==0){$("#hoursID").addClass("inputError");}
+		if($rateID.trim().length==0){$("#rateID").addClass("inputError");}
 	
 		if($jobCategoryID.trim().length>0 &&
 		   $jobCodeID.trim().length>0 && 
@@ -58,7 +64,9 @@ $(document).ready(function() {
 		   $jobLocationID.trim().length>0 &&
 		   $jobTypeID.trim().length>0 &&
 		   $jobRequirementsID.trim().length>0 &&
-		   $jobDescriptionID.trim().length>0
+		   $jobDescriptionID.trim().length>0 &&
+		   $hoursID.trim().length>0 &&
+		   $rateID.trim().length>0 
 		   ){
 			addJob();
 		}
@@ -107,33 +115,82 @@ $(document).ready(function() {
 		
     	<div class="col-sm-9">
 			<h3>Add a Job</h3>
-			<form role="form" id="addJobFormID">
-						<div class="form-group">
-							<input type="text" class="form-control input-sm"  placeholder="Job Category" name="jobCategory" id="jobCategoryID">
-						</div>
-						<div class="form-group">
-							<input type="text" class="form-control input-sm"  placeholder="Job Code" name="jobCode" id="jobCodeID">
-						</div>
-						<div class="form-group">
-							<input type="text" class="form-control input-sm"  placeholder="Job Title" name="jobTitle" id="jobTitleID">
-						</div>
-						<div class="form-group">
-							<input type="text" class="form-control input-sm"  placeholder="Job Location" name="jobLocation" id="jobLocationID">
-						</div>
-						<div class="form-group">
-							<input type="text" class="form-control input-sm"  placeholder="Job Type" name="jobType" id="jobTypeID">
-						</div>
-						<div class="form-group">
-							<textarea class="form-control input-sm" rows="2" placeholder="Job Requirements" name="jobRequirements" id="jobRequirementsID"></textarea>
-						</div>
-						<div class="form-group">
-							<textarea class="form-control input-sm" rows="2" placeholder="Job Description" name="jobDescription" id="jobDescriptionID"></textarea>
-						</div>
+			
+			<form class="form-horizontal" method="post" id="addJobFormID">
+				
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Job Category</label>
+				    <div class="col-sm-9">
+				     	<input type="text" class="form-control input-sm"  placeholder="Job Category" name="jobCategory" id="jobCategoryID">
+				    </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Job Code</label>
+				    <div class="col-sm-9">
+				     	<input type="text" class="form-control input-sm"  placeholder="Job Code" name="jobCode" id="jobCodeID">
+				    </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Job Title</label>
+				    <div class="col-sm-9">
+				     	<input type="text" class="form-control input-sm"  placeholder="Job Title" name="jobTitle" id="jobTitleID">
+				    </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Job Location</label>
+				    <div class="col-sm-9">
+				     	<input type="text" class="form-control input-sm"  placeholder="Job Location" name="jobLocation" id="jobLocationID">
+				    </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Job Type</label>
+				    <div class="col-sm-9">
+				     	<input type="text" class="form-control input-sm"  placeholder="Job Type" name="jobType" id="jobTypeID">
+				    </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Hours</label>
+				    <div class="col-sm-9">
+				     	<input type="text" class="form-control input-sm"  placeholder="Hours" name="hours" id="hoursID">
+				    </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Rate</label>
+				    <div class="col-sm-9">
+				     	<input type="text" class="form-control input-sm"  placeholder="Rate" name="rate" id="rateID">
+				    </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Job Requirements</label>
+				    <div class="col-sm-9">
+				     	<textarea class="form-control input-sm" rows="2" placeholder="Job Requirements" name="jobRequirements" id="jobRequirementsID"></textarea>
+				    </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Job Description</label>
+				    <div class="col-sm-9">
+				     	<textarea class="form-control input-sm" rows="2" placeholder="Job Description" name="jobDescription" id="jobDescriptionID"></textarea>
+				    </div>
+				  </div>
+				  
+				  
+				
+				
+				
+				<p style="margin-top: 20px;">  
+				<button type="button" class="btn btn-primary btn-sm" id="registerID">Add Job</button>
+				</p>
+				<p style="display: none;" id="msgID" class="text-center"><span class="fa fa-check" style="padding-right: 10px;"></span>Thanks for applying. <a href="careers">Click here </a> for Careers to find more Jobs!</p>
+			</form>	
 						
-						<button id="registerID" type="button" class="btn btn-primary btn-sm" data-toggle="modal">Submit</button>
-						<img alt="" src="resources/img/loading.gif" style="height: 40px;display:none;" id="loadingID1">
-						<p id="msgID" class="text-center" style="dislpay:none;"></p>
-			</form>			
 				 
 		</div>
 		<div class="col-sm-3" >

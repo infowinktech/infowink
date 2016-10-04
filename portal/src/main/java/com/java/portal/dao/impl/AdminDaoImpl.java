@@ -17,7 +17,6 @@ import org.springframework.stereotype.Repository;
 import com.java.portal.dao.AdminDao;
 import com.java.portal.entity.JobApplication;
 import com.java.portal.entity.Jobs;
-import com.java.portal.entity.User;
 @Repository
 @Transactional
 public class AdminDaoImpl implements AdminDao {
@@ -31,6 +30,9 @@ public class AdminDaoImpl implements AdminDao {
 		try{
 			Session session = sessionFactory.getCurrentSession();
 			Criteria criteria = session.createCriteria(Jobs.class);
+			
+			log.info("dao:"+jobs.getJobCode());
+			
 			session.save(jobs);
 		}catch(Exception e){
 			e.printStackTrace();
