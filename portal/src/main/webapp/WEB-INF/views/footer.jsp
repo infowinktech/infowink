@@ -1,5 +1,33 @@
+
+<style type="text/css">
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 150px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 140px;
+}
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+</style>
+
 <hr style="margin-top: 0px;">
-	<footer id="footerID" class="section section-primary bg-primary">
+	<footer id="footerID" class="section section-primary bg-primary footer">
 		<div class="container">
 			<div class="row small">
 				<div class="col-md-4">
