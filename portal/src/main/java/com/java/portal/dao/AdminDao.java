@@ -12,4 +12,6 @@ public interface AdminDao {
 	public List<Jobs> selectActiveJobs();
 	public boolean insertJobApplication(JobApplication jba);
 	public List<JobApplication> selectOpenApplications();
+	public JobApplication selectApplicationBasedOnId(int id);
+	public boolean updateApplicationStatus(int pkid, String status);
 }

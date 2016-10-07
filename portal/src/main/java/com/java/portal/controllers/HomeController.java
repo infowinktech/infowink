@@ -88,6 +88,10 @@ public class HomeController {
 	public String manageusers() {
 		return "manageusers";
 	}
+	@RequestMapping(value = "/viewapplication", method = RequestMethod.GET)
+	public String viewApplication() {
+		return "viewapplication";
+	}
 
 
 
@@ -325,6 +329,43 @@ public class HomeController {
 		return output;
 
 		
+	}
+	
+	@RequestMapping(value = "/saveApplicationId", method = { RequestMethod.GET }, produces = { "text/plain" })
+	public @ResponseBody String authenticate(@RequestParam("id") int id) {
+		session.setAttribute("application_id", id);
+		log.info("application id saved...");
+		return "";
+	}
+	
+
+	@RequestMapping(value = "/loadApplicationBasedOnId", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String loadApplicationBasedOnId() {
+		String output = null;
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			int id = (Integer) session.getAttribute("application_id");
+			output=adminService.loadApplicationBasedOnId(id); 
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+	}
+	
+	@RequestMapping(value = "/updateApplicationStatus", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String updateApplicationStatus(@RequestParam("status") String status) {
+		String output = null;
+		try{
+			int pkid = (Integer) session.getAttribute("application_id");
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			log.info("Status : "+status);
+			output = adminService.updateApplicationStatus(pkid, status);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
 	}
 	
 }

@@ -13,6 +13,7 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
 <link rel="stylesheet" href="resources/css/custom.css">
+<script src="resources/js/checkbox.js"></script>
 <style type="text/css">
 .form-group{
 	margin-bottom: 0px;
@@ -33,60 +34,76 @@ padding-bottom: 0px;
 
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#fileID").change(function() {
-		$("#fileNameID").val($("#fileID").val());	
-		$("#fileNameID").removeClass("inputError");
+
+	$("#openID").change(function() {
+		console.log("OPEN:"+$('#openID').is(":checked"));
+	    $( "#closedID").removeAttr('checked');
+	    $( "#onHoldID").removeAttr('checked');
 	});
 
-	$("#browseID","#fileNameID").bind("click", function() {
-		$("#fileID").click();
-	});
-	$("#fileNameID").bind("click", function() {
-		$("#fileID").click();
-	});
-
-	$("#iframeID").unbind().load(function () {
-		$output=$('#iframeID').contents().find('body').text();
-		if($output=="true"){
-			$("#msgID").show();		
-		}
+	$("#closedID").change(function() {
+		console.log("CLOSED:"+$('#closedID').is(":checked"));
+		 $( "#openID").removeAttr('checked');
+		 $( "#onHoldID").removeAttr('checked');
 	});
 
+	$("#onHoldID").change(function() {
+		console.log("ON-HOLD:"+$('#onHoldID').is(":checked"));
+		$( "#openID").removeAttr('checked');
+		$( "#closedID").removeAttr('checked');
+	});
+
+	$("#updateID").click(function() {
+		$status = $("#statusID").val();
+		console.log("status:"+$status);
+		$status = $status.trim();
+		if($status.length>0){
+			$.ajax({
+				url : "updateApplicationStatus",
+				dataType : "xml",
+				type : "POST",
+				data : "status="+$status,
+				success : function(xml){
+					if($(xml).find("status").text()=='true'){
+							$("#msgID").show();
+						}
+				},
+				error : function(xhr, status, error) {
+						console.log("Error occured...");
+				}
+			});
+			}
+	});
+	
 	$.ajax({
-		url : "loadJobDetails",
+		url : "loadApplicationBasedOnId",
 		dataType : "xml",
 		type : "POST",
 		success : function(xml){
 			$("#overviewID").html($(xml).find("overviewContent").text());
+
+			$("#jobCodeID").html($(xml).find("jobCode").text());
+			$("#firstNameID").html($(xml).find("firstName").text());
+			$("#lastNameID").html($(xml).find("lastName").text());
+			$("#emailID").html($(xml).find("email").text());
+			$("#coverLetterID").html($(xml).find("coverLetter").text());
+			$("#downloadResumeID").attr("href",$(xml).find("downloadResume").text());
 		},
 		error : function(xhr, status, error) {
 				console.log("Error occured...");
 		}
 	});
 
-	$("#coverLetterID").keypress(function() {
-		$(this).removeClass("inputError");
-	});
 	
 });
 
-function validate(){
-	$fileNameID = $("#fileNameID").val();
-	$coverLetterID = $("#coverLetterID").val();
-
-	if($fileNameID.length<=0){
-		$("#fileNameID").addClass("inputError");		
-	}
-	if($coverLetterID.length<=0){
-		$("#coverLetterID").addClass("inputError");		
-	}
-	
-	if($fileNameID.length>0 && $coverLetterID.length>0){
-		console.log("file and cover letter added...");
-		$("#formID").submit();
-	}
-
+function appStatus(status){
+	console.log("status:"+status);
+	$("#statusID").val(status);
+	$("#aStID").html(status+"&nbsp;&nbsp;<span class='caret'></span>");
 }
+
+
 </script>
 <title>Team Consultants | Solution for your IT needs</title>
 </head>
@@ -100,54 +117,70 @@ function validate(){
 	
 	<div class="row">
 		
-		<iframe id="iframeID" name="iframe" src="" style="width:800px;border: 1px solid #666666;display: none;"></iframe>
 		
     	<div class="col-sm-9" style="min-height: 550px;">
-			<h3>Application for Job Code : <%=session.getAttribute("JOB_DETAILS_ID") %></h3>
+			<h3 id="jobCodeID">Application for Job Code : </h3>
 			<form class="form-horizontal" enctype="multipart/form-data" target="iframe" action="applyJob" method="post" id="formID">
 				  <div class="form-group">
-				    <label class="col-sm-2 control-label text-left">First Name</label>
-				    <div class="col-sm-10">
-				      <p class="form-control-static">Raghu</p>
+				    <label class="col-sm-3 control-label text-left">First Name</label>
+				    <div class="col-sm-9">
+				      <p class="form-control-static" id="firstNameID"></p>
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
-				    <label class="col-sm-2 control-label text-left">Last Name</label>
-				    <div class="col-sm-10">
-				      <p class="form-control-static">Jinka</p>
+				    <label class="col-sm-3 control-label text-left">Last Name</label>
+				    <div class="col-sm-9">
+				      <p class="form-control-static" id="lastNameID"></p>
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
-				    <label class="col-sm-2 control-label">Email</label>
-				    <div class="col-sm-10">
-				      <p class="form-control-static">raghurama.j@gmail.com</p>
+				    <label class="col-sm-3 control-label">Email</label>
+				    <div class="col-sm-9">
+				      <p class="form-control-static" id="emailID"></p>
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
-				    <label class="col-sm-2 control-label">Cover Letter</label>
-				    <div class="col-sm-10">
-				     	<textarea class="form-control input-sm" rows="2" name="coverLetter" maxlength="2500" id="coverLetterID"></textarea>
+				    <label class="col-sm-3 control-label">Cover Letter</label>
+				    <div class="col-sm-9">
+				     	<p class="form-control-static" id="coverLetterID"></p>
 				    </div>
 				    
 				  </div>
 				  
-				<div class="input-group" style="margin-top: 20px;">
-	                <label class="input-group-btn">
-	                    <span class="btn btn-primary btn-sm" id="browseID">
-	                        Browse&hellip; <input type="file" style="display: none;" name="resume" id="fileID">
-	                    </span>
-	                </label>
-	                <input type="text" class="form-control input-sm" readonly id="fileNameID" placeholder="Upload resume" style="padding-left: 10px;">
-            	</div>
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Resume</label>
+				    <div class="col-sm-9">
+				     	<p class="form-control-static" id="coverLetterID"><a id="downloadResumeID" href="#">Download Resume</a></p>
+				    </div>
+				    
+				  </div>
+				  
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Set Application Status</label>
+				    <div class="col-sm-9">
+				     	 <div class="dropdown">
+							  <button class="btn btn-primary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" id="aStID"> Application Status <span class="caret"></span></button>
+							  <ul class="dropdown-menu">
+							    <li><a href="javascript:appStatus('OPEN')">OPEN</a></li>
+							    <li><a href="javascript:appStatus('CLOSED')">CLOSED</a></li>
+							    <li><a href="javascript:appStatus('ON-HOLD')">ON-HOLD</a></li>
+							  </ul>
+						</div>
+				    </div>
+				    <input type="hidden" id="statusID" value="" /> 
+				    
+				  </div>
+				  
+				
 				
 				
 				<p style="margin-top: 20px;">  
-				<button type="button" class="btn btn-primary btn-sm" onclick="javascript:validate();">Apply</button>
+				<button type="button" class="btn btn-primary btn-sm" id="updateID">Update</button>
 				</p>
-				<p style="display: none;" id="msgID" class="text-center"><span class="fa fa-check" style="padding-right: 10px;"></span>Thanks for applying. <a href="careers">Click here </a> for Careers to find more Jobs!</p>
+				<p style="color: #18bc9c;display: none;" id="msgID" class="text-center"><span class="fa fa-check" style="padding-right: 10px;"></span>Successfully updated!</p>
 			</form>		
 				 
 		</div>
@@ -156,7 +189,34 @@ function validate(){
 		</div>
   	</div>
   </div>
-  	
+	
+	
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Resume</h4>
+      </div>
+      <div class="modal-body">
+        
+        
+        <div class="row">
+        	<a href="#" id="iframeID"></a>
+        </div>
+        
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 	
 	<jsp:include page="signin.jsp"></jsp:include>
 	<jsp:include page="footer.jsp"></jsp:include>

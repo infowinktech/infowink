@@ -30,8 +30,23 @@ padding-left: 5px;
 </style>
 
 <script type="text/javascript">
+
+
 $(document).ready(function() {
 
+
+	$("#openID").change(function() {
+		console.log("OPEN:"+$('#openID').is(":checked"));
+	});
+
+	$("#closedID").change(function() {
+		console.log("CLOSED:"+$('#closedID').is(":checked"));
+	});
+
+	$("#onHoldID").change(function() {
+		console.log("ON-HOLD:"+$('#onHoldID').is(":checked"));
+	});
+	
 	$.ajax({
 		url : "loadApplications",
 		dataType : "xml",
@@ -45,6 +60,25 @@ $(document).ready(function() {
 		}
 	});
 });
+
+
+function viewapp(id){
+	$data = 'id='+ id;
+	console.log(id);
+	$.ajax({
+		url : "saveApplicationId",
+		dataType : "text",
+		data : $data,
+		type : "GET",
+		success : function(xml){
+			$("#viewApplId").submit();
+		},
+		error : function(xhr, status, error) {
+				console.log("Error occured...");
+		}
+	});	
+}
+
 </script>
 
 
@@ -58,6 +92,8 @@ $(document).ready(function() {
 	<!-- Content -->
 	<div class="container" style="margin-top: 80px;">
 	
+	<form action="viewapplication" id="viewApplId" style="display: none;" method="GET"></form>
+	
 	<div class="row">
 		
     	<div class="col-sm-12" style="min-height: 550px;">
@@ -66,17 +102,17 @@ $(document).ready(function() {
 		<p class="text-right">
 			<span class="button-checkbox">
 		        <button type="button" class="btn btn-primary btn-sm btn-success">OPEN Applications</button>
-		        <input type="checkbox" class="hidden" value="OPEN" checked />
+		        <input type="checkbox" class="hidden" name="open" id="openID" value="OPEN" checked />
 		    </span>
 		    
 		    <span class="button-checkbox">
 		        <button type="button" class="btn btn-primary btn-sm btn-success">CLOSED Applications</button>
-		        <input type="checkbox" class="hidden" value="CLOSED"/>
+		        <input type="checkbox" class="hidden" name="closed" id="closedID" value="CLOSED"/>
 		    </span>
 		    
 		    <span class="button-checkbox">
 		        <button type="button" class="btn btn-primary btn-sm btn-success">ON-HOLD Applications</button>
-		        <input type="checkbox" class="hidden" value="ON-HOLD" />
+		        <input type="checkbox" class="hidden" value="ON-HOLD" id="onHoldID" name="onhold" />
 		    </span>
 		    
         </p>

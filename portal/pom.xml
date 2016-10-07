@@ -110,7 +110,13 @@
 		    <artifactId>h2</artifactId>
 		    <version>1.4.192</version>
 		</dependency>
-		
+		<!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
+		<dependency>
+		    <groupId>commons-lang</groupId>
+		    <artifactId>commons-lang</artifactId>
+		    <version>2.6</version>
+		</dependency>
+				
 		
 
 

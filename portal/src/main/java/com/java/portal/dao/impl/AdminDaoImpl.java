@@ -89,6 +89,32 @@ public class AdminDaoImpl implements AdminDao {
 		return results;
 	}
 
-	
-	
+	public JobApplication selectApplicationBasedOnId(int id) {
+		JobApplication jpa = new JobApplication();
+		
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(JobApplication.class);
+		criteria.add(Restrictions.eq("pkid", id));
+		List<JobApplication> results = (List<JobApplication>)criteria.list();
+		log.info("No job applications retrieved for id - "+id+" = "+results.size());
+		return results.get(0);
+	}
+
+	public boolean updateApplicationStatus(int pkid, String status) {
+		try{
+			Session session = sessionFactory.getCurrentSession();
+			Criteria criteria = session.createCriteria(JobApplication.class);
+			criteria.add(Restrictions.eq("pkid", pkid));
+			List<JobApplication> results = (List<JobApplication>)criteria.list();
+			JobApplication jpa = results.get(0);
+			jpa.setApplicationStatus(status);
+			
+			session.merge(jpa);
+			
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

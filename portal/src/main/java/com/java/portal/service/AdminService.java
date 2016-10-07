@@ -13,4 +13,6 @@ public interface AdminService {
 	public boolean saveApplication(JobApplication jba);
 	public String getOpenApplications();
 	public String getUsers();
+	public String loadApplicationBasedOnId(int id);
+	public String updateApplicationStatus(int pkid, String status);
 }

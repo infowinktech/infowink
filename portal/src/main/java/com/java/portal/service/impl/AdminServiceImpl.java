@@ -1,11 +1,18 @@
 package com.java.portal.service.impl;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.ServletContext;
+
+import org.apache.commons.lang.RandomStringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -23,6 +30,8 @@ public class AdminServiceImpl implements AdminService {
 	private static final Logger log = Logger.getLogger(AdminServiceImpl.class);
 	@Autowired(required = true)
 	private ApplicationContext context;
+	@Autowired
+	private ServletContext servletContext;
 
 	public String addJob(Jobs jobs) {
 		StringBuffer sb = new StringBuffer();
@@ -186,7 +195,7 @@ public class AdminServiceImpl implements AdminService {
 				tableContent.append("<td>" + application.getJobs().getJobLocation() + "</td>");
 				tableContent.append("<td>" + application.getApplicationStatus() + "</td>");
 				tableContent.append("<td>" + application.getApplicationDate() + "</td>");
-				tableContent.append("<td><a href=\"javascript:viewApplication('" + application.getPkid()
+				tableContent.append("<td><a href=\"javascript:viewapp('" + application.getPkid()
 						+ "')\"><span class=\"fa fa-eye\" title=\"View Applciation\"></span></a></td>");
 				tableContent.append("</tr>");
 			}
@@ -251,6 +260,80 @@ public class AdminServiceImpl implements AdminService {
 			e.printStackTrace();
 			return "";
 		}
+	}
+
+	public String loadApplicationBasedOnId(int id) {
+		StringBuffer sb = new StringBuffer();
+		try{
+			AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+			JobApplication jpa = dao.selectApplicationBasedOnId(id);
+			
+			String resourcesPath = servletContext.getRealPath("/");
+			resourcesPath = resourcesPath + "resources" + File.separator+ "resumes";
+			File resume = new File(resourcesPath);
+			String resumeName = jpa.getResumeName();
+			resumeName = resumeName.replace(" ", "");
+			resumeName = RandomStringUtils.randomAlphanumeric(6)+resumeName;
+			resume.mkdirs();
+			resume = new File(resourcesPath+File.separator+resumeName);
+			log.info("Resume dir:"+resume.getAbsolutePath());
+		    
+			Blob resumeBlob = jpa.getResume();
+			long length = resumeBlob.length();
+			byte[] bytes = resumeBlob.getBytes(1, (int) length);	
+			
+			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(resume));
+			stream.write(bytes);
+			stream.close();
+			
+			StringBuffer overviewContent = new StringBuffer();
+
+			overviewContent.append("<h3 style='margin-top: 5px;'>Overview</h3>");
+			overviewContent.append("<h4><span class='glyphicon glyphicon-qrcode' style='padding-right: 10px;'></span>Job Code: </h4>");
+			overviewContent.append("<p class='help-block'>" + jpa.getJobs().getJobCode() + "</p>");
+			overviewContent.append("<h4><span class='fa fa-map-marker' style='padding-right: 10px;'></span>Location: </h4>");
+			overviewContent.append("<p class='help-block'>" + jpa.getJobs().getJobLocation() + "</p>");
+			overviewContent.append("<h4><span class='fa fa-user' style='padding-right: 10px;'></span>Job Title: </h4>");
+			overviewContent.append("<p class='help-block'>" + jpa.getJobs().getJobTitle() + "</p>");
+			overviewContent.append("<h4><span class='fa fa-clock-o' style='padding-right: 10px;'></span>Hours: </h4>");
+			overviewContent.append("<p class='help-block'>" + jpa.getJobs().getHours() + "</p>");
+			overviewContent.append("<h4><span class='fa fa-money' style='padding-right: 10px;'></span>Rate: </h4>");
+			overviewContent.append("<p class='help-block'>" + jpa.getJobs().getRate() + "</p>");
+			
+			sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+			
+			sb.append("<jobCode><![CDATA[Application for Job Code : "+jpa.getJobs().getJobCode()+"]]></jobCode>");
+			sb.append("<firstName><![CDATA["+jpa.getUser().getFirstName()+"]]></firstName>");
+			sb.append("<lastName><![CDATA["+jpa.getUser().getLastName()+"]]></lastName>");
+			sb.append("<email><![CDATA["+jpa.getUser().getEmail()+"]]></email>");
+			sb.append("<coverLetter><![CDATA["+jpa.getCoverLetter()+"]]></coverLetter>");
+			sb.append("<downloadResume><![CDATA[resources/resumes/"+resumeName+"]]></downloadResume>");
+			sb.append("<viewResume><![CDATA["+jpa.getJobs().getJobCode()+"]]></viewResume>");
+			
+			
+			sb.append("<overviewContent><![CDATA["+overviewContent.toString()+"]]></overviewContent>");
+			
+			
+			sb.append("</data>");
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return sb.toString();
+	}
+
+	public String updateApplicationStatus(int pkid, String status) {
+		
+		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+		boolean updateStatus = dao.updateApplicationStatus(pkid, status);
+		
+		StringBuffer sb = new StringBuffer();
+		
+		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+		sb.append("<status>"+updateStatus+"</status>");
+		sb.append("</data>");
+		
+		return sb.toString();
 	}
 
 }
