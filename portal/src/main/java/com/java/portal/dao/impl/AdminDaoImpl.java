@@ -2,6 +2,7 @@ package com.java.portal.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
@@ -10,6 +11,8 @@ import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,6 +20,7 @@ import org.springframework.stereotype.Repository;
 import com.java.portal.dao.AdminDao;
 import com.java.portal.entity.JobApplication;
 import com.java.portal.entity.Jobs;
+import com.java.portal.entity.User;
 @Repository
 @Transactional
 public class AdminDaoImpl implements AdminDao {
@@ -117,4 +121,76 @@ public class AdminDaoImpl implements AdminDao {
 			return false;
 		}
 	}
+
+	public List<JobApplication> selectOpenApplicationsOnStatus(List<String> status) {
+		List<JobApplication> appList = new ArrayList<JobApplication>();
+		
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(JobApplication.class);
+		
+		Disjunction disjunction = Restrictions.disjunction();
+		for(String stat:status){
+		    disjunction.add(Restrictions.or(Restrictions.eq("applicationStatus", stat))); //add your restirction here
+		}
+		
+		criteria.add(disjunction );
+		
+		List<JobApplication> results = (List<JobApplication>)criteria.list();
+
+		return results;
+	
+	
+	}
+
+	public long selectNoOfUsers() {
+		Session session = sessionFactory.getCurrentSession();
+		return (Long) session.createCriteria(User.class).setProjection(Projections.rowCount()).uniqueResult();
+		
+	}
+
+	public long selectNoOfJobs() {
+		Session session = sessionFactory.getCurrentSession();
+		return (Long) session.createCriteria(Jobs.class).setProjection(Projections.rowCount()).uniqueResult();
+	}
+
+	public long selectNoOfApplications() {
+		Session session = sessionFactory.getCurrentSession();
+		return (Long) session.createCriteria(JobApplication.class).setProjection(Projections.rowCount()).uniqueResult();
+	}
+
+	public Map<String, String> selectJobsNstatus() {
+		
+		return null;
+	}
+
+	public List<Jobs> selectJobsOnStatus(List<String> status) {
+		List<Jobs> appList = new ArrayList<Jobs>();
+		
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Jobs.class);
+		
+		Disjunction disjunction = Restrictions.disjunction();
+		for(String stat:status){
+		    disjunction.add(Restrictions.or(Restrictions.eq("jobStatus", stat))); //add your restirction here
+		}
+		criteria.add(disjunction );
+		List<Jobs> results = (List<Jobs>)criteria.list();
+
+		return results;
+	
+	
+	}
+
+	public boolean updateJob(Jobs job) {
+		try{
+			Session session = sessionFactory.getCurrentSession();
+			session.merge(job);
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	
 }

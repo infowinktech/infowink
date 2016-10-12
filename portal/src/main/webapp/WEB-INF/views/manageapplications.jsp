@@ -30,26 +30,39 @@ padding-left: 5px;
 </style>
 
 <script type="text/javascript">
-
-
 $(document).ready(function() {
 
+	$open = "OPEN="+$('#openID').is(":checked");
+	$closed = "CLOSED="+$('#closedID').is(":checked");
+	$onHold = "ON-HOLD="+$('#onHoldID').is(":checked");
 
+	loadApplications();
+	
 	$("#openID").change(function() {
-		console.log("OPEN:"+$('#openID').is(":checked"));
+		$open = "OPEN="+$('#openID').is(":checked");
+		loadApplications();			
 	});
 
 	$("#closedID").change(function() {
-		console.log("CLOSED:"+$('#closedID').is(":checked"));
+		$closed = "CLOSED="+$('#closedID').is(":checked");
+		loadApplications();
 	});
 
 	$("#onHoldID").change(function() {
-		console.log("ON-HOLD:"+$('#onHoldID').is(":checked"));
+		$onHold = "ON-HOLD="+$('#onHoldID').is(":checked");
+		loadApplications();
 	});
+
+
 	
+});
+
+function loadApplications(){
+
 	$.ajax({
 		url : "loadApplications",
 		dataType : "xml",
+		data : $open+"&"+$closed+"&"+$onHold,
 		type : "POST",
 		success : function(xml){
 			$("#jobsBodyID").html($(xml).find("tableContent").text());
@@ -59,8 +72,8 @@ $(document).ready(function() {
 				console.log("Error occured...");
 		}
 	});
-});
-
+	
+}
 
 function viewapp(id){
 	$data = 'id='+ id;

@@ -5,9 +5,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
@@ -236,12 +238,11 @@ public class AdminServiceImpl implements AdminService {
 				   	User user = (User)iterator.next(); 
 				   	tableContent.append("<tr id='" + user.getPkid() + "'>");
 					tableContent.append("<td>" + slNo + "</td>");
-					tableContent.append("<td>" + user.getFirstName() + " " + user.getLastName() + "</td>");
+					tableContent.append("<td>" + user.getFirstName()+ "</td>");
+					tableContent.append("<td>" + user.getLastName()+ "</td>");
 					tableContent.append("<td>" + user.getEmail() + "</td>");
 					tableContent.append("<td>" + user.getRole().getRole() + "</td>");
 					tableContent.append("<td>" + user.getJobApplications().size() + "</td>");
-					tableContent.append("<td><a href=\"javascript:viewUser('" + user.getPkid()
-							+ "')\"><span class=\"fa fa-eye\" title=\"View User\"></span></a></td>");
 					tableContent.append("</tr>");
 					slNo = slNo + 1;
 			   }
@@ -335,5 +336,163 @@ public class AdminServiceImpl implements AdminService {
 		
 		return sb.toString();
 	}
+
+	public String getApplicationsOnStatus(List<String> status) {
+
+		try {
+			StringBuffer tableContent = new StringBuffer();
+			List<JobApplication> appList = new ArrayList<JobApplication>();
+			AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+			appList = dao.selectOpenApplicationsOnStatus(status);
+			int slNo = 0;
+			for (int i = 0; i < appList.size(); i++) {
+				JobApplication application = appList.get(i);
+				slNo = i + 1;
+				tableContent.append("<tr id='" + application.getPkid() + "'>");
+				tableContent.append("<td>" + slNo + "</td>");
+				tableContent.append("<td>" + application.getUser().getFirstName() + "</td>");
+				tableContent.append("<td>" + application.getUser().getEmail() + "</td>");
+				tableContent.append("<td>" + application.getJobs().getJobCode() + "</td>");
+				tableContent.append("<td>" + application.getJobs().getJobLocation() + "</td>");
+				tableContent.append("<td>" + application.getApplicationStatus() + "</td>");
+				tableContent.append("<td>" + application.getApplicationDate() + "</td>");
+				tableContent.append("<td><a href=\"javascript:viewapp('" + application.getPkid()
+						+ "')\"><span class=\"fa fa-eye\" title=\"View Applciation\"></span></a></td>");
+				tableContent.append("</tr>");
+			}
+			StringBuffer sb = new StringBuffer();
+			sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+			sb.append("<tableContent>");
+			sb.append("<![CDATA[");
+			sb.append(tableContent.toString());
+			sb.append("]]>");
+			sb.append("</tableContent>");
+			sb.append("</data>");
+
+			return sb.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "";
+		}
+
+	
+	}
+
+	public String getDashboard() {
+		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+		StringBuffer sb = new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+		sb.append("<jobs>"+dao.selectNoOfJobs()+"</jobs>");
+		sb.append("<users>"+dao.selectNoOfUsers()+"</users>");
+		sb.append("<apps>"+dao.selectNoOfApplications()+"</apps>");
+		sb.append("<inbox>"+dao.selectNoOfApplications()+"</inbox>");
+		sb.append("</data>");
+
+		return sb.toString();
+	}
+
+	public String getPieChart() {
+		Map<String, Integer> jobStat = new HashMap<String, Integer>();
+		jobStat.put("OPEN", 2);
+		jobStat.put("CLOSED", 10);
+		jobStat.put("ON-HOLD", 15);
+		
+		/*[
+         ['Job status', 'Count'],
+         ['Open Jobs',     11],
+         ['Jobs closed',      2],
+         ['Jobs on hold',  2]
+         
+       ]*/
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("[");
+		sb.append("[\"Job status\", \"Count\"],");
+		sb.append("[\"Jobs closed\", "+jobStat.get("CLOSED")+"],");
+		sb.append("[\"Jobs on hold\", "+jobStat.get("ON-HOLD")+"],");
+		sb.append("[\"Open Jobs\", "+jobStat.get("OPEN")+"]");
+		sb.append("]");
+		
+		return sb.toString();
+	}
+
+	public String getJobsOnStatus(List<String> status) {
+
+		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+		List<Jobs> jobsList = new ArrayList<Jobs>();
+		jobsList = dao.selectJobsOnStatus(status);
+
+		StringBuffer tableContent = new StringBuffer();
+		String iconClass = null;
+		int slNo = 0;
+		for (int i = 0; i < jobsList.size(); i++) {
+			Jobs jobs = jobsList.get(i);
+			slNo = i + 1;
+			tableContent.append("<tr id='" + jobs.getJobCode() + "'>");
+			tableContent.append("<td>" + slNo + "</td>");
+			tableContent.append("<td>" + jobs.getJobCode() + "</td>");
+			tableContent.append("<td>" + jobs.getJobTitle() + "</td>");
+			tableContent.append("<td>" + jobs.getJobLocation() + "</td>");
+			tableContent.append("<td>" + jobs.getJobType() + "</td>");
+			tableContent.append("<td>" + jobs.getJobStatus() + "</td>");
+			tableContent.append("<td><a href=\"javascript:editRecord('" + jobs.getJobCode()
+					+ "')\"><span class=\"glyphicon glyphicon-pencil\"></span></a></td>");
+			tableContent.append("<td><a href=\"javascript:deleteRecord('" + jobs.getJobCode()
+					+ "')\"><span class=\"glyphicon glyphicon-trash\"></span></a></td>");
+			tableContent.append("</tr>");
+		}
+		StringBuffer sb = new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+		sb.append("<tableContent>");
+		sb.append("<![CDATA[");
+		sb.append(tableContent.toString());
+		sb.append("]]>");
+		sb.append("</tableContent>");
+		sb.append("</data>");
+
+		return sb.toString();
+	
+	}
+
+	public String getJobBasedOnCode(String jobcode) {
+		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+		log.info("Getting Job details for the Job Code :"+jobcode); 
+		Jobs job = dao.getJobDetails(jobcode);
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+			sb.append("<jobCategory><![CDATA["+job.getJobCategory()+"]]></jobCategory>");
+			sb.append("<jobCode><![CDATA["+job.getJobCode()+"]]></jobCode>");
+			sb.append("<jobTitle><![CDATA["+job.getJobTitle()+"]]></jobTitle>");
+			sb.append("<jobLocation><![CDATA["+job.getJobLocation()+"]]></jobLocation>");
+			sb.append("<jobType><![CDATA["+job.getJobType()+"]]></jobType>");
+			sb.append("<jobRequirements><![CDATA["+job.getJobRequirements()+"]]></jobRequirements>");
+			sb.append("<jobDescription><![CDATA["+job.getJobDescription()+"]]></jobDescription>");
+			sb.append("<rate><![CDATA["+job.getRate()+"]]></rate>");
+			sb.append("<hours><![CDATA["+job.getHours()+"]]></hours>");
+		sb.append("</data>");
+		return sb.toString();
+	}
+
+	public String updateJob(Jobs job) {
+		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+		boolean statusCode = dao.updateJob(job);
+		String status = null;
+		if (statusCode) {
+			status = "Successfully updated the Job";
+		} else {
+			status = "Error occured while updating Job";
+		}
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+		sb.append("<status>"+status+"</status>");
+		sb.append("<statusCode>"+statusCode+"</statusCode>");
+		sb.append("</data>");
+		
+		return sb.toString();
+	}
+	
+	
 
 }

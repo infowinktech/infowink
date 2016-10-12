@@ -33,8 +33,33 @@ padding-left: 5px;
 <script type="text/javascript">
 $(document).ready(function() {
 
+	$open = "OPEN="+$('#openID').is(":checked");
+	$closed = "CLOSED="+$('#closedID').is(":checked");
+	$onHold = "ON-HOLD="+$('#onHoldID').is(":checked");
+
+	loadJobs();
+	
+	$("#openID").change(function() {
+		$open = "OPEN="+$('#openID').is(":checked");
+		loadJobs();			
+	});
+
+	$("#closedID").change(function() {
+		$closed = "CLOSED="+$('#closedID').is(":checked");
+		loadJobs();
+	});
+
+	$("#onHoldID").change(function() {
+		$onHold = "ON-HOLD="+$('#onHoldID').is(":checked");
+		loadJobs();
+	});
+	
+});
+
+function loadJobs(){
 	$.ajax({
 		url : "loadJobs",
+		data : $open+"&"+$closed+"&"+$onHold,
 		dataType : "xml",
 		type : "POST",
 		success : function(xml){
@@ -45,8 +70,24 @@ $(document).ready(function() {
 				console.log("Error occured...");
 		}
 	});
-	
-});
+}
+
+function editRecord(jobcode){
+	console.log(jobcode);
+	$.ajax({
+		url : "saveJobCode",
+		data : "jobcode="+jobcode,
+		dataType : "text",
+		type : "POST",
+		success : function(xml){
+			console.log("forwarding...");
+			$("#formID").submit();
+		},
+		error : function(xhr, status, error) {
+				console.log("Error occured...");
+		}
+	});
+}
 
 </script>
 <title>Team Consultants | Solution for your IT needs</title>
@@ -55,10 +96,11 @@ $(document).ready(function() {
 
 	<jsp:include page="nav.jsp"></jsp:include>
 	
+	
 
 	<!-- Content -->
 	<div class="container" style="margin-top: 80px;">
-	
+	<form method="GET" action="editjob" style="display: none;" id="formID"></form> 
 	<div class="row">
 		
     	<div class="col-sm-12" style="min-height: 550px;">
@@ -67,17 +109,17 @@ $(document).ready(function() {
 		<p class="text-right">
 			<span class="button-checkbox">
 		        <button type="button" class="btn btn-primary btn-sm btn-success">OPEN Jobs</button>
-		        <input type="checkbox" class="hidden" checked />
+		        <input type="checkbox" class="hidden" checked  id="openID" value="OPEN"/>
 		    </span>
 		    
 		    <span class="button-checkbox">
 		        <button type="button" class="btn btn-primary btn-sm btn-success">CLOSED Jobs</button>
-		        <input type="checkbox" class="hidden" />
+		        <input type="checkbox" class="hidden" id="closedID" value="CLOSED"/>
 		    </span>
 		    
 		    <span class="button-checkbox">
 		        <button type="button" class="btn btn-primary btn-sm btn-success">ON-HOLD Jobs</button>
-		        <input type="checkbox" class="hidden" />
+		        <input type="checkbox" class="hidden" id="onHoldID" value="ON-HOLD"/>
 		    </span>
 		    
 		    <a href="addjob" class="btn btn-primary btn-sm " >Add a new Job</a>

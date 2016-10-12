@@ -71,14 +71,26 @@
             }
 
             function drawChart1() {
-                var data = google.visualization.arrayToDataTable([
-                  ['Task', 'Hours per Day'],
-                  ['Open Jobs',     11],
-                  ['Jobs closed',      2],
-                  ['Jobs on hold',  2]
-                  
-                ]);
-
+            	
+            	 var data2 = $.ajax({
+                     url: "loadPieChart",
+                     dataType: "json",
+                     type : "POST",
+                     async: false
+                     }).responseText;
+            	 
+            	 console.log(data2);
+            	 var data1 = [
+                              ['Job status', 'Count'],
+                              ['Open Jobs',     11],
+                              ['Jobs closed',      2],
+                              ['Jobs on hold',  2]
+                              
+                            ];
+            	 console.log(data1);
+            	 
+            	 var data = google.visualization.arrayToDataTable(data1);
+            	
                 var options = {
                   title: 'Jobs Overview',
                   titleTextStyle : { color: '#757575',fontSize: '18',bold: false},

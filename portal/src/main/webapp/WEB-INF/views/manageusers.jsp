@@ -70,21 +70,21 @@ $(document).ready(function() {
 						<thead style="background-color: #f8f9fa;">
 							<tr>
 								<th>Sl.No</th>
-								<th>Name</th>
+								<th>First Name</th>
+								<th>Last Name</th>
 								<th>Email</th>
 								<th>Role</th>
 								<th>Applications submitted</th>
-								<th></th>
 							</tr>
 						</thead>
 						<tfoot style="background-color: #f8f9fa;">
 							<tr>
 								<th>Sl.No</th>
-								<th>Name</th>
+								<th>First Name</th>
+								<th>Last Name</th>
 								<th>Email</th>
 								<th>Role</th>
 								<th>Applications submitted</th>
-								<th></th>
 							</tr>
 						</tfoot>
 						

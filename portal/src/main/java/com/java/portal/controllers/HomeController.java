@@ -2,7 +2,9 @@ package com.java.portal.controllers;
 
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -91,6 +93,10 @@ public class HomeController {
 	@RequestMapping(value = "/viewapplication", method = RequestMethod.GET)
 	public String viewApplication() {
 		return "viewapplication";
+	}
+	@RequestMapping(value = "/editjob", method = RequestMethod.GET)
+	public String editjob() {
+		return "editjob";
 	}
 
 
@@ -209,11 +215,17 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/loadJobs", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
-	public @ResponseBody String loadJobs() {
+	public @ResponseBody String loadJobs(@RequestParam("OPEN") String OPEN, @RequestParam("ON-HOLD") String ONHOLD, @RequestParam("CLOSED") String CLOSED) {
 		String output = null;
+		List<String> status = new ArrayList<String>();
+		if(OPEN.equalsIgnoreCase("true")){status.add("OPEN");}
+		if(CLOSED.equalsIgnoreCase("true")){status.add("CLOSED");}
+		if(ONHOLD.equalsIgnoreCase("true")){status.add("ON-HOLD");}
+		log.info(status);
 		try{
 			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
-			output=adminService.getAllJobs();
+			output=adminService.getJobsOnStatus(status);
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -304,11 +316,17 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/loadApplications", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
-	public @ResponseBody String loadApplications() {
+	public @ResponseBody String loadApplications(@RequestParam("OPEN") String OPEN, @RequestParam("ON-HOLD") String ONHOLD, @RequestParam("CLOSED") String CLOSED) {
 		String output = null;
+		
+		List<String> status = new ArrayList<String>();
+		if(OPEN.equalsIgnoreCase("true")){status.add("OPEN");}
+		if(CLOSED.equalsIgnoreCase("true")){status.add("CLOSED");}
+		if(ONHOLD.equalsIgnoreCase("true")){status.add("ON-HOLD");}
+		log.info(status);
 		try{
 			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
-			output=adminService.getOpenApplications();
+			output=adminService.getApplicationsOnStatus(status);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -367,5 +385,98 @@ public class HomeController {
 		}
 		return output;
 	}
+	
+	@RequestMapping(value = "/loadDashBoard", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String loadDashBoard() {
+		String output = null;
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output = adminService.getDashboard();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+	}
+	
+	@RequestMapping(value = "/loadPieChart", method = { RequestMethod.POST }, produces = { "text/plain" })
+	public @ResponseBody String loadPieChart() {
+		String output = null;
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output = adminService.getPieChart();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+	}
+	
+	@RequestMapping(value = "/saveJobCode", method = { RequestMethod.POST }, produces = { "text/plain" })
+	public @ResponseBody String saveJobCode(@RequestParam("jobcode") String jobcode) {
+		log.info("jobcode:"+jobcode);
+		session.setAttribute("JOB_CODE_EDIT", jobcode);
+		return "";
+	}
+	
+	@RequestMapping(value = "/getJobBasedOnCode", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String getJobBasedOnCode() {
+		String output = null;
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output = adminService.getJobBasedOnCode((String)session.getAttribute("JOB_CODE_EDIT"));
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+	}
+	
+	@RequestMapping(value = "/updateJob", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String updateJob() {
+		String output = null;
+		try{
+			String jobCategory = request.getParameter("jobCategory");
+			String jobCode = request.getParameter("jobCode");
+			String jobTitle = request.getParameter("jobTitle");
+			String jobRequirements = request.getParameter("jobRequirements");
+			String jobType = request.getParameter("jobType");
+			String jobDescription = request.getParameter("jobDescription");
+			String jobLocation = request.getParameter("jobLocation");
+			String hours = request.getParameter("hours");
+			String rate = request.getParameter("rate");
+			
+			log.info("jobCode:"+jobCode);
+			log.info("jobCategory:"+jobCategory);
+			log.info("jobTitle:"+jobTitle);
+			log.info("jobRequirements:"+jobRequirements);
+			log.info("jobType:"+jobType);
+			log.info("jobDescription:"+jobDescription);
+			log.info("jobLocation:"+jobLocation);
+			log.info("hours:"+hours);
+			log.info("rate:"+rate);
+			
+			Jobs jobs = new Jobs();
+			jobs.setJobStatus("OPEN");
+			jobs.setJobCategory(jobCategory);
+			jobs.setJobCode(jobCode);
+			jobs.setJobDescription(jobDescription);
+			jobs.setJobLocation(jobLocation);
+			jobs.setJobRequirements(jobRequirements);
+			jobs.setJobTitle(jobTitle);
+			jobs.setJobType(jobType);
+			jobs.setHours(hours);
+			jobs.setRate(rate);
+			jobs.setActive("true");
+			
+			
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output=adminService.updateJob(jobs);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+	}
+	
+	
 	
 }
