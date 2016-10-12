@@ -123,7 +123,7 @@ function appStatus(status){
     	<ol class="breadcrumb" style="background-color: #ffffff;margin-top: 20px; padding-left: 0px;">
 			  <li><a href="manageapplications">Manage Applications</a></li>
 			  <li class="active">View Application</li>
-			</ol>
+		</ol>
 			
 			<h3 id="jobCodeID">Application for Job Code : </h3>
 			<form class="form-horizontal" enctype="multipart/form-data" target="iframe" action="applyJob" method="post" id="formID">

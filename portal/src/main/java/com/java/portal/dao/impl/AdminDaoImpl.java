@@ -191,6 +191,24 @@ public class AdminDaoImpl implements AdminDao {
 			return false;
 		}
 	}
+
+	public boolean deleteJob(String jobcode) {
+		try{
+			Session session = sessionFactory.getCurrentSession();
+			Criteria criteria = session.createCriteria(Jobs.class);
+			criteria.add(Restrictions.eq("jobCode", jobcode));
+			List<Jobs> results = (List<Jobs>)criteria.list();
+			Jobs jobs = results.get(0);
+			jobs.setJobStatus("INACTIVE");
+			
+			session.merge(jobs);
+			
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 	
 }

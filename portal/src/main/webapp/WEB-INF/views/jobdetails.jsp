@@ -79,7 +79,11 @@ function checkUser(){
 	<div class="row">
 		
     	<div class="col-sm-9" style="min-height: 550px;">
-			<h3>Job Details</h3>
+			<h3></h3>
+			<ol class="breadcrumb" style="background-color: #ffffff;">
+			  <li><a href="careers">Careers</a></li>
+			  <li class="active">Job Details</li>
+			</ol>
 			<div>
 				  <table class="table jobTable">
 				   <tbody id="jobsBodyID">

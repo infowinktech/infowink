@@ -470,6 +470,7 @@ public class AdminServiceImpl implements AdminService {
 			sb.append("<jobDescription><![CDATA["+job.getJobDescription()+"]]></jobDescription>");
 			sb.append("<rate><![CDATA["+job.getRate()+"]]></rate>");
 			sb.append("<hours><![CDATA["+job.getHours()+"]]></hours>");
+			sb.append("<jobStatus><![CDATA["+job.getJobStatus()+"]]></jobStatus>");
 		sb.append("</data>");
 		return sb.toString();
 	}
@@ -482,6 +483,25 @@ public class AdminServiceImpl implements AdminService {
 			status = "Successfully updated the Job";
 		} else {
 			status = "Error occured while updating Job";
+		}
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+		sb.append("<status>"+status+"</status>");
+		sb.append("<statusCode>"+statusCode+"</statusCode>");
+		sb.append("</data>");
+		
+		return sb.toString();
+	}
+
+	public String deleteJob(String jobcode) {
+		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+		boolean statusCode = dao.deleteJob(jobcode);
+		String status = null;
+		if (statusCode) {
+			status = "Successfully deleted the Job";
+		} else {
+			status = "Error occured while deleting the Job";
 		}
 		
 		StringBuffer sb = new StringBuffer();

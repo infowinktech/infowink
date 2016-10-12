@@ -61,7 +61,11 @@ $(document).ready(function() {
 	<div class="row">
 		
     	<div class="col-sm-12" style="min-height: 550px;">
-			<h3>List of Users</h3>
+			<h3></h3>
+			<ol class="breadcrumb" style="background-color: #ffffff;margin-top: 20px; padding-left: 0px;">
+					  <li><a href="home">Home</a></li>
+					  <li class="active">Manage Users</li>
+				</ol>
 	
         <p class="text-center">
 			<img alt="" src="resources/img/loading.gif" style="height: 40px;display:none;" id="loadingID">

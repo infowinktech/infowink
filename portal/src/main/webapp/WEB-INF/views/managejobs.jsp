@@ -80,7 +80,25 @@ function editRecord(jobcode){
 		dataType : "text",
 		type : "POST",
 		success : function(xml){
+			$("#formID").attr("action","editjob");
+			$("#formID").submit();
+		},
+		error : function(xhr, status, error) {
+				console.log("Error occured...");
+		}
+	});
+}
+
+function deleteRecord(jobcode){
+	console.log(jobcode);
+	$.ajax({
+		url : "saveJobCodeforDelete",
+		data : "jobcode="+jobcode,
+		dataType : "text",
+		type : "POST",
+		success : function(xml){
 			console.log("forwarding...");
+			$("#formID").attr("action","deletejob");
 			$("#formID").submit();
 		},
 		error : function(xhr, status, error) {
@@ -104,7 +122,11 @@ function editRecord(jobcode){
 	<div class="row">
 		
     	<div class="col-sm-12" style="min-height: 550px;">
-			<h3>List of Jobs</h3>
+			<h3></h3>
+			<ol class="breadcrumb" style="background-color: #ffffff;margin-top: 20px; padding-left: 0px;">
+					  <li><a href="home">Home</a></li>
+					  <li class="active">Manage Jobs</li>
+				</ol>
 			
 		<p class="text-right">
 			<span class="button-checkbox">

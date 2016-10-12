@@ -55,8 +55,13 @@ $(document).ready(function() {
 	<!-- Content -->
 	<div class="container" style="margin-top: 80px;">
 	<div class="row">
+				<h3></h3>
+	
 		<div class="col-sm-12" style="padding-left: 0px;">
-			<h3>Dashboard</h3>
+			<ol class="breadcrumb" style="background-color: #f7f7f7;margin-top: 20px; padding-left: 0px;">
+					  <li><a href="home">Home</a></li>
+					  <li class="active">Dashboard</li>
+				</ol>
 		</div>
 	</div>
 	

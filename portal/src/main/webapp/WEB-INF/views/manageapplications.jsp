@@ -110,7 +110,11 @@ function viewapp(id){
 	<div class="row">
 		
     	<div class="col-sm-12" style="min-height: 550px;">
-			<h3>List of Applications</h3>
+			<h3></h3>
+			<ol class="breadcrumb" style="background-color: #ffffff;margin-top: 20px; padding-left: 0px;">
+					  <li><a href="home">Home</a></li>
+					  <li class="active">Manage Applications</li>
+				</ol>
 			
 		<p class="text-right">
 			<span class="button-checkbox">

@@ -114,7 +114,12 @@ $(document).ready(function() {
 	<div class="row">
 		
     	<div class="col-sm-9">
-			<h3>Add a Job</h3>
+    				<h3></h3>
+    	
+    	<ol class="breadcrumb" style="background-color: #ffffff;margin-top: 20px; padding-left: 0px;">
+			  <li><a href="managejobs">Manage Jobs</a></li>
+			  <li class="active">Add new Job</li>
+		</ol>
 			
 			<form class="form-horizontal" method="post" id="addJobFormID">
 				

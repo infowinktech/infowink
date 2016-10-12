@@ -22,5 +22,6 @@ public interface AdminDao {
 	public Map<String,String> selectJobsNstatus();
 	public List<Jobs> selectJobsOnStatus(List<String> status);
 	public boolean updateJob(Jobs job);
+	public boolean deleteJob(String jobcode);
 
 }

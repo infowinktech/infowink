@@ -23,6 +23,6 @@ public interface AdminService {
 	public String getJobsOnStatus(List<String> status);
 	public String getJobBasedOnCode(String jobcode);
 	public String updateJob(Jobs job);
-
+	public String deleteJob(String jobcode);
 
 }

@@ -17,8 +17,44 @@
 <script src="resources/js/bootstrap-select.min.js"></script>
 <link rel="stylesheet" href="resources/css/bootstrap-select.min.css">
 
+<script src="resources/js/checkbox.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
+	$status = "OPEN";
+
+	$("#openID").change(function() {
+		if($('#openID').is(":checked")){
+			$status= "OPEN";
+			console.info($status);
+
+			if($('#closedID').is(":checked")){$("#closedBtn").click();}
+			if($('#onHoldID').is(":checked")){$("#onHoldBtn").click();}
+			
+		}
+		
+	});
+
+	$("#closedID").change(function() {
+		if($('#closedID').is(":checked")){
+			$status= "CLOSED";
+			console.info($status);
+
+			if($('#openID').is(":checked")){$("#openBtn").click();}
+			if($('#onHoldID').is(":checked")){$("#onHoldBtn").click();}
+		}
+	});
+
+	$("#onHoldID").change(function() {
+		if($('#onHoldID').is(":checked")){
+			$status= "ON-HOLD";
+			console.info($status);
+
+			if($('#openID').is(":checked")){$("#openBtn").click();}
+			if($('#closedID').is(":checked")){$("#closedBtn").click();}
+			
+		}
+	});
 
 	$.ajax({
 		url : "getJobBasedOnCode",
@@ -99,6 +135,8 @@ $(document).ready(function() {
 	function updateJob(){
 		$("#registerID").hide();
 		$("#loadingID1").show();
+		console.log("status:"+$status);
+		$("#statusID").val($status);
 		$.ajax({
 			url : "updateJob",
 			data : $('#addJobFormID').serialize(),
@@ -106,8 +144,6 @@ $(document).ready(function() {
 			dataType : "xml",
 			type : "POST",
 			success : function(xml){
-				$("#loadingID1").hide();
-				$("#registerID").show();
 				
 				$("#msgID").html($(xml).find("status").text());
 				$("#msgID").show();
@@ -145,6 +181,7 @@ $(document).ready(function() {
 			</ol>
 			<form class="form-horizontal" method="post" id="addJobFormID">
 				
+				<input type="hidden" name="status" value="" id="statusID"/> 
 				  <div class="form-group">
 				    <label class="col-sm-3 control-label">Job Category</label>
 				    <div class="col-sm-9">
@@ -193,6 +230,28 @@ $(document).ready(function() {
 				     	<input type="text" class="form-control input-sm"  placeholder="Rate" name="rate" id="rateID">
 				    </div>
 				  </div>
+				  
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label">Job Status</label>
+				    <div class="col-sm-9">
+				     	<span class="button-checkbox">
+					        <button type="button" class="btn btn-primary btn-sm btn-success" id="openBtn">OPEN</button>
+					        <input type="checkbox" class="hidden" checked  id="openID" value="OPEN"/>
+					    </span>
+		    
+					    <span class="button-checkbox">
+					        <button type="button" class="btn btn-primary btn-sm btn-success" id="closedBtn">CLOSED</button>
+					        <input type="checkbox" class="hidden" id="closedID" value="CLOSED"/>
+					    </span>
+					    
+					    <span class="button-checkbox">
+					        <button type="button" class="btn btn-primary btn-sm btn-success" id="onHoldBtn">ON-HOLD</button>
+					        <input type="checkbox" class="hidden" id="onHoldID" value="ON-HOLD"/>
+					    </span>
+				    </div>
+				  </div>
+				  
+				  
 				  
 				  <div class="form-group">
 				    <label class="col-sm-3 control-label">Job Requirements</label>

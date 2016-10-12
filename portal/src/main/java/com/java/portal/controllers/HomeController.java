@@ -98,6 +98,10 @@ public class HomeController {
 	public String editjob() {
 		return "editjob";
 	}
+	@RequestMapping(value = "/deletejob", method = RequestMethod.GET)
+	public String deleteJob() {
+		return "deletejob";
+	}
 
 
 
@@ -443,6 +447,7 @@ public class HomeController {
 			String jobLocation = request.getParameter("jobLocation");
 			String hours = request.getParameter("hours");
 			String rate = request.getParameter("rate");
+			String jobStatus = request.getParameter("status");
 			
 			log.info("jobCode:"+jobCode);
 			log.info("jobCategory:"+jobCategory);
@@ -453,9 +458,10 @@ public class HomeController {
 			log.info("jobLocation:"+jobLocation);
 			log.info("hours:"+hours);
 			log.info("rate:"+rate);
+			log.info("status:"+jobStatus);
 			
 			Jobs jobs = new Jobs();
-			jobs.setJobStatus("OPEN");
+			jobs.setJobStatus(jobStatus);
 			jobs.setJobCategory(jobCategory);
 			jobs.setJobCode(jobCode);
 			jobs.setJobDescription(jobDescription);
@@ -477,6 +483,38 @@ public class HomeController {
 		return output;
 	}
 	
+	@RequestMapping(value = "/saveJobCodeforDelete", method = { RequestMethod.POST }, produces = { "text/plain" })
+	public @ResponseBody String saveJobCodeforDelete(@RequestParam("jobcode") String jobcode) {
+		log.info("jobcode:"+jobcode);
+		session.setAttribute("JOB_CODE_DELETE", jobcode);
+		return "";
+	}
 	
+	@RequestMapping(value = "/getJobBasedForDelete", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String getJobBasedForDelete() {
+		String output = null;
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output = adminService.getJobBasedOnCode((String)session.getAttribute("JOB_CODE_DELETE"));
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+	}
+	
+	@RequestMapping(value = "/deletJobFromDB", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String deletJobFromDB() {
+		String output = null;
+		try{
+			String jobCode = (String)session.getAttribute("JOB_CODE_DELETE");
+			log.info("jobCode:"+jobCode);
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output = adminService.deleteJob(jobCode);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+	}
 	
 }
