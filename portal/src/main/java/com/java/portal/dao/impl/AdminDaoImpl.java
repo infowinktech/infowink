@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.java.portal.dao.AdminDao;
+import com.java.portal.entity.ContactMessage;
 import com.java.portal.entity.JobApplication;
 import com.java.portal.entity.Jobs;
 import com.java.portal.entity.User;
@@ -208,6 +209,19 @@ public class AdminDaoImpl implements AdminDao {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	public boolean insertContactMsg(ContactMessage msg) {
+		try{
+			Session session = sessionFactory.getCurrentSession();
+			Criteria criteria = session.createCriteria(ContactMessage.class);
+			
+			session.save(msg);
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 	
 	

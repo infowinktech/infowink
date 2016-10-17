@@ -3,6 +3,7 @@ package com.java.portal.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.java.portal.entity.ContactMessage;
 import com.java.portal.entity.JobApplication;
 import com.java.portal.entity.Jobs;
 
@@ -23,5 +24,5 @@ public interface AdminDao {
 	public List<Jobs> selectJobsOnStatus(List<String> status);
 	public boolean updateJob(Jobs job);
 	public boolean deleteJob(String jobcode);
-
+	public boolean insertContactMsg(ContactMessage msg);
 }

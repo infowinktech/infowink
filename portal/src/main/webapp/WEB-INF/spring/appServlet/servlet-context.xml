@@ -66,6 +66,7 @@
 				<beans:value>com.java.portal.entity.Role</beans:value>
 				<beans:value>com.java.portal.entity.Jobs</beans:value>
 				<beans:value>com.java.portal.entity.JobApplication</beans:value>
+				<beans:value>com.java.portal.entity.ContactMessage</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.java.portal.entity.ContactMessage;
 import com.java.portal.entity.JobApplication;
 import com.java.portal.entity.Jobs;
 import com.java.portal.entity.Role;
@@ -515,6 +516,47 @@ public class HomeController {
 			e.printStackTrace();
 		}
 		return output;
+	}
+	
+	@RequestMapping(value = "/submitMessage", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String submitMessage() {
+		String output = null;
+		try{
+			String pattern = "yyyy-MM-dd HH:mm:ss";
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+			String currentDate = simpleDateFormat.format(new Date());
+			Date submittedDate = new Date();
+			submittedDate = simpleDateFormat.parse(currentDate);
+			
+			 String firstName = request.getParameter("firstName");
+			 String lastName = request.getParameter("lastName");
+			 String email = request.getParameter("email");
+			 String company = request.getParameter("company");
+			 String address = request.getParameter("address");
+			 String city = request.getParameter("city");
+			 String state = request.getParameter("state");
+			 String comments = request.getParameter("comments");
+			
+			ContactMessage msg = new ContactMessage();
+			msg.setFirstName(firstName);
+			msg.setLastName(lastName);
+			msg.setAddress(address);
+			msg.setCity(city);
+			msg.setComments(comments);
+			msg.setCompany(company);
+			msg.setEmail(email);
+			msg.setState(state);
+			msg.setSubmittedDate(submittedDate);
+			
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output = adminService.saveMessage(msg);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+
+		
 	}
 	
 }

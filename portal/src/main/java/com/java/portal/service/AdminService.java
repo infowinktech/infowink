@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.java.portal.entity.ContactMessage;
 import com.java.portal.entity.JobApplication;
 import com.java.portal.entity.Jobs;
 @Service
@@ -24,5 +25,6 @@ public interface AdminService {
 	public String getJobBasedOnCode(String jobcode);
 	public String updateJob(Jobs job);
 	public String deleteJob(String jobcode);
+	public String saveMessage(ContactMessage msg);
 
 }

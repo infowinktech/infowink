@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import com.java.portal.dao.AdminDao;
 import com.java.portal.dao.UserAccountDao;
+import com.java.portal.entity.ContactMessage;
 import com.java.portal.entity.JobApplication;
 import com.java.portal.entity.Jobs;
 import com.java.portal.entity.User;
@@ -502,6 +503,26 @@ public class AdminServiceImpl implements AdminService {
 			status = "Successfully deleted the Job";
 		} else {
 			status = "Error occured while deleting the Job";
+		}
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+		sb.append("<status>"+status+"</status>");
+		sb.append("<statusCode>"+statusCode+"</statusCode>");
+		sb.append("</data>");
+		
+		return sb.toString();
+	}
+
+	public String saveMessage(ContactMessage msg) {
+		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+		boolean statusCode = dao.insertContactMsg(msg);
+
+		String status = null;
+		if (statusCode) {
+			status = "Thanks for contacting us, we will get back to you shortly!";
+		} else {
+			status = "Error occured while submitting your query!";
 		}
 		
 		StringBuffer sb = new StringBuffer();
