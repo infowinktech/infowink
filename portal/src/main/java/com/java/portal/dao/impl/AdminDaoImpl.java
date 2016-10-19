@@ -223,6 +223,28 @@ public class AdminDaoImpl implements AdminDao {
 		}
 		return true;
 	}
+
+	public List<ContactMessage> fetchContactMsgs() {
+		Session session = sessionFactory.getCurrentSession(); 
+		Criteria criteria = session.createCriteria(ContactMessage.class);
+		List<ContactMessage> msgsList = criteria.list();
+		return msgsList;
+	}
+
+	public ContactMessage getContactMessage(int msgId) {
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(ContactMessage.class);
+		criteria.add(Restrictions.eq("pkid", msgId));
+		List<ContactMessage> results = (List<ContactMessage>)criteria.list();
+		
+		return results.get(0);
+	}
+
+	public long selectNoOfMessages() {
+		Session session = sessionFactory.getCurrentSession();
+		return (Long) session.createCriteria(ContactMessage.class).setProjection(Projections.rowCount()).uniqueResult();
+		}
+	
 	
 	
 }

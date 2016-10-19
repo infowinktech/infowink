@@ -85,6 +85,8 @@
 							<li><a href="managejobs">Manage Jobs</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="manageapplications">Manage Applications</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="managemsgs">Manage Messages</a></li>
 						</ul>
 					</li>
 						

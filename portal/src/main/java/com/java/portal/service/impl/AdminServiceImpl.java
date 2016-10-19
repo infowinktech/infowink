@@ -386,7 +386,7 @@ public class AdminServiceImpl implements AdminService {
 		sb.append("<jobs>"+dao.selectNoOfJobs()+"</jobs>");
 		sb.append("<users>"+dao.selectNoOfUsers()+"</users>");
 		sb.append("<apps>"+dao.selectNoOfApplications()+"</apps>");
-		sb.append("<inbox>"+dao.selectNoOfApplications()+"</inbox>");
+		sb.append("<inbox>"+dao.selectNoOfMessages()+"</inbox>");
 		sb.append("</data>");
 
 		return sb.toString();
@@ -529,6 +529,64 @@ public class AdminServiceImpl implements AdminService {
 		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
 		sb.append("<status>"+status+"</status>");
 		sb.append("<statusCode>"+statusCode+"</statusCode>");
+		sb.append("</data>");
+		
+		return sb.toString();
+	}
+
+	public String getContactMsgs() {
+
+
+		try {
+			StringBuffer tableContent = new StringBuffer();
+			AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+			List<ContactMessage> msgList = dao.fetchContactMsgs();
+			int slNo = 1;
+			for(ContactMessage msg:msgList){
+					   	tableContent.append("<tr>");
+						tableContent.append("<td>" + slNo + "</td>");
+						tableContent.append("<td>" + msg.getFirstName() + " "+msg.getLastName()+"</td>");
+						tableContent.append("<td>" + msg.getCompany()+ "</td>");
+						tableContent.append("<td>" + msg.getEmail() + "</td>");
+						tableContent.append("<td>" + msg.getCity() + "</td>");
+						tableContent.append("<td>" + msg.getState() + "</td>");
+						tableContent.append("<td>" + msg.getSubmittedDate() + "</td>");
+						tableContent.append("<td><a href=\"javascript:viewmsg('" + msg.getPkid()
+						+ "')\"><span class=\"fa fa-eye\" title=\"View Applciation\"></span></a></td>");
+						tableContent.append("</tr>");
+						slNo = slNo + 1;
+			}
+			
+			StringBuffer sb = new StringBuffer();
+			sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+			sb.append("<tableContent>");
+			sb.append("<![CDATA[");
+			sb.append(tableContent.toString());
+			sb.append("]]>");
+			sb.append("</tableContent>");
+			sb.append("</data>");
+
+			return sb.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "";
+		}
+	
+	}
+
+	public String getContactMsgBasedOnId(int msgId) {
+		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+		ContactMessage msg = dao.getContactMessage(msgId);
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+		sb.append("<NameID>"+msg.getFirstName()+" "+msg.getLastName()+"</NameID>");
+		sb.append("<EmailID>"+msg.getEmail()+"</EmailID>");
+		sb.append("<CityID>"+msg.getCity()+"</CityID>");
+		sb.append("<AddressID>"+msg.getAddress()+"</AddressID>");
+		sb.append("<StateID>"+msg.getState()+"</StateID>");
+		sb.append("<DateID>"+msg.getSubmittedDate()+"</DateID>");
+		sb.append("<CommentsID>"+msg.getComments()+"</CommentsID>");
 		sb.append("</data>");
 		
 		return sb.toString();

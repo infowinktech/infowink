@@ -96,7 +96,7 @@ $(document).ready(function() {
 		
 		
 		<div class="col-sm-2" style="border: 1px solid #e0e0e0;padding-left: 0px;background-color: #ffffff;">
-		<a href="manageapplications" >
+		<a href="managemsgs" >
 				<div class="col-sm-7 fa fa-envelope fa-5x" style="background-color:#65737e;color: #ffffff"></div>
 				<div class="col-sm-5"><h3 style="margin-top: 10px; margin-bottom: 0px;" id="inboxID">2414</h3><p class="help-block">INBOX</p></div>
 		</a>		

@@ -20,9 +20,12 @@ public interface AdminDao {
 	public long selectNoOfUsers();
 	public long selectNoOfJobs();
 	public long selectNoOfApplications();
+	public long selectNoOfMessages();
 	public Map<String,String> selectJobsNstatus();
 	public List<Jobs> selectJobsOnStatus(List<String> status);
 	public boolean updateJob(Jobs job);
 	public boolean deleteJob(String jobcode);
 	public boolean insertContactMsg(ContactMessage msg);
+	public List<ContactMessage> fetchContactMsgs();
+	public ContactMessage getContactMessage(int msgId);
 }

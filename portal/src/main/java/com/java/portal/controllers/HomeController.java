@@ -103,7 +103,10 @@ public class HomeController {
 	public String deleteJob() {
 		return "deletejob";
 	}
-
+	@RequestMapping(value = "/managemsgs", method = RequestMethod.GET)
+	public String managemsgs() {
+		return "managemsgs";
+	}
 
 
 
@@ -557,6 +560,34 @@ public class HomeController {
 		return output;
 
 		
+	}
+	
+	@RequestMapping(value = "/loadMsgs", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String loadMsgs() {
+		String output = null;
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output=adminService.getContactMsgs();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+
+		
+	}
+	
+	@RequestMapping(value = "/loadContactMsgBasedOnId", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String loadApplicationBasedOnId(@RequestParam("msgId") int msgId) {
+		String output = null;
+		log.info("msgID:"+msgId);
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output = adminService.getContactMsgBasedOnId(msgId); 
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
 	}
 	
 }

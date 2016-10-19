@@ -26,5 +26,7 @@ public interface AdminService {
 	public String updateJob(Jobs job);
 	public String deleteJob(String jobcode);
 	public String saveMessage(ContactMessage msg);
+	public String getContactMsgs();
+	public String getContactMsgBasedOnId(int msgId);
 
 }
