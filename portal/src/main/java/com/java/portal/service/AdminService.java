@@ -28,5 +28,6 @@ public interface AdminService {
 	public String saveMessage(ContactMessage msg);
 	public String getContactMsgs();
 	public String getContactMsgBasedOnId(int msgId);
-
+	public String getBarH();
+	public String getBarV();
 }

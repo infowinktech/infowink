@@ -23,6 +23,7 @@ $(function() {
 		$lastNameID=$('#lastNameID').val();
 		$emailID=$('#emailID').val();
 		$companyID=$('#companyID').val();
+		$mobileID=$('#mobileID').val();
 
 		$addressID=$('#addressID').val();
 		$cityID=$('#cityID').val();
@@ -33,6 +34,7 @@ $(function() {
 		if($lastNameID.trim().length==0){$("#lastNameID").addClass("inputError");}
 		if($emailID.trim().length==0){$("#emailID").addClass("inputError");}
 		if($companyID.trim().length==0){$("#companyID").addClass("inputError");}
+		if($mobileID.trim().length==0){$("#mobileID").addClass("inputError");}
 
 		if($addressID.trim().length==0){$("#addressID").addClass("inputError");}
 		if($cityID.trim().length==0){$("#cityID").addClass("inputError");}
@@ -43,6 +45,7 @@ $(function() {
 		$("#lastNameID").keypress(function() {$(this).removeClass("inputError");});
 		$("#emailID").keypress(function() {$(this).removeClass("inputError");});
 		$("#companyID").keypress(function() {$(this).removeClass("inputError");});
+		$("#mobileID").keypress(function() {$(this).removeClass("inputError");});
 
 		$("#addressID").keypress(function() {$(this).removeClass("inputError");});
 		$("#cityID").keypress(function() {$(this).removeClass("inputError");});
@@ -123,6 +126,9 @@ $(function() {
 						</div>
 						<div class="form-group">
 							<input type="text" class="form-control input-sm"  placeholder="Email" name="email" id="emailID">
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control input-sm"  placeholder="Mobile" name="mobile" id="mobileID">
 						</div>
 						<div class="form-group">
 							<input type="text" class="form-control input-sm"  placeholder="Company" name="company" id="companyID">

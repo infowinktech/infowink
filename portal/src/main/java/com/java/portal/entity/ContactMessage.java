@@ -1,5 +1,6 @@
 package com.java.portal.entity;
-// Generated Oct 17, 2016 1:27:18 PM by Hibernate Tools 4.3.1.Final
+// default package
+// Generated Oct 20, 2016 11:14:59 AM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -24,6 +25,7 @@ public class ContactMessage implements java.io.Serializable {
 	private String company;
 	private String email;
 	private String address;
+	private String mobile;
 	private String city;
 	private String state;
 	private String comments;
@@ -36,13 +38,14 @@ public class ContactMessage implements java.io.Serializable {
 		this.email = email;
 	}
 
-	public ContactMessage(String firstName, String lastName, String company, String email, String address, String city,
-			String state, String comments, Date submittedDate) {
+	public ContactMessage(String firstName, String lastName, String company, String email, String address,
+			String mobile, String city, String state, String comments, Date submittedDate) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.company = company;
 		this.email = email;
 		this.address = address;
+		this.mobile = mobile;
 		this.city = city;
 		this.state = state;
 		this.comments = comments;
@@ -104,6 +107,15 @@ public class ContactMessage implements java.io.Serializable {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	@Column(name = "MOBILE", length = 50)
+	public String getMobile() {
+		return this.mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 
 	@Column(name = "CITY", length = 400)

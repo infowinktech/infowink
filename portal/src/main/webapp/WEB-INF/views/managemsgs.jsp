@@ -48,6 +48,7 @@ function viewmsg(id){
 			$("#AddressID").html($(xml).find("AddressID").text());
 			$("#DateID").html($(xml).find("DateID").text());
 			$("#CommentsID").html($(xml).find("CommentsID").text());
+			$("#MobileID").html($(xml).find("MobileID").text());
 			$("#msgModal").modal();	
 			
 		},
@@ -158,49 +159,56 @@ $(document).ready(function() {
 				  <div class="form-group">
 				    <label class="col-sm-3 control-label text-left">Name</label>
 				    <div class="col-sm-9">
-				      <p class="form-control-static" id="NameID"></p>
+				      <p class="form-control-static" id="NameID" style="padding-bottom: 0px;"></p>
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <label class="col-sm-3 control-label text-left">Email</label>
 				    <div class="col-sm-9">
-				      <p class="form-control-static" id="EmailID"></p>
+				      <p class="form-control-static" id="EmailID" style="padding-bottom: 0px;"></p>
+				    </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label class="col-sm-3 control-label text-left">Mobile</label>
+				    <div class="col-sm-9">
+				      <p class="form-control-static" id="MobileID" style="padding-bottom: 0px;"></p>
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <label class="col-sm-3 control-label">City</label>
 				    <div class="col-sm-9">
-				      <p class="form-control-static" id="CityID"></p>
+				      <p class="form-control-static" id="CityID" style="padding-bottom: 0px;"></p>
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <label class="col-sm-3 control-label">State</label>
 				    <div class="col-sm-9">
-				     	<p class="form-control-static" id="StateID"></p>
+				     	<p class="form-control-static" id="StateID" style="padding-bottom: 0px;"></p>
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <label class="col-sm-3 control-label">Address</label>
 				    <div class="col-sm-9">
-				     	<p class="form-control-static" id="AddressID"></p>
+				     	<p class="form-control-static" id="AddressID" style="padding-bottom: 0px;"></p>
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <label class="col-sm-3 control-label">Date</label>
 				    <div class="col-sm-9">
-				     	<p class="form-control-static" id="DateID"></p>
+				     	<p class="form-control-static" id="DateID" style="padding-bottom: 0px;"></p>
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <label class="col-sm-3 control-label">Comments</label>
 				    <div class="col-sm-9">
-				     	<p class="form-control-static" id="CommentsID"></p>
+				     	<p class="form-control-static" id="CommentsID" style="padding-bottom: 0px;"></p>
 				    </div>
 				  </div>
 				

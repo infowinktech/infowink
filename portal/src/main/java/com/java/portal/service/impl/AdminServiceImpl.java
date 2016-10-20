@@ -382,8 +382,13 @@ public class AdminServiceImpl implements AdminService {
 	public String getDashboard() {
 		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
 		StringBuffer sb = new StringBuffer();
+		List<String> status = new ArrayList<String>();
+		status.add("OPEN");
+		status.add("CLOSED");
+		status.add("ON-HOLD");
 		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
-		sb.append("<jobs>"+dao.selectNoOfJobs()+"</jobs>");
+		
+		sb.append("<jobs>"+dao.selectJobsOnStatus(status).size()+"</jobs>");
 		sb.append("<users>"+dao.selectNoOfUsers()+"</users>");
 		sb.append("<apps>"+dao.selectNoOfApplications()+"</apps>");
 		sb.append("<inbox>"+dao.selectNoOfMessages()+"</inbox>");
@@ -394,25 +399,22 @@ public class AdminServiceImpl implements AdminService {
 
 	public String getPieChart() {
 		Map<String, Integer> jobStat = new HashMap<String, Integer>();
-		jobStat.put("OPEN", 2);
-		jobStat.put("CLOSED", 10);
-		jobStat.put("ON-HOLD", 15);
 		
-		/*[
-         ['Job status', 'Count'],
-         ['Open Jobs',     11],
-         ['Jobs closed',      2],
-         ['Jobs on hold',  2]
-         
-       ]*/
+		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+		jobStat.put("OPEN",dao.selectJobsOnStatus("OPEN").size());
+		jobStat.put("CLOSED",dao.selectJobsOnStatus("CLOSED").size());
+		jobStat.put("ON-HOLD",dao.selectJobsOnStatus("ON-HOLD").size());
 		
 		StringBuffer sb = new StringBuffer();
-		sb.append("[");
-		sb.append("[\"Job status\", \"Count\"],");
-		sb.append("[\"Jobs closed\", "+jobStat.get("CLOSED")+"],");
-		sb.append("[\"Jobs on hold\", "+jobStat.get("ON-HOLD")+"],");
-		sb.append("[\"Open Jobs\", "+jobStat.get("OPEN")+"]");
-		sb.append("]");
+		sb.append("{\"cols\": [");
+		sb.append("{\"id\":\"\",\"label\":\"Job Type\",\"pattern\":\"\",\"type\":\"string\"},{\"id\":\"\",\"label\":\"Job Count\",\"pattern\":\"\",\"type\":\"number\"}],");
+		sb.append("\"rows\": [");
+		
+		sb.append("{\"c\":[{\"v\":\"Open Jobs\",\"f\":null},{\"v\":"+jobStat.get("OPEN")+",\"f\":null}]},");
+		sb.append("{\"c\":[{\"v\":\"Jobs Closed\",\"f\":null},{\"v\":"+jobStat.get("CLOSED")+",\"f\":null}]},");
+		sb.append("{\"c\":[{\"v\":\"Jobs onhold\",\"f\":null},{\"v\":"+jobStat.get("ON-HOLD")+",\"f\":null}]}");
+		
+		sb.append("]}");
 		
 		return sb.toString();
 	}
@@ -587,8 +589,42 @@ public class AdminServiceImpl implements AdminService {
 		sb.append("<StateID>"+msg.getState()+"</StateID>");
 		sb.append("<DateID>"+msg.getSubmittedDate()+"</DateID>");
 		sb.append("<CommentsID>"+msg.getComments()+"</CommentsID>");
+		sb.append("<MobileID>"+msg.getMobile()+"</MobileID>");
 		sb.append("</data>");
 		
+		return sb.toString();
+	}
+
+	public String getBarH() {
+		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("{\"cols\": [");
+		sb.append("{\"id\":\"\",\"label\":\"Jobs\",\"pattern\":\"\",\"type\":\"string\"},");
+		sb.append("{\"id\":\"\",\"label\":\"Jobs\",\"pattern\":\"\",\"type\":\"number\"},");
+		sb.append("],\"rows\": [");
+		sb.append("{\"c\":[{\"v\":\"CONTRACT\",\"f\":null},{\"v\":"+dao.selectJobsOnType("CONTRACT").size()+",\"f\":null}]},");
+		sb.append("{\"c\":[{\"v\":\"PERMANENT\",\"f\":null},{\"v\":"+dao.selectJobsOnType("PERMANENT").size()+",\"f\":null}]},");
+		sb.append("{\"c\":[{\"v\":\"FULL-TIME\",\"f\":null},{\"v\":"+dao.selectJobsOnType("FULL-TIME").size()+",\"f\":null}]},");
+		sb.append("{\"c\":[{\"v\":\"PART-TIME\",\"f\":null},{\"v\":"+dao.selectJobsOnType("PART-TIME").size()+",\"f\":null}]},");
+		sb.append("]}");
+		
+		return sb.toString();
+	}
+
+	public String getBarV() {
+		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("{\"cols\": [");
+		sb.append("{\"id\":\"\",\"label\":\"Job Status\",\"pattern\":\"\",\"type\":\"string\"},");
+		sb.append("{\"id\":\"\",\"label\":\"Job Application\",\"pattern\":\"\",\"type\":\"number\"},");
+		sb.append("],\"rows\": [");
+		sb.append("{\"c\":[{\"v\":\"OPEN\",\"f\":null},{\"v\":"+dao.selectApplicationsOnStatus("OPEN").size()+",\"f\":null}]},");
+		sb.append("{\"c\":[{\"v\":\"CLOSED\",\"f\":null},{\"v\":"+dao.selectApplicationsOnStatus("CLOSED").size()+",\"f\":null}]},");
+		sb.append("{\"c\":[{\"v\":\"ON-HOLD\",\"f\":null},{\"v\":"+dao.selectApplicationsOnStatus("ON-HOLD").size()+",\"f\":null}]}");
+		
+		sb.append("]}");
 		return sb.toString();
 	}
 	

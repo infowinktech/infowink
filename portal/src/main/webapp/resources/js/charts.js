@@ -10,12 +10,14 @@
             	      });
 
             function drawStuff() {
-                console.log("drawstuff");
-                var data = google.visualization.arrayToDataTable([
-                             ['Jobs', 'CONTRACT', 'PERMANENT', 'FULL-TIME', 'PART-TIME'],
-                             ['Jobs', 25,76,98,84],
-                            
-                           ]);
+            	 var jsonData = $.ajax({
+            		 url: "loadBarH",
+            		 type:"POST",
+            		 dataType: "json",
+                     async: false
+                     }).responseText;
+                     
+                 var data = new google.visualization.DataTable(jsonData);
 
                 var options = {
                         chart: {
@@ -34,13 +36,14 @@
             };
   	      
             function drawChart() {
-              var data = google.visualization.arrayToDataTable([
-                ['Month', 'Job Applications'],
-                ['January', 20],
-                ['February', 12],
-                ['March', 14],
-                ['April', 39]
-              ]);
+            	 var jsonData = $.ajax({
+            		 url: "loadBarV",
+            		 type:"POST",
+            		 dataType: "json",
+                     async: false
+                     }).responseText;
+                     
+                 var data = new google.visualization.DataTable(jsonData);
 
               var options = {
                 chart: {
@@ -72,24 +75,15 @@
 
             function drawChart1() {
             	
-            	 var data2 = $.ajax({
-                     url: "loadPieChart",
+            	 var jsonData = $.ajax({
+            		 url: "loadPieChart",
+            		 type:"POST",
                      dataType: "json",
-                     type : "POST",
                      async: false
                      }).responseText;
-            	 
-            	 console.log(data2);
-            	 var data1 = [
-                              ['Job status', 'Count'],
-                              ['Open Jobs',     11],
-                              ['Jobs closed',      2],
-                              ['Jobs on hold',  2]
-                              
-                            ];
-            	 console.log(data1);
-            	 
-            	 var data = google.visualization.arrayToDataTable(data1);
+                     
+                 var data = new google.visualization.DataTable(jsonData);
+
             	
                 var options = {
                   title: 'Jobs Overview',
@@ -97,9 +91,7 @@
                   colors: ['#005b96','#d41243','#ffcc5c'],
                   fontName : 'Questrial',
                   fontSize : '12',
-                 
                   legend: {position: 'side', textStyle: {color: '#757575', fontSize: 16}},
-                  
                   pieHole: 0.3
                 };
 

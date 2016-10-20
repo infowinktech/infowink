@@ -244,6 +244,31 @@ public class AdminDaoImpl implements AdminDao {
 		Session session = sessionFactory.getCurrentSession();
 		return (Long) session.createCriteria(ContactMessage.class).setProjection(Projections.rowCount()).uniqueResult();
 		}
+
+	public List<Jobs> selectJobsOnStatus(String status) {
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Jobs.class);
+		criteria.add(Restrictions.eq("jobStatus", status));
+		List<Jobs> results = (List<Jobs>)criteria.list();
+		return results;
+	}
+
+	public List<Jobs> selectJobsOnType(String status) {
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Jobs.class);
+		criteria.add(Restrictions.eq("jobType", status));
+		List<Jobs> results = (List<Jobs>)criteria.list();
+		return results;
+	}
+
+	public List<JobApplication> selectApplicationsOnStatus(String status) {
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(JobApplication.class);
+		criteria.add(Restrictions.eq("applicationStatus", status));
+		List<JobApplication> results = (List<JobApplication>)criteria.list();
+		
+		return results;
+	}
 	
 	
 	

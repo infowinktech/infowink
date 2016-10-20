@@ -28,4 +28,7 @@ public interface AdminDao {
 	public boolean insertContactMsg(ContactMessage msg);
 	public List<ContactMessage> fetchContactMsgs();
 	public ContactMessage getContactMessage(int msgId);
+	public List<Jobs> selectJobsOnStatus(String status);
+	public List<Jobs> selectJobsOnType(String status);
+	public List<JobApplication> selectApplicationsOnStatus(String status);
 }

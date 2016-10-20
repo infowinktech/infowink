@@ -539,6 +539,7 @@ public class HomeController {
 			 String city = request.getParameter("city");
 			 String state = request.getParameter("state");
 			 String comments = request.getParameter("comments");
+			 String mobile = request.getParameter("mobile");
 			
 			ContactMessage msg = new ContactMessage();
 			msg.setFirstName(firstName);
@@ -550,6 +551,7 @@ public class HomeController {
 			msg.setEmail(email);
 			msg.setState(state);
 			msg.setSubmittedDate(submittedDate);
+			msg.setMobile(mobile);
 			
 			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
 			output = adminService.saveMessage(msg);
@@ -584,6 +586,30 @@ public class HomeController {
 			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
 			output = adminService.getContactMsgBasedOnId(msgId); 
 			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+	}
+	
+	@RequestMapping(value = "/loadBarH", method = { RequestMethod.POST }, produces = { "text/plain" })
+	public @ResponseBody String loadBarH() {
+		String output = null;
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output = adminService.getBarH();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+	}
+	
+	@RequestMapping(value = "/loadBarV", method = { RequestMethod.POST }, produces = { "text/plain" })
+	public @ResponseBody String loadBarV() {
+		String output = null;
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output = adminService.getBarV();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
