@@ -11,7 +11,9 @@ import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -253,10 +255,15 @@ public class AdminDaoImpl implements AdminDao {
 		return results;
 	}
 
-	public List<Jobs> selectJobsOnType(String status) {
+	public List<Jobs> selectJobsOnType(String jobType) {
 		Session session = sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(Jobs.class);
-		criteria.add(Restrictions.eq("jobType", status));
+		
+		Criterion type = Restrictions.eq("jobType", jobType);
+		Criterion status = Restrictions.eq("jobStatus", "OPEN");
+		LogicalExpression andExp = Restrictions.and(type, status);
+		criteria.add( andExp );
+		
 		List<Jobs> results = (List<Jobs>)criteria.list();
 		return results;
 	}
