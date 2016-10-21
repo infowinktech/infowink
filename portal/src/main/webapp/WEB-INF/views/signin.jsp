@@ -12,14 +12,25 @@ $(document).ready(function() {
 	$.ajax({
 		url : "profileLink",
 		type : "GET",
-		dataType: "text",
+		dataType: "xml",
 		async:false,
-		success : function(response){
-			console.log(response);
-			if(response.length>0){
+		success : function(xml){
+			$username = $(xml).find("userName").text();
+			$adminAccess = $(xml).find("adminAccess").text();
+			$username = $username.trim();
+			console.log($username);
+			console.log($adminAccess);
+			
+			if($username.length>1){
 				$("#accountLinkID").show();
 				$("#loginLinkID").hide();
-				$("#profileLinkID").append(response);
+				$("#profileLinkID").append($username);
+
+				if($(xml).find("adminAccess").text()=="true"){
+					console.log("showig...");
+					$("#adminLinksID").show();
+				}
+				
 			}else{
 					$("#accountLinkID").hide();
 					$("#loginLinkID").show();
@@ -73,17 +84,23 @@ $(document).ready(function() {
 			url : "authenticate",
 			data : $data,
 			type : "GET",
-			dataType: "text",
-			success : function(response){
-				console.log(response);
-				if(response.length>0){
-					console.log("logged in!");
+			dataType: "xml",
+			success : function(xml){
+				$username = $(xml).find("userName").text();
+				$adminAccess = $(xml).find("adminAccess").text();
+				$username = $username.trim();
+				$("#loadingID").hide();
+				
+				if($username.length>1){
 					$("#loadingID").hide();
 					$("#loginLinkID").hide();
-					$("#profileLinkID").append(response);
+					$("#profileLinkID").append($username);
 					$("#accountLinkID").show();
-
 					$("#modalCloseID").click();
+					
+					if($(xml).find("adminAccess").text()=="true"){
+						$("#adminLinksID").show();
+					}
 				}else{
 					$("#loadingID").hide();
 					$("#loginID").show();
@@ -91,9 +108,7 @@ $(document).ready(function() {
 					$("#msgID1").html("Invalid credentials");
 					$("#msgID1").show();
 					$("#msgID1").css("color", "#ff4c4c");
-					
-				}
-				
+					}
 			},
 			error : function(xhr, status, error) {
 					console.log("Error occured...");

@@ -117,25 +117,52 @@ public class HomeController {
 		User user = new User();
 		user.setEmail(email);
 		user.setPassword(MD5Encryption.generateMD5Hash(password));
+		
+		String userName = null;
+		boolean adminAccess = false;
+				
 		if(userAccntService.isUserAuthentic(user)){
-			user = (User)session.getAttribute("USER_BEAN");
-			log.info("Role:"+user.getRole().getRole());
-			return user.getFirstName();
+			user = (User)session.getAttribute("USER_BEAN"); 
+			userName = user.getFirstName()+" "+user.getLastName();
+			if(user.getRole().getRole().equalsIgnoreCase("Admin")){
+				adminAccess=true;
+			}
 		}else{
-			return "";
+			userName = "";
 		}
 		
+		StringBuffer sb = new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+		sb.append("<userName>"+userName+"</userName>");
+		sb.append("<adminAccess>"+adminAccess+"</adminAccess>");
+		sb.append("</data>");
+		
+		return sb.toString();
 	}
 	
-	@RequestMapping(value = "/profileLink", method = { RequestMethod.GET }, produces = { "text/plain" })
+	@RequestMapping(value = "/profileLink", method = { RequestMethod.GET }, produces = { "text/xml;charset=UTF-8" })
 	public @ResponseBody String profileLink() {
 		User user = new User();
+		String userName = "";
+		boolean adminAccess = false;
 		user = (User)session.getAttribute("USER_BEAN");
+
 		if(user!=null){
-			return user.getFirstName();
+			userName = user.getFirstName()+" "+user.getLastName();
+			if(user.getRole().getRole().equalsIgnoreCase("Admin")){
+				adminAccess=true;
+			}
 		}else{
-			return "";
+			userName = "";
 		}
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+		sb.append("<userName>"+userName+"</userName>");
+		sb.append("<adminAccess>"+adminAccess+"</adminAccess>");
+		sb.append("</data>");
+		
+		return sb.toString();
 	}
 	
 	
@@ -358,7 +385,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/saveApplicationId", method = { RequestMethod.GET }, produces = { "text/plain" })
-	public @ResponseBody String authenticate(@RequestParam("id") int id) {
+	public @ResponseBody String saveApplicationId(@RequestParam("id") int id) {
 		session.setAttribute("application_id", id);
 		log.info("application id saved...");
 		return "";
