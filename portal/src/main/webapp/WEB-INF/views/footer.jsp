@@ -38,28 +38,21 @@ code {
 						resource needs to staffing entire project teams.</p>
 				</div>
 
-				<div class="col-md-2">
+				<div class="col-md-3">
 					<h4>Useful Links</h4>
 					<ul style="list-style: none; padding-left: 0px;">
-						<li><a href="">Home</a></li>
-						<li><a href="">Find a Job</a></li>
-						<li><a href="">Services</a></li>
-						<li><a href="">Post Resume</a></li>
+						<li><a href="home">Home</a></li>
+						<li><a href="careers">Find a Job</a></li>
+						<li><a href="#">Services</a></li>
+						<li><a href="contact">Contact Us</a></li>
 					</ul>
 				</div>
 
-				<div class="col-md-3">
-					<h4>Subscribe to Newsletter!</h4>
-					<form role="form">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Email">
-						</div>
-						<button type="button" class="btn btn-info btn-sm">
-							<span class="glyphicon glyphicon-envelope"></span>&nbsp;
-							Subscribe
-						</button>
-
-					</form>
+				<div class="col-md-2">
+					<h4>Address</h4>
+					<p>5150 Crescent Oaks </br>
+					Dr, Madison </br>
+					WI 53704 US</p>
 				</div>
 
 				<div class="col-md-3">

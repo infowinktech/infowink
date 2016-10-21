@@ -46,16 +46,14 @@ $('#webTicker,#webTicker1').webTicker();
 						alt="First slide">
 					<div class="container">
 						<div class="carousel-caption">
-							<h1>Example headline.</h1>
-							<p>
-								Note: If you're viewing this page via a
-								<code>file://</code>
-								URL, the "next" and "previous" Glyphicon buttons on the left and
-								right might not load/display properly due to web browser
-								security rules.
+							<h1>Easiest Way To Find Your Dream Job</h1>
+							<p style="margin-bottom: 0px;">
+								Choose a job you love, and you will never have to work a day in your life. 
+								
 							</p>
+							<p class="help-block" style="color: #ffffff;"> - Confucius</p>
 							<p>
-								<a class="btn btn-primary" href="#" role="button">Sign up
+								<a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#signInModalID">Sign up
 									today</a>
 							</p>
 						</div>
@@ -66,12 +64,11 @@ $('#webTicker,#webTicker1').webTicker();
 						alt="Second slide">
 					<div class="container">
 						<div class="carousel-caption">
-							<h1>Another example headline.</h1>
-							<p>Cras justo odio, dapibus ac facilisis in, egestas eget
-								quam. Donec id elit non mi porta gravida at eget metus. Nullam
-								id dolor id nibh ultricies vehicula ut id elit.</p>
+							<h1>Employment opportunities for professionals</h1>
+							<p style="margin-bottom: 0px;">Perfection is not attainable, but if we chase perfection we can catch excellence.</p>
+							<p class="help-block" style="color: #ffffff;"> - Vince Lombardi</p>
 							<p>
-								<a class="btn btn-primary" href="#" role="button">Learn more</a>
+								<a class="btn btn-primary" href="careers" role="button">Careers</a>
 							</p>
 						</div>
 					</div>
@@ -81,13 +78,11 @@ $('#webTicker,#webTicker1').webTicker();
 						alt="Third slide">
 					<div class="container">
 						<div class="carousel-caption">
-							<h1>One more for good measure.</h1>
-							<p>Cras justo odio, dapibus ac facilisis in, egestas eget
-								quam. Donec id elit non mi porta gravida at eget metus. Nullam
-								id dolor id nibh ultricies vehicula ut id elit.</p>
+							<h1>Evolving your Career</h1>
+							<p style="margin-bottom: 0px;">The more you do stuff, the better you get at dealing with how you still fail at it a lot of the time.</p>
+							<p class="help-block" style="color: #ffffff;"> - John Mulaney</p>
 							<p>
-								<a class="btn btn-primary" href="#" role="button">Browse
-									gallery</a>
+								<a class="btn btn-primary" href="careers" role="button">Find a Job</a>
 							</p>
 						</div>
 					</div>
@@ -116,7 +111,7 @@ $('#webTicker,#webTicker1').webTicker();
 				  <a href="careers"><img class="card-img-top" src="resources/img/jobs.png" alt="Card image cap" class="thumbnail" height="150px" width="100%" /></a>
 				  
 				  <ul id="webTicker" class="list-inline text-rightlist-inline text-right">
-					    <li> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed viverra nulla, et sodales lorem. Aenean dignissim diam lacinia consectetur sagittis. Pellentesque interdum pulvinar finibus. Aenean tincidunt nisl sit amet tortor vehicula, sed condimentum eros rhoncus. Vestibulum dui magna, lacinia eget cursus id, interdum sed velit. Quisque vitae congue velit. Fusce cursus elementum quam et cursus. Donec a odio eleifend, euismod justo non, porta justo. Suspendisse potenti. </li>
+					    <li>Click here to apply for new Jobs! Click here to apply for new Jobs! Click here to apply for new Jobs! Click here to apply for new Jobs!</li>
 					    
 					</ul>
 
@@ -124,7 +119,7 @@ $('#webTicker,#webTicker1').webTicker();
 			<div class="card">
 				  <a href="careers"><img class="card-img-top" src="resources/img/nowhiring.png" alt="Card image cap" class="thumbnail" height="150px" width="100%"></a>
 				   <ul id="webTicker1" class="list-inline text-rightlist-inline text-right">
-					    <li> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed viverra nulla, et sodales lorem. Aenean dignissim diam lacinia consectetur sagittis. Pellentesque interdum pulvinar finibus. Aenean tincidunt nisl sit amet tortor vehicula, sed condimentum eros rhoncus. Vestibulum dui magna, lacinia eget cursus id, interdum sed velit. Quisque vitae congue velit. Fusce cursus elementum quam et cursus. Donec a odio eleifend, euismod justo non, porta justo. Suspendisse potenti. </li>
+					    <li>Click here to apply for new Jobs! Click here to apply for new Jobs! Click here to apply for new Jobs! Click here to apply for new Jobs!</li>
 					</ul>
 			</div>
 			
