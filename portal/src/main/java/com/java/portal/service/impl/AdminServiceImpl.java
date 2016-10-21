@@ -627,6 +627,45 @@ public class AdminServiceImpl implements AdminService {
 		sb.append("]}");
 		return sb.toString();
 	}
+
+	public String getCareers(List<String> type) {
+		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+		List<Jobs> jobList = dao.selectJobsOnType(type);
+		StringBuffer tableContent = new StringBuffer();
+		String jobDetails = null;
+
+		for (Jobs job : jobList) {
+			jobDetails = job.getJobRequirements();
+			if (jobDetails != null) {
+				jobDetails = jobDetails.substring(0, 200);
+			}
+
+			tableContent.append("<li class='list-group-item'>");
+			tableContent.append("<h3>" + job.getJobTitle() + " <span class='jobtitle " + job.getJobType() + "'>"
+					+ job.getJobType() + "</span></h3>");
+			tableContent.append("<p class='help-block'>");
+			tableContent.append("<span class='fa fa-money' style='padding-right:10px;'></span>" + job.getRate() + "");
+			tableContent.append("<span class='fa fa-map-marker' style='padding-left:30px;padding-right:10px;'></span>"
+					+ job.getJobLocation() + "");
+			tableContent
+					.append("<span class='glyphicon glyphicon-time' style='padding-left:30px;padding-right:10px;'></span>"
+							+ job.getHours() + "");
+			tableContent.append("</p><p>" + jobDetails + "&hellip;</p>");
+			tableContent.append("<a type='button' href=\"javascript:jobDetails('" + job.getJobCode()
+					+ "')\" class='btn btn-primary btn-sm'>More Details</a>");
+			tableContent.append("</li>");
+		}
+		StringBuffer sb = new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+		sb.append("<tableContent>");
+		sb.append("<![CDATA[");
+		sb.append(tableContent.toString());
+		sb.append("]]>");
+		sb.append("</tableContent>");
+		sb.append("</data>");
+
+		return sb.toString();
+	}
 	
 	
 

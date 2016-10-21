@@ -616,4 +616,34 @@ public class HomeController {
 		return output;
 	}
 	
+	@RequestMapping(value = "/loadCareers", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String loadCareers(@RequestParam("FULL-TIME") String FULLTIME,
+											@RequestParam("PERMANENT") String PERMANENT,
+											@RequestParam("CONTRACT") String CONTRACT,
+											@RequestParam("ANYTYPE") String ANYTYPE,
+											@RequestParam("PART-TIME") String PARTTIME
+			) {
+		String output = null;
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			List<String> type = new ArrayList<String>();
+			
+			if(ANYTYPE.equalsIgnoreCase("true")){
+				type = new ArrayList<String>();
+			}else{
+				
+				if(FULLTIME.equalsIgnoreCase("true")){type.add("FULL-TIME");}
+				if(PERMANENT.equalsIgnoreCase("true")){type.add("PERMANENT");}
+				if(CONTRACT.equalsIgnoreCase("true")){type.add("CONTRACT");}
+				if(PARTTIME.equalsIgnoreCase("true")){type.add("PART-TIME");}
+				
+			}
+			output = adminService.getCareers(type);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+	}
+	
 }

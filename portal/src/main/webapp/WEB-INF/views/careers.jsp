@@ -48,17 +48,30 @@
 	background-color: #6495ED;
 }
 
-
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
 
+	$fullTime = "FULL-TIME="+$('#FULL-TIMEID').is(":checked");
+	$permanent = "PERMANENT="+$('#PERMANENTID').is(":checked");
+	$partTime = "PART-TIME="+$('#PART-TIMEID').is(":checked");
+	$contract = "CONTRACT="+$('#CONTRACTID').is(":checked");
+	$anyType = "ANYTYPE="+$('#ANYTYPEID').is(":checked");
 
-	
-	
+	$('#FULL-TIMEID').change(function() {$fullTime = "FULL-TIME="+$(this).is(":checked");loadJobs();});
+	$("#PERMANENTID").change(function() {$permanent = "PERMANENT="+$(this).is(":checked");loadJobs();});
+	$("#PART-TIMEID").change(function() {$partTime = "PART-TIME="+$(this).is(":checked");loadJobs();});
+	$("#CONTRACTID").change(function() {$contract = "CONTRACT="+$(this).is(":checked");loadJobs();});
+	$("#ANYTYPEID").change(function() {$anyType = "ANYTYPE="+$(this).is(":checked");loadJobs();});
+
+	loadJobs();
+});
+
+function loadJobs(){
 	$.ajax({
-		url : "loadActiveJobs",
+		url : "loadCareers",
 		dataType : "xml",
+		data : $fullTime+"&"+$permanent+"&"+$partTime+"&"+$contract+"&"+$anyType,
 		type : "POST",
 		success : function(xml){
 			$("#jobsBodyID").html($(xml).find("tableContent").text());
@@ -69,8 +82,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	
-});
+}
 function jobDetails(id){
 	$data = 'jobId='+ id;
 	$.ajax({
@@ -122,7 +134,7 @@ function jobDetails(id){
 				<h3 style="margin-bottom: 21px;">Job Type</h3>
 				<div class="checkbox">
 			          <label>
-			            <input type="checkbox" value="" checked>
+			            <input type="checkbox" value="" checked id="ANYTYPEID">
 			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
 			            Any Type
 			          </label>
@@ -130,7 +142,7 @@ function jobDetails(id){
 		        
 		        <div class="checkbox">
 			          <label>
-			            <input type="checkbox" value="FULL-TIME">
+			            <input type="checkbox" value="FULL-TIME" id="FULL-TIMEID">
 			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
 			            FULL-TIME
 			          </label>
@@ -138,7 +150,7 @@ function jobDetails(id){
 		        
 		        <div class="checkbox">
 			          <label>
-			            <input type="checkbox" value="PERMANENT" >
+			            <input type="checkbox" value="PERMANENT" id="PERMANENTID" >
 			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
 			            PERMANENT
 			          </label>
@@ -146,7 +158,7 @@ function jobDetails(id){
 		        
 		        <div class="checkbox">
 			          <label>
-			            <input type="checkbox" value="PART-TIME" >
+			            <input type="checkbox" value="PART-TIME" id="PART-TIMEID">
 			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
 			            PART-TIME
 			          </label>
@@ -154,61 +166,11 @@ function jobDetails(id){
 		        
 		        <div class="checkbox">
 			          <label>
-			            <input type="checkbox" value="CONTRACT" >
+			            <input type="checkbox" value="CONTRACT" id="CONTRACTID">
 			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
 			            CONTRACT
 			          </label>
 		        </div>
-		        
-		        <h3 style="margin-bottom: 21px;">Rate / Hr</h3>
-				<div class="checkbox">
-			          <label>
-			            <input type="checkbox" value="Any Rate" checked>
-			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-			            Any Rate
-			          </label>
-		        </div>
-		        
-		        <div class="checkbox">
-			          <label>
-			            <input type="checkbox" value="$0 - $25">
-			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-			            $0 - $25
-			          </label>
-		        </div>
-		        
-		        <div class="checkbox">
-			          <label>
-			            <input type="checkbox" value="$25 - $50">
-			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-			            $25 - $50
-			          </label>
-		        </div>
-		        
-		        <div class="checkbox">
-			          <label>
-			            <input type="checkbox" value="$50 - $100">
-			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-			            $50 - $100
-			          </label>
-		        </div>
-		        
-		        <div class="checkbox">
-			          <label>
-			            <input type="checkbox" value="$100 - $150">
-			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-			            $100 - $150
-			          </label>
-		        </div>
-		        
-		        <div class="checkbox">
-			          <label>
-			            <input type="checkbox" value="$200+">
-			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-			            $200+
-			          </label>
-		        </div>
-		        
 		        			
 			</div>
 

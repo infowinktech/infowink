@@ -85,13 +85,14 @@ $(document).ready(function() {
 				$("#loadingID1").hide();
 				$("#registerID").show();
 				
-				$("#msgID").html($(xml).find("status").text());
-				$("#msgID").show();
+				$("#successMsg").html($(xml).find("status").text());
 				if($(xml).find("statusCode").text()=="true"){
-					 $("#msgID").css("color", "#18bc9c");
+					 $("#successMsg").css("color", "#18bc9c");
 				}else{
-					$("#msgID").css("color", "#ff4c4c");
+					$("#successMsg").css("color", "#ff4c4c");
 				}
+				
+				 $("#myModal").modal(); 
 			},
 			error : function(xhr, status, error) {
 					console.log("Erro occured...");
@@ -193,7 +194,7 @@ $(document).ready(function() {
 				<p style="margin-top: 20px;">  
 				<button type="button" class="btn btn-primary btn-sm" id="registerID">Add Job</button>
 				</p>
-				<p style="display: none;" id="msgID" class="text-center"><span class="fa fa-check" style="padding-right: 10px;"></span>Thanks for applying. <a href="careers">Click here </a> for Careers to find more Jobs!</p>
+				
 			</form>	
 						
 				 
@@ -207,7 +208,27 @@ $(document).ready(function() {
 	<jsp:include page="signin.jsp"></jsp:include>
 	<jsp:include page="footer.jsp"></jsp:include>
 	
-	
+	<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Job</h4>
+      </div>
+      <div class="modal-body">
+        <p id="successMsg" class="text-center"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 	<script src="resources/js/bootstrap.min.js"></script>
 </body>
 </html>

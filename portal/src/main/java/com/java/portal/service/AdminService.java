@@ -30,4 +30,5 @@ public interface AdminService {
 	public String getContactMsgBasedOnId(int msgId);
 	public String getBarH();
 	public String getBarV();
+	public String getCareers(List<String> type);
 }

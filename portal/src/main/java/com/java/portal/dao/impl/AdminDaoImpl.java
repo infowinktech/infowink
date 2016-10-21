@@ -269,6 +269,36 @@ public class AdminDaoImpl implements AdminDao {
 		
 		return results;
 	}
+
+	public List<Jobs> selectJobsOnType(List<String> type) {
+
+		List<Jobs> appList = new ArrayList<Jobs>();
+		
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Jobs.class);
+	
+		if(type.size()>0){
+			log.info("Multiple types selected...");
+			log.info(type);
+			Disjunction disjunction = Restrictions.disjunction();
+			for(String jobType:type){
+			    disjunction.add(Restrictions.or(Restrictions.eq("jobType", jobType))); //add your restirction here
+			}
+			Disjunction disjunction1 = Restrictions.disjunction();
+			disjunction1.add(Restrictions.and(Restrictions.eq("jobStatus", "OPEN")));
+			
+			criteria.add(disjunction);
+			criteria.add(disjunction1);
+		}else{
+			criteria.add(Restrictions.eq("jobStatus", "OPEN"));
+		}
+		
+		List<Jobs> results = (List<Jobs>)criteria.list();
+		return results;
+	
+	
+	
+	}
 	
 	
 	
