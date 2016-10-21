@@ -48,7 +48,7 @@ $(document).ready(function() {
 	$("#iframeID").unbind().load(function () {
 		$output=$('#iframeID').contents().find('body').text();
 		if($output=="true"){
-			$("#msgID").show();		
+			$("#myModal").modal();		
 		}
 	});
 
@@ -153,7 +153,7 @@ function validate(){
 				<p style="margin-top: 20px;">  
 				<button type="button" class="btn btn-primary btn-sm" onclick="javascript:validate();">Apply</button>
 				</p>
-				<p style="display: none;" id="msgID" class="text-center"><span class="fa fa-check" style="padding-right: 10px;"></span>Thanks for applying. <a href="careers">Click here </a> for Careers to find more Jobs!</p>
+				
 			</form>		
 				 
 		</div>
@@ -167,6 +167,28 @@ function validate(){
 	<jsp:include page="signin.jsp"></jsp:include>
 	<jsp:include page="footer.jsp"></jsp:include>
 	
+	
+		
+	<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Apply Job</h4>
+      </div>
+      <div class="modal-body">
+        <p id="msgID" class="text-center"><span class="fa fa-check" style="padding-right: 10px;"></span>Thanks for applying. <a href="careers">Click here </a> for Careers to find more Jobs!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 	
 	<script src="resources/js/bootstrap.min.js"></script>
 </body>
