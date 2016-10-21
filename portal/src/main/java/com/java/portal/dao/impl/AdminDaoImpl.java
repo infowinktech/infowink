@@ -306,6 +306,16 @@ public class AdminDaoImpl implements AdminDao {
 	
 	
 	}
+
+	public List<JobApplication> selectMyJobs(int userId) {
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(JobApplication.class);
+		criteria.createAlias("user", "user");
+		criteria.add(Restrictions.eq("user.pkid", userId));
+		List<JobApplication> results = (List<JobApplication>)criteria.list();
+		return results;
+	
+	}
 	
 	
 	

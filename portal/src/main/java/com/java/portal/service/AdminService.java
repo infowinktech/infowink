@@ -31,4 +31,5 @@ public interface AdminService {
 	public String getBarH();
 	public String getBarV();
 	public String getCareers(List<String> type);
+	public String getMyJobs();
 }

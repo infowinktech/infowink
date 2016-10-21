@@ -32,4 +32,5 @@ public interface AdminDao {
 	public List<Jobs> selectJobsOnType(String status);
 	public List<JobApplication> selectApplicationsOnStatus(String status);
 	public List<Jobs> selectJobsOnType(List<String> type);
+	public List<JobApplication> selectMyJobs(int userId);
 }

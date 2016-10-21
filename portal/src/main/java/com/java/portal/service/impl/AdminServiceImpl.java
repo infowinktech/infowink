@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.log4j.Logger;
@@ -35,6 +36,9 @@ public class AdminServiceImpl implements AdminService {
 	private ApplicationContext context;
 	@Autowired
 	private ServletContext servletContext;
+	@Autowired
+	private HttpSession session;
+	
 
 	public String addJob(Jobs jobs) {
 		StringBuffer sb = new StringBuffer();
@@ -664,6 +668,48 @@ public class AdminServiceImpl implements AdminService {
 		sb.append("</tableContent>");
 		sb.append("</data>");
 
+		return sb.toString();
+	}
+
+	public String getMyJobs() {
+		List<JobApplication> jobsList = new ArrayList<JobApplication>();
+		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+		User user = (User)session.getAttribute("USER_BEAN");
+		jobsList = dao.selectMyJobs(user.getPkid());
+		StringBuffer tableContent = new StringBuffer();
+		int slNo = 1;
+		
+		Set<JobApplication> jobSet = new HashSet<JobApplication>();
+		for(JobApplication jpa : jobsList){
+			jobSet.add(jpa);
+		}
+		
+		Iterator iterator = jobSet.iterator();
+		   while (iterator.hasNext()){
+			   JobApplication application = (JobApplication)iterator.next(); 
+			   tableContent.append("<tr>");
+				tableContent.append("<td>" + slNo + "</td>");
+				tableContent.append("<td>" + application.getJobs().getJobCode() + "</td>");
+				tableContent.append("<td>" + application.getJobs().getJobTitle() + "</td>");
+				tableContent.append("<td>" + application.getJobs().getJobType() + "</td>");
+				tableContent.append("<td>" + application.getJobs().getJobLocation() + "</td>");
+				tableContent.append("<td>" + application.getJobs().getHours() + "</td>");
+				tableContent.append("<td>" + application.getJobs().getRate() + "</td>");
+				tableContent.append("<td>" + application.getApplicationDate() + "</td>");
+				tableContent.append("<td>" + application.getApplicationStatus() + "</td>");
+				tableContent.append("</tr>");
+				slNo = slNo + 1;
+		   }
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+		sb.append("<tableContent>");
+		sb.append("<![CDATA[");
+		sb.append(tableContent.toString());
+		sb.append("]]>");
+		sb.append("</tableContent>");
+		sb.append("</data>");
+		
 		return sb.toString();
 	}
 	

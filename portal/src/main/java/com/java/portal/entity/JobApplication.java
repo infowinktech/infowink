@@ -122,5 +122,14 @@ public class JobApplication implements java.io.Serializable {
 	public void setResumeName(String resumeName) {
 		this.resumeName = resumeName;
 	}
+	
+	public boolean equals(Object obj){
+        if (obj instanceof JobApplication) {
+        	JobApplication ja = (JobApplication) obj;
+            return (ja.pkid.equals(this.pkid) && ja.pkid == this.pkid);
+        } else {
+            return false;
+        }
+    }
 
 }

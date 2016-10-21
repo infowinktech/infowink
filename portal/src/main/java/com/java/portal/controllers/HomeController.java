@@ -107,6 +107,10 @@ public class HomeController {
 	public String managemsgs() {
 		return "managemsgs";
 	}
+	@RequestMapping(value = "/myjobs", method = RequestMethod.GET)
+	public String myjobs() {
+		return "myjobs";
+	}
 
 
 
@@ -671,6 +675,21 @@ public class HomeController {
 			e.printStackTrace();
 		}
 		return output;
+	}
+	
+	@RequestMapping(value = "/loadMyJobs", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String loadMyJobs() {
+		String output = null;
+		
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output = adminService.getMyJobs();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+
+		
 	}
 	
 }
