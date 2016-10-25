@@ -28,6 +28,7 @@ import com.java.portal.entity.JobApplication;
 import com.java.portal.entity.Jobs;
 import com.java.portal.entity.User;
 import com.java.portal.service.AdminService;
+import com.java.portal.utilities.FileUtility;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -712,7 +713,234 @@ public class AdminServiceImpl implements AdminService {
 		
 		return sb.toString();
 	}
+
+	public String exportJobs(List<String> status) {
+		try{
+			AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+			List<Jobs> jobsList = new ArrayList<Jobs>();
+			jobsList = dao.selectJobsOnStatus(status);
+			
+			String hrefLink = null;
+			String resourcesPath = servletContext.getRealPath("/");
+			resourcesPath = resourcesPath + "resources" + File.separator+ "export";
+			File exportFolder = new File(resourcesPath);
+			exportFolder.mkdirs();
+			String fileName = "jobs_export_"+FileUtility.getTimeStamp()+".xlsx";
+			File exportFile = new File(resourcesPath+File.separator+fileName);
+			if(jobsList.size()>0){
+				log.info("writing file..");
+				log.info(exportFile);
+				FileUtility fu = new FileUtility();
+				fu.writeJobs(jobsList, exportFile.getAbsolutePath());
+			}else{
+				log.info("nothing found to write...");
+			}
+			hrefLink = "resources"+"/"+"export"+"/"+exportFile.getName();
+			
+			StringBuffer sb = new StringBuffer();
+			sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+			sb.append("<hrefLink>");
+			sb.append("<![CDATA[");
+			sb.append(hrefLink);
+			sb.append("]]>");
+			sb.append("</hrefLink>");
+			sb.append("</data>");
+
+			return sb.toString();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return "";
+		}
+		
 	
+	}
+
+	public String exportApplications(List<String> status) {
+		try {
+			StringBuffer tableContent = new StringBuffer();
+			List<JobApplication> list = new ArrayList<JobApplication>();
+			AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+			list = dao.selectOpenApplicationsOnStatus(status);
+			String hrefLink = null;
+			String resourcesPath = servletContext.getRealPath("/");
+			resourcesPath = resourcesPath + "resources" + File.separator+ "export";
+			File exportFolder = new File(resourcesPath);
+			exportFolder.mkdirs();
+			String fileName = "applications_export_"+FileUtility.getTimeStamp()+".xlsx";
+			File exportFile = new File(resourcesPath+File.separator+fileName);
+			if(list.size()>0){
+				log.info("writing file..");
+				log.info(exportFile);
+				FileUtility fu = new FileUtility();
+				fu.writeApplications(list, exportFile.getAbsolutePath());
+			}else{
+				log.info("nothing found to write...");
+			}
+			hrefLink = "resources"+"/"+"export"+"/"+exportFile.getName();
+			
+			StringBuffer sb = new StringBuffer();
+			sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+			sb.append("<hrefLink>");
+			sb.append("<![CDATA[");
+			sb.append(hrefLink);
+			sb.append("]]>");
+			sb.append("</hrefLink>");
+			sb.append("</data>");
+			
+			return sb.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
+
+	public String exportUsers() {
+
+		try {
+			StringBuffer tableContent = new StringBuffer();
+			UserAccountDao dao = (UserAccountDao) context.getBean("userAccountDaoImpl");
+			List<User> userList = dao.fetchUsers();
+			Set<User> userSet = new HashSet<User>();
+			for(User user : userList){
+				userSet.add(user);
+			}
+
+			int slNo = 1;
+			List<User> list = new ArrayList<User>();
+			Iterator iterator = userSet.iterator();
+			   while (iterator.hasNext()){
+				   	User user = (User)iterator.next();
+				   	list.add(user);
+			   }
+			
+		   String hrefLink = null;
+			String resourcesPath = servletContext.getRealPath("/");
+			resourcesPath = resourcesPath + "resources" + File.separator+ "export";
+			File exportFolder = new File(resourcesPath);
+			exportFolder.mkdirs();
+			String fileName = "users_export_"+FileUtility.getTimeStamp()+".xlsx";
+			File exportFile = new File(resourcesPath+File.separator+fileName);
+			if(list.size()>0){
+				log.info("writing file..");
+				log.info(exportFile);
+				FileUtility fu = new FileUtility();
+				fu.writeUsers(list, exportFile.getAbsolutePath());
+			}else{
+				log.info("nothing found to write...");
+			}
+			hrefLink = "resources"+"/"+"export"+"/"+exportFile.getName();
+				
+			StringBuffer sb = new StringBuffer();
+			sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+			sb.append("<hrefLink>");
+			sb.append("<![CDATA[");
+			sb.append(hrefLink);
+			sb.append("]]>");
+			sb.append("</hrefLink>");
+			sb.append("</data>");
+
+			return sb.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "";
+		}
 	
+	}
+
+	public String exportMsgs() {
+		try {
+			StringBuffer tableContent = new StringBuffer();
+			List<ContactMessage> list = new ArrayList<ContactMessage>();
+			AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+			list = dao.fetchContactMsgs();
+			String hrefLink = null;
+			String resourcesPath = servletContext.getRealPath("/");
+			resourcesPath = resourcesPath + "resources" + File.separator+ "export";
+			File exportFolder = new File(resourcesPath);
+			exportFolder.mkdirs();
+			String fileName = "msgs_export_"+FileUtility.getTimeStamp()+".xlsx";
+			File exportFile = new File(resourcesPath+File.separator+fileName);
+			if(list.size()>0){
+				log.info("writing file..");
+				log.info(exportFile);
+				FileUtility fu = new FileUtility();
+				fu.writeMsgs(list, exportFile.getAbsolutePath());
+			}else{
+				log.info("nothing found to write...");
+			}
+			hrefLink = "resources"+"/"+"export"+"/"+exportFile.getName();
+			
+			StringBuffer sb = new StringBuffer();
+			sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+			sb.append("<hrefLink>");
+			sb.append("<![CDATA[");
+			sb.append(hrefLink);
+			sb.append("]]>");
+			sb.append("</hrefLink>");
+			sb.append("</data>");
+			
+			return sb.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
+
+	public String addBulkJobs(List<Jobs> jobList) {
+		StringBuffer sb = new StringBuffer();
+		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+		String jobCode = null;
+		String status = null;
+		String comments = null;
+		String statusLink = null;
+		StringBuffer tableContent = new StringBuffer();
+		
+		try{
+			for(Jobs job:jobList){
+				jobCode = job.getJobCode();
+				log.info("Processing job:"+jobCode);
+				if(dao.getJobDetails(job.getJobCode())!=null){
+					comments = "Job code "+jobCode+" already exists";
+					status = "false";
+					log.info(comments);
+				}else{
+					if(dao.insertJob(job)){
+						status = "true";
+						comments = "Success";
+						log.info(comments);
+					}else{
+						status = "false";
+						comments = "Error occured adding the Job "+jobCode;
+						log.info(comments);
+					}
+				}
+				log.info("=====================================");
+				if(status!=null && status.equalsIgnoreCase("true")){
+					statusLink = "<i class=\"fa fa-check\" aria-hidden=\"true\"></i>";
+				}else{
+					statusLink = "<i class=\"fa fa-times\" aria-hidden=\"true\"></i>";
+				}
+				tableContent.append("<tr>");
+				tableContent.append("<td>"+jobCode+"</td>");
+				tableContent.append("<td>"+job.getJobTitle()+"</td>");
+				tableContent.append("<td>"+statusLink+"</td>");
+				tableContent.append("<td>"+comments+"</td>");
+				tableContent.append("</tr>");
+				
+			}
+			sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+			sb.append("<tableContent>");
+			sb.append("<![CDATA[");
+			sb.append(tableContent.toString());
+			sb.append("]]>");
+			sb.append("</tableContent>");
+			sb.append("</data>");
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return sb.toString();
+	}
 
 }

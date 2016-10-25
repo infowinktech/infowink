@@ -32,4 +32,9 @@ public interface AdminService {
 	public String getBarV();
 	public String getCareers(List<String> type);
 	public String getMyJobs();
+	public String exportJobs(List<String> status);
+	public String exportApplications(List<String> status);
+	public String exportUsers();
+	public String exportMsgs();
+	public String addBulkJobs(List<Jobs> jobList);
 }

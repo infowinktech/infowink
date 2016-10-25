@@ -73,6 +73,25 @@ $(document).ready(function() {
 		}
 	});
 });
+
+function exportRecords(){
+	$("#loadingID").show();
+	$.ajax({
+		url : "exportMsgs",
+		dataType : "xml",
+		type : "POST",
+		success : function(xml){
+			$("#loadingID").hide();
+			$("#hrefLinkID").attr("action",$(xml).find("hrefLink").text());
+			$("#hrefLinkID").submit();
+			
+		},
+		error : function(xhr, status, error) {
+				console.log("Error occured...");
+				$("#loadingID").hide();
+		}
+	});
+}
 </script>
 
 
@@ -95,6 +114,12 @@ $(document).ready(function() {
 					  <li class="active">Manage Messages</li>
 				</ol>
 	
+        	
+		<p class="text-right">
+			<a href=# class="btn btn-primary btn-sm " onclick="javascript:exportRecords();" >Export</a>
+		    <form action="" id="hrefLinkID" style="display:none;">Link</form>
+		    
+        </p>
         <p class="text-center">
 			<img alt="" src="resources/img/loading.gif" style="height: 40px;display:none;" id="loadingID">
         </p>

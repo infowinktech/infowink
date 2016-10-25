@@ -57,12 +57,17 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	public Jobs getJobDetails(String jobId) {
-		Session session = sessionFactory.getCurrentSession();
-		Criteria criteria = session.createCriteria(Jobs.class);
-		criteria.add(Restrictions.eq("jobCode", jobId));
-		List<Jobs> results = (List<Jobs>)criteria.list();
+		try{
+			Session session = sessionFactory.getCurrentSession();
+			Criteria criteria = session.createCriteria(Jobs.class);
+			criteria.add(Restrictions.eq("jobCode", jobId));
+			List<Jobs> results = (List<Jobs>)criteria.list();
+			return results.get(0);
+		}catch(Exception e){
+			log.error("Error:"+e.getMessage());
+			return null;
+		}
 		
-		return results.get(0);
 	}
 
 	public List<Jobs> selectActiveJobs() {

@@ -57,6 +57,27 @@ $(document).ready(function() {
 	
 });
 
+function exportRecords(){
+	$("#loadingID").show();
+	$.ajax({
+		url : "exportApplications",
+		dataType : "xml",
+		data : $open+"&"+$closed+"&"+$onHold,
+		type : "POST",
+		success : function(xml){
+			$("#loadingID").hide();
+			$("#hrefLinkID").attr("action",$(xml).find("hrefLink").text());
+			$("#hrefLinkID").submit();
+			
+		},
+		error : function(xhr, status, error) {
+				console.log("Error occured...");
+				$("#loadingID").hide();
+		}
+	});
+	
+}
+
 function loadApplications(){
 
 	$.ajax({
@@ -131,6 +152,8 @@ function viewapp(id){
 		        <button type="button" class="btn btn-primary btn-sm btn-success">ON-HOLD Applications</button>
 		        <input type="checkbox" class="hidden" value="ON-HOLD" id="onHoldID" name="onhold" />
 		    </span>
+		    <a href=# class="btn btn-primary btn-sm " onclick="javascript:exportRecords();" >Export</a>
+		    <form action="" id="hrefLinkID" style="display:none;">Link</form>
 		    
         </p>
         <p class="text-center">

@@ -1,15 +1,18 @@
 package com.java.portal.controllers;
 
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.sql.rowset.serial.SerialBlob;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -28,6 +31,7 @@ import com.java.portal.entity.User;
 import com.java.portal.service.AdminService;
 import com.java.portal.service.UserAccountService;
 import com.java.portal.service.impl.AdminServiceImpl;
+import com.java.portal.utilities.FileUtility;
 import com.java.portal.utilities.MD5Encryption;
 
 @Controller
@@ -35,7 +39,8 @@ public class HomeController {
 	private static final Logger log = Logger.getLogger(HomeController.class);
 	@Autowired
 	private HttpServletRequest request;
-	
+	@Autowired
+	private ServletContext servletContext;
 	@Autowired(required=true)
 	private ApplicationContext context;
 	
@@ -684,6 +689,111 @@ public class HomeController {
 		try{
 			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
 			output = adminService.getMyJobs();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+
+		
+	}
+	
+	@RequestMapping(value = "/uploadBulkJobs", method = { RequestMethod.POST })
+	public @ResponseBody String uploadBulkJobs(@RequestParam("jobTemplate") MultipartFile jobTemplate) {
+		boolean output = true;
+		try{
+			String filePath = servletContext.getRealPath("/");
+			filePath = filePath + "resources" + File.separator+ "bulk";
+			File file = new File(filePath);
+			file.mkdirs();
+			filePath = filePath+File.separator+FileUtility.getTimeStamp()+jobTemplate.getOriginalFilename();
+			log.info(filePath);
+			session.setAttribute("BULK_JOB_FILE", filePath);
+			file = new File(filePath);
+			FileUtils.writeByteArrayToFile(file, jobTemplate.getBytes());
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return "false"; 
+		}
+		return "true";
+	}
+	
+	@RequestMapping(value = "/exportJobs", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String exportJobs(@RequestParam("OPEN") String OPEN, @RequestParam("ON-HOLD") String ONHOLD, @RequestParam("CLOSED") String CLOSED) {
+		String output = null;
+		List<String> status = new ArrayList<String>();
+		if(OPEN.equalsIgnoreCase("true")){status.add("OPEN");}
+		if(CLOSED.equalsIgnoreCase("true")){status.add("CLOSED");}
+		if(ONHOLD.equalsIgnoreCase("true")){status.add("ON-HOLD");}
+		log.info(status);
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output=adminService.exportJobs(status);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+
+		
+	}
+	
+	@RequestMapping(value = "/exportApplications", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String exportApplications(@RequestParam("OPEN") String OPEN, @RequestParam("ON-HOLD") String ONHOLD, @RequestParam("CLOSED") String CLOSED) {
+		String output = null;
+		
+		List<String> status = new ArrayList<String>();
+		if(OPEN.equalsIgnoreCase("true")){status.add("OPEN");}
+		if(CLOSED.equalsIgnoreCase("true")){status.add("CLOSED");}
+		if(ONHOLD.equalsIgnoreCase("true")){status.add("ON-HOLD");}
+		log.info(status);
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output=adminService.exportApplications(status);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+
+		
+	}
+	
+	@RequestMapping(value = "/exportUsers", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String exportUsers() {
+		String output = null;
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output=adminService.exportUsers();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+	}
+	
+	@RequestMapping(value = "/exportMsgs", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String exportMsgs() {
+		String output = null;
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output=adminService.exportMsgs();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+	}
+	
+	
+	@RequestMapping(value = "/processBulkJobs", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String processBulkJobs() {
+		String output = null;
+		String filePath = (String)session.getAttribute("BULK_JOB_FILE");
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			FileUtility reader = new FileUtility();
+		    List<Jobs> jobList = reader.readBooksFromExcelFile(filePath);
+		    jobList.remove(0);
+		    output=adminService.addBulkJobs(jobList);
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}

@@ -26,13 +26,62 @@
 border:1px solid #dce4ec;
 padding-left: 5px;
 }
-
+.modal-footer {
+    text-align: left;
+}
 
 </style>
 
 <script type="text/javascript">
+
+function validate(){
+	$fileNameID = $("#fileNameID").val();
+	
+	if($fileNameID.length<=0){
+		$("#fileNameID").addClass("inputError");		
+	}else{
+		$("#uploadBulkFormID").submit();
+	}
+}
+
+function uploadBulkJobs(){
+	$.ajax({
+		url : "processBulkJobs",
+		dataType : "xml",
+		type : "POST",
+		success : function(xml){
+			//$("#jobsBodyID").html($(xml).find("tableContent").text());
+			//$('#jobsTable').DataTable();
+			$("#bulkBodyID").html($(xml).find("tableContent").text());
+			$("#bulkTableID").show();
+		},
+		error : function(xhr, status, error) {
+				console.log("Error occured...");
+		}
+	});
+}
 $(document).ready(function() {
 
+	$("#iframeID").unbind().load(function () {
+		$output=$('#iframeID').contents().find('body').text();
+		if($output=="true"){
+			uploadBulkJobs();
+		}
+	});
+
+	$("#fileID").change(function() {
+		$("#fileNameID").val($("#fileID").val());	
+		$("#fileNameID").removeClass("inputError");
+	});
+
+	$("#browseID","#fileNameID").bind("click", function() {
+		$("#fileID").click();
+	});
+	$("#fileNameID").bind("click", function() {
+		$("#fileID").click();
+	});
+
+	
 	$open = "OPEN="+$('#openID').is(":checked");
 	$closed = "CLOSED="+$('#closedID').is(":checked");
 	$onHold = "ON-HOLD="+$('#onHoldID').is(":checked");
@@ -55,6 +104,25 @@ $(document).ready(function() {
 	});
 	
 });
+
+function exportRecords(){
+	$("#loadingID").show();
+	$.ajax({
+		url : "exportJobs",
+		data : $open+"&"+$closed+"&"+$onHold,
+		dataType : "xml",
+		type : "POST",
+		success : function(xml){
+			$("#loadingID").hide();
+			$("#hrefLinkID").attr("action",$(xml).find("hrefLink").text());
+			$("#hrefLinkID").submit();
+		},
+		error : function(xhr, status, error) {
+				console.log("Error occured...");
+				$("#loadingID").hide();
+		}
+	});	
+}
 
 function loadJobs(){
 	$.ajax({
@@ -129,6 +197,7 @@ function deleteRecord(jobcode){
 				</ol>
 			
 		<p class="text-right">
+		<a href="" id="exportDownloadLinkID" style="display: nonne;"></a>
 			<span class="button-checkbox">
 		        <button type="button" class="btn btn-primary btn-sm btn-success">OPEN Jobs</button>
 		        <input type="checkbox" class="hidden" checked  id="openID" value="OPEN"/>
@@ -145,9 +214,12 @@ function deleteRecord(jobcode){
 		    </span>
 		    
 		    <a href="addjob" class="btn btn-primary btn-sm " >Add a new Job</a>
+		    <a href="#" class="btn btn-primary btn-sm " data-toggle="modal" data-target="#myModal">Add bulk Jobs</a>
+		    <a href=# class="btn btn-primary btn-sm " onclick="javascript:exportRecords();" >Export</a>
+		    <form action="" id="hrefLinkID" style="display:none;">Link</form>
         </p>
         <p class="text-center">
-			<img alt="" src="resources/img/loading.gif" style="height: 40px;display:none;" id="loadingID">
+			<img alt="" src="resources/img/loading.gif" style="height: 40px;display: none;" id="loadingID" >
         </p>
 			<table class="table table-bordered table-hover" id="jobsTable">
 						<thead style="background-color: #f8f9fa;">
@@ -194,6 +266,59 @@ function deleteRecord(jobcode){
 	<jsp:include page="signin.jsp"></jsp:include>
 	<jsp:include page="footer.jsp"></jsp:include>
 	
+		<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add bulk Jobs</h4>
+      </div>
+      <div class="modal-body">
+        <p><b>Note:</b></p>
+        <p>Download the <a href="resources/job_upload_bulk_template.xlsx">template</a> and update new jobs in the Excel file. Do not change the format of the Excel!</p>
+        
+        <iframe id="iframeID" name="iframe" src="" style="width:800px;border: 1px solid #666666;display: none;"></iframe>
+        
+        <form class="form-horizontal" enctype="multipart/form-data" target="iframe" action="uploadBulkJobs" method="post" id="uploadBulkFormID">
+        	<div class="input-group" style="margin-top: 20px;">
+	                <label class="input-group-btn">
+	                    <span class="btn btn-primary btn-sm" id="browseID">
+	                        Browse&hellip; <input type="file" style="display: none;" name="jobTemplate" id="fileID" accept=".xlsx">
+	                    </span>
+	                </label>
+	                <input type="text" class="form-control input-sm" readonly id="fileNameID" placeholder="Select template" style="padding-left: 10px;">
+            	</div>
+          <p class="text-center" style="padding-top: 10px;">
+			<img alt="" src="resources/img/loading.gif" style="height: 40px;display: none;" id="loadingID1" >
+        </p>
+        
+        <table class="table table-bordered" id="bulkTableID" style="display:none;">
+		    <thead style="background-color: #2c3e50;color: #ffffff;opacity:0.8;">
+		      <tr>
+		        <th>Job Code</th>
+		        <th>Job Title</th>
+		        <th>Status</th>
+		        <th>Comments</th>
+		      </tr>
+		    </thead>
+		    <tbody id="bulkBodyID">
+		      
+		    </tbody>
+  		</table>
+
+        </form>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-sm" onclick="javascript:validate();">Upload Jobs</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 	
 	<script src="resources/js/bootstrap.min.js"></script>
 </body>
