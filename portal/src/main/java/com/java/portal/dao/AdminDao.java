@@ -6,6 +6,7 @@ import java.util.Map;
 import com.java.portal.entity.ContactMessage;
 import com.java.portal.entity.JobApplication;
 import com.java.portal.entity.Jobs;
+import com.java.portal.entity.User;
 
 public interface AdminDao {
 	public boolean insertJob(Jobs jobs);
@@ -33,4 +34,6 @@ public interface AdminDao {
 	public List<JobApplication> selectApplicationsOnStatus(String status);
 	public List<Jobs> selectJobsOnType(List<String> type);
 	public List<JobApplication> selectMyJobs(int userId);
+	public boolean updateUser(User user);
+	public User getResetEmailUser(String resetEmail);
 }

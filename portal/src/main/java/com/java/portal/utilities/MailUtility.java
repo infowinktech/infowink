@@ -14,16 +14,22 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
+
+import com.java.portal.service.impl.AdminServiceImpl;
 
 @Component
 public class MailUtility {
-
-	public static void main(String [] args){
+	private static final Logger log = Logger.getLogger(AdminServiceImpl.class);
+	public static void main(String [] args){/*
 		FileUtility fu = new FileUtility();
-		String body = fu.readFile("D:\\adm2pdm.html");
-		send("no-reply@in.bosch.com", "raghurama.j@gmail.com", "Test Mail", body, new ArrayList<String>(), new ArrayList<String>());
-	}
+		String body = fu.readFile("C:\\ADM2PDM\\rastermaster_error.html");
+		String to = "raghuramchandra.jinka@in.bosch.com";
+		String from = "no-reply@in.bosch.com";
+		String subject = "Test Mail";
+		send(from, to, subject, body, new ArrayList<String>(), new ArrayList<String>());
+	*/}
 	
 	public static boolean send(String from,String to,String subject,String body, ArrayList<String> ccList,ArrayList<String> bccList){
 
@@ -43,10 +49,7 @@ public class MailUtility {
 	          message.setFrom(fromAddress);
 	          message.setRecipient(RecipientType.TO, toAddress);
 	          
-	          if(bccList!=null){
-	        	  bccList.add("raghuramchandra.jinka@in.bosch.com");
-	          }
-	    	  
+	        
 	          for(int i=0;i<ccList.size();i++){
 	        	message.addRecipient(Message.RecipientType.CC,new InternetAddress(ccList.get(i)));
 	  	    	}
@@ -69,6 +72,7 @@ public class MailUtility {
 	          mp.addBodyPart(messageBodyPart);*/
 	          message.setContent(mp);
 	          Transport.send(message);
+	          log.info("mail sent");
 	          
 	        } catch (MessagingException ex) {
 	            ex.printStackTrace();

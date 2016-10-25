@@ -321,6 +321,31 @@ public class AdminDaoImpl implements AdminDao {
 		return results;
 	
 	}
+
+	public boolean updateUser(User user) {
+		try{
+			Session session = sessionFactory.getCurrentSession();
+			session.merge(user);
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+	
+	}
+
+	public User getResetEmailUser(String resetEmail) {
+		try{
+			Session session = sessionFactory.getCurrentSession();
+			Criteria criteria = session.createCriteria(User.class);
+			criteria.add(Restrictions.eq("email", resetEmail));
+			List<User> results = (List<User>)criteria.list();
+			return results.get(0);
+		}catch(Exception e){
+			log.error(e.getMessage());
+			return null;
+		}
+	}
 	
 	
 	

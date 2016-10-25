@@ -802,4 +802,41 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping(value = "/changePassword", method = { RequestMethod.GET }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String changePassword(@RequestParam("pwd1") String pwd1,
+											@RequestParam("pwd2") String pwd2,
+											@RequestParam("pwd3") String pwd3
+			) {
+		String output = null;
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			User user = (User)session.getAttribute("USER_BEAN");
+				if(user==null){
+					return null;
+				}else{
+					output = adminService.changePassword(user, pwd1, pwd2);
+				}
+			}
+			
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+	}
+	
+	@RequestMapping(value = "/resetPassword", method = { RequestMethod.GET }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String resetPassword(@RequestParam("resetEmail") String resetEmail) {
+		String output = null;
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output = adminService.resetPassword(resetEmail);
+		}
+			
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+	}
 }
+	
+

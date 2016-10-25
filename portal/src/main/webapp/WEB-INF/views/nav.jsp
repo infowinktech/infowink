@@ -104,7 +104,7 @@
 	                <ul class="dropdown-menu">
 	                  <li><a href="myjobs"><span class="glyphicon glyphicon-briefcase">&nbsp;</span>My Jobs</a></li>
 	                  <li class="divider" role="separator"></li>
-	                  <li><a href="#"><span class="glyphicon glyphicon-wrench">&nbsp;</span>Change Password</a></li>
+	                  <li><a href="#" id="myAcntChgPwdID"><span class="glyphicon glyphicon-wrench">&nbsp;</span>Change Password</a></li>
 	                  <li><a href="logout" id="logoutID"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Log out</a></li>
 	                </ul>
 	              </li>

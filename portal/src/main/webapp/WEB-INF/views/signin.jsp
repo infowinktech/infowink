@@ -44,6 +44,57 @@ $(document).ready(function() {
 	$password="";
 	$email="";
 
+	$("#chgPwdBntID").click(function() {
+		$pwd1 = $("#pwd1").val().trim();
+		$pwd2 = $("#pwd2").val().trim();
+		$pwd3 = $("#pwd3").val().trim();
+
+		if($pwd1.trim().length==0){$("#pwd1").addClass("inputError");}
+		if($pwd2.trim().length==0){$("#pwd2").addClass("inputError");}
+		if($pwd3.trim().length==0){$("#pwd3").addClass("inputError");}
+
+		 
+		if($pwd1.length>0 &&
+				$pwd2.length>0 &&
+				$pwd3.length>0){
+			$data = "pwd1="+$pwd1+"&pwd2="+$pwd2+"&pwd3="+$pwd3;
+			$.ajax({
+				url : "changePassword",
+				type : "GET",
+				data:$data,
+				dataType: "xml",
+				async:false,
+				success : function(xml){
+					$("#chgPwdMsgID").html($(xml).find("status").text());
+					if($(xml).find("statusCode").text()=="true"){
+						 $("#chgPwdMsgID").css("color", "#18bc9c");
+					}else{
+						$("#chgPwdMsgID").css("color", "#ff4c4c");
+					}
+				},
+				error : function(xhr, status, error) {
+						console.log("Erro occured...");
+				}
+			});
+		}	
+		
+		
+	});
+
+	$("#pwd1").keypress(function() {$(this).removeClass("inputError");});
+	$("#pwd2").keypress(function() {$(this).removeClass("inputError");});
+	$("#pwd3").keypress(function() {$(this).removeClass("inputError");});
+	
+	$("#forgotLinkID").click(function() {
+		$('#signInModalID').modal('hide');
+		$('#changePwdModalID').modal();
+	});
+
+	$("#myAcntChgPwdID").click(function() {
+		$('#changePwdModalID').modal();
+	});
+	
+	
 	$("#emailID").keypress(function() {
 		$(this).removeClass("inputError");
 		$("#msgID1").hide();
@@ -170,6 +221,37 @@ $(document).ready(function() {
 		});
 	}
 
+	$("#rstPwdBntID").click(function() {
+		$resetEmailID=$('#resetEmailID').val();
+		
+		if($resetEmailID.trim().length==0){$("#resetEmailID").addClass("inputError");}
+		
+		if($resetEmailID.trim().length>0){
+			$("#loadingID343").show();
+			$.ajax({
+				url : "resetPassword",
+				data:"resetEmail="+$resetEmailID,
+				dataType : "xml",
+				type : "GET",
+				success : function(xml){
+					$("#loadingID343").hide();
+
+					$("#rstPwdMsgID").html($(xml).find("status").text());
+					$("#rstPwdMsgID").show();
+					if($(xml).find("statusCode").text()=="true"){
+						 $("#rstPwdMsgID").css("color", "#18bc9c");
+					}else{
+						$("#rstPwdMsgID").css("color", "#ff4c4c");
+					}
+				},
+				error : function(xhr, status, error) {
+					$("#loadingID343").hide();
+				}
+			});
+		}
+
+	});
+
 });
 </script>
 	<!-- Modal -->
@@ -199,6 +281,7 @@ $(document).ready(function() {
 							<input type="password" class="form-control input-sm" id="passwordID" placeholder="Enter your Password">
 						</div>
 						<button type="button" class="btn btn-primary btn-sm" id="loginID">Log in</button>
+						<a href="#" id="forgotLinkID" style="padding-left: 20px;" >Forgot Password?</a>
 						<img alt="" src="resources/img/loading.gif" style="height: 40px;display:none;" id="loadingID">
 						<p id="msgID1" class="text-center" style="dislpay:none;"></p>
 						
@@ -228,6 +311,68 @@ $(document).ready(function() {
 						<img alt="" src="resources/img/loading.gif" style="height: 40px;display:none;" id="loadingID1">
 						
 						<p id="msgID" class="text-center" style="dislpay:none;"></p>
+					</form>				    
+
+	    
+				  </div>
+				</div>
+
+				</div>
+				
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	
+	
+	<!-- Modal -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="changePwdModalID">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="padding-top: 5px; padding-bottom: 5px;">
+					<button id="modalCloseID" type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: 7px;">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					
+					<ul class="nav nav-pills">
+					  <li class="active"><a data-toggle="pill" href="#changePwdFormID">Change Password</a></li>
+					  <li><a data-toggle="pill" href="#resetPwdForm">Reset Password</a></li>
+					</ul>
+										
+				</div>
+				<div class="modal-body">
+				<div class="tab-content">
+
+				  <div id="changePwdFormID" class="tab-pane fade in active">
+					<form role="form">
+						<div class="form-group">
+							<input type="password" class="form-control input-sm" id="pwd1" placeholder="Enter your old Password">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control input-sm" id="pwd2" placeholder="Enter your new Password">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control input-sm" id="pwd3" placeholder="Repeat your new Password">
+						</div>
+						<button type="button" class="btn btn-primary btn-sm" id="chgPwdBntID">Change Password</button>
+						<img alt="" src="resources/img/loading.gif" style="height: 40px;display:none;" id="loadingID23">
+						<p id="chgPwdMsgID" class="text-center" style="dislpay:none;"></p>
+					</form>
+				  </div>
+
+				  <div id="resetPwdForm" class="tab-pane fade">
+	
+					<form role="form" id="resetPwdFormID">
+						<div class="form-group">
+							<input type="text" class="form-control input-sm"  placeholder="Enter your Email" id="resetEmailID">
+						</div>
+						
+						<button id="rstPwdBntID" type="button" class="btn btn-primary btn-sm">Reset Password</button>
+						<img alt="" src="resources/img/loading.gif" style="height: 40px;display:none;" id="loadingID343">
+						
+						<p id="rstPwdMsgID" class="text-center" style="dislpay:none;"></p>
 					</form>				    
 
 	    

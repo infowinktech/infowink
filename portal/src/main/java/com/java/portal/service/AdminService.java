@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.java.portal.entity.ContactMessage;
 import com.java.portal.entity.JobApplication;
 import com.java.portal.entity.Jobs;
+import com.java.portal.entity.User;
 @Service
 public interface AdminService {
 	public String addJob(Jobs jobs);
@@ -37,4 +38,6 @@ public interface AdminService {
 	public String exportUsers();
 	public String exportMsgs();
 	public String addBulkJobs(List<Jobs> jobList);
+	public String changePassword(User user, String oldPassword, String newPassword);
+	public String resetPassword(String resetEmail);
 }

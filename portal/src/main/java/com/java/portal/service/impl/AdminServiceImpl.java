@@ -29,6 +29,8 @@ import com.java.portal.entity.Jobs;
 import com.java.portal.entity.User;
 import com.java.portal.service.AdminService;
 import com.java.portal.utilities.FileUtility;
+import com.java.portal.utilities.MD5Encryption;
+import com.java.portal.utilities.MailUtility;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -938,6 +940,91 @@ public class AdminServiceImpl implements AdminService {
 			sb.append("</data>");
 			
 		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return sb.toString();
+	}
+
+	public String changePassword(User user, String oldPassword, String newPassword) {
+
+		StringBuffer sb = new StringBuffer();
+
+		String status = null;
+		String statusCode = null;
+		try {
+			AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+			if(user.getPassword().equalsIgnoreCase(MD5Encryption.generateMD5Hash(oldPassword))){
+				user.setPassword(MD5Encryption.generateMD5Hash(newPassword));
+				if(dao.updateUser(user)){
+					statusCode = "true";
+					status="Password changed successfully!";
+				}else{
+					statusCode = "false";
+					status="Error !";
+				}
+			}else{
+				statusCode = "false";
+				status="Incorrect Old password";
+			}
+			
+			
+			sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+			sb.append("<statusCode>" + statusCode + "</statusCode>");
+			sb.append("<status>" + status + "</status>");
+			sb.append("</data>");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return sb.toString();
+	
+	}
+
+	public String resetPassword(String resetEmail) {
+		StringBuffer sb = new StringBuffer();
+		try {
+			AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+			User user = dao.getResetEmailUser(resetEmail);
+			
+			String statusCode = null;
+			String tempPassword = null;
+			String tempPasswordEncr = null;
+			String status = null;
+			if(user==null){
+				log.info("user not found!");
+				statusCode = "false";
+				status="Email not registered!";
+			}else{
+				tempPassword = RandomStringUtils.randomAlphanumeric(6).toUpperCase();
+				tempPasswordEncr = MD5Encryption.generateMD5Hash(tempPassword);
+				user.setPassword(tempPasswordEncr);
+				if(dao.updateUser(user)){
+					statusCode = "true";
+					status="Temporary password has been sent to mail!";
+					
+					String mailPath = servletContext.getRealPath("/");
+					mailPath = mailPath + "resources" + File.separator+ "mail"+ File.separator+ "mail.html";
+					FileUtility fu = new FileUtility();
+					MailUtility mail = new MailUtility();
+					String body = fu.readFile(mailPath);
+					body = body.replace("TC_USER_NAME", user.getEmail());
+					body = body.replace("TC_PASSWORD", tempPassword);
+					String to = user.getEmail();
+					String from = "no-reply@in.bosch.com";
+					String subject = "Team Consultants - Reset Password";
+					log.info("sending mail....");
+					mail.send(from, to, subject, body, new ArrayList<String>(), new ArrayList<String>());
+					
+				}else{
+					statusCode = "false";
+					status="Error occured during resetting password!";
+				}
+			}
+			
+			sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+			sb.append("<statusCode>" + statusCode + "</statusCode>");
+			sb.append("<status>" + status + "</status>");
+			sb.append("</data>");
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return sb.toString();
