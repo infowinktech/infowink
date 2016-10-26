@@ -45,18 +45,22 @@ function validate(){
 }
 
 function uploadBulkJobs(){
+	$("#loadingIDUploadJobs").show();
 	$.ajax({
 		url : "processBulkJobs",
 		dataType : "xml",
 		type : "POST",
 		success : function(xml){
+			
 			//$("#jobsBodyID").html($(xml).find("tableContent").text());
 			//$('#jobsTable').DataTable();
 			$("#bulkBodyID").html($(xml).find("tableContent").text());
 			$("#bulkTableID").show();
+			$("#loadingIDUploadJobs").hide();
 		},
 		error : function(xhr, status, error) {
 				console.log("Error occured...");
+				$("#loadingIDUploadJobs").hide();
 		}
 	});
 }
@@ -292,7 +296,7 @@ function deleteRecord(jobcode){
 	                <input type="text" class="form-control input-sm" readonly id="fileNameID" placeholder="Select template" style="padding-left: 10px;">
             	</div>
           <p class="text-center" style="padding-top: 10px;">
-			<img alt="" src="resources/img/loading.gif" style="height: 40px;display: none;" id="loadingID1" >
+			<img alt="" src="resources/img/loading.gif" style="height: 40px;display: none;" id="loadingIDUploadJobs" >
         </p>
         
         <table class="table table-bordered" id="bulkTableID" style="display:none;">
