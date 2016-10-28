@@ -58,9 +58,9 @@ code {
 				<div class="col-md-3">
 					<h4>Follow us on</h4>
 					<ul class="social-network social-circle">
-						<li><a href="#" class="icoFacebook" title="Facebook"><i
+						<li><a href="https://www.facebook.com/Team-Consultants-LLC-197662753591388/" target="_blank" class="icoFacebook" title="Facebook"><i
 								class="fa fa-facebook"></i></a></li>
-						<li><a href="#" class="icoTwitter" title="Twitter"><i
+						<li><a href="https://twitter.com/teamjamano" target="_blank" class="icoTwitter" title="Twitter"><i
 								class="fa fa-twitter"></i></a></li>
 						<li><a href="#" class="icoGoogle" title="Google +"><i
 								class="fa fa-google-plus"></i></a></li>
