@@ -299,6 +299,8 @@ function deleteRecord(jobcode){
 			<img alt="" src="resources/img/loading.gif" style="height: 40px;display: none;" id="loadingIDUploadJobs" >
         </p>
         
+        <p><b>Upload Bulk Jobs Report:</b></p>
+        
         <table class="table table-bordered" id="bulkTableID" style="display:none;">
 		    <thead style="background-color: #2c3e50;color: #ffffff;opacity:0.8;">
 		      <tr>

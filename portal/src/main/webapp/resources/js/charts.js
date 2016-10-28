@@ -1,6 +1,4 @@
-/**
- * 
- */
+
  google.charts.load('current', { packages: [ 'bar','corechart'] });
             google.charts.setOnLoadCallback(
             	    function() { // Anonymous function that calls drawChart1 and drawChart2
