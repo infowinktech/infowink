@@ -53,10 +53,11 @@ $(document).ready(function() {
 		if($pwd2.trim().length==0){$("#pwd2").addClass("inputError");}
 		if($pwd3.trim().length==0){$("#pwd3").addClass("inputError");}
 
+		if($pwd2==$pwd3){}else{$("#chgPwdMsgID").html("New, Repeat New password not matching!");$("#chgPwdMsgID").css("color", "#ff4c4c");}
 		 
 		if($pwd1.length>0 &&
 				$pwd2.length>0 &&
-				$pwd3.length>0){
+				$pwd3.length>0 && ($pwd2 == $pwd3)){
 			$data = "pwd1="+$pwd1+"&pwd2="+$pwd2+"&pwd3="+$pwd3;
 			$.ajax({
 				url : "changePassword",
