@@ -52,4 +52,13 @@ public class UserAccountServiceImpl implements UserAccountService {
 		return sb.toString();
 	}
 
+	public User isSocialUserAuthentic(User user) {
+		UserAccountDao dao = (UserAccountDao) context.getBean("userAccountDaoImpl");
+		User socialUser = dao.isUserExists(user);
+		if(socialUser==null){
+			socialUser=dao.insertSocialUser(user);
+		}
+		return socialUser;
+	}
+
 }

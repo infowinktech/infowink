@@ -9,4 +9,5 @@ public interface UserAccountService {
 	public List<User> getUsers();
 	public boolean isUserAuthentic(User user);
 	public String registerUser(User user);
+	public User isSocialUserAuthentic(User user);
 }

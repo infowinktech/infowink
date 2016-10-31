@@ -10,8 +10,6 @@
 <link href='https://fonts.googleapis.com/css?family=Questrial'
 	rel='stylesheet' type='text/css'>
 <script src="resources/js/jquery.min.js"></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
 <link rel="stylesheet" href="resources/css/custom.css">
 
 <!-- datatables -->

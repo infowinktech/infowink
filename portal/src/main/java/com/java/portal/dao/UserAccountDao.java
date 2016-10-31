@@ -8,4 +8,6 @@ public interface UserAccountDao {
 	public List<User> fetchUsers();
 	public boolean isUserAuthentic(User user);
 	public String insertUser(User user);
+	public User isUserExists(User user);
+	public User insertSocialUser(User user);
 }
