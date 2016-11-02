@@ -1,3 +1,7 @@
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" content="743495565018-tno1atsqg5f21k6a6jaj1vf89nls5sqp.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
 <style type="text/css">
 .inputError{
 		border-bottom: 2px solid #ff4c4c;
@@ -7,6 +11,71 @@
 
 
 <script>
+
+function logout(){
+	googleLogOut();
+	$("#logoutFormID").submit();
+	
+}
+
+function googleLogOut(){
+	
+	  var auth2 = gapi.auth2.getAuthInstance();
+	    auth2.signOut().then(function () {
+	      console.log('User signed out.');
+	    });
+
+}
+
+function onSignIn(googleUser) {
+    // Useful data for your client-side scripts:
+    var profile = googleUser.getBasicProfile();
+    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+    console.log('Full Name: ' + profile.getName());
+    console.log('Given Name: ' + profile.getGivenName());
+    console.log('Family Name: ' + profile.getFamilyName());
+    console.log("Image URL: " + profile.getImageUrl());
+    console.log("Email: " + profile.getEmail());
+    
+    $firstName = profile.getGivenName();
+    $lastName =  profile.getFamilyName();
+    $email = profile.getEmail();
+    
+    $data = "firstName="+$firstName+"&lastName="+$lastName+"&email="+$email;
+    $.ajax({
+		url : "authenticateSocialLogin",
+		data : $data,
+		type : "GET",
+		dataType: "xml",
+		success : function(xml){
+			$username = $(xml).find("userName").text();
+			$adminAccess = $(xml).find("adminAccess").text();
+			$username = $username.trim();
+			$("#loadingID").hide();
+			
+			if($username.length>1){
+				$("#loadingID").hide();
+				$("#loginLinkID").hide();
+				$("#profileLinkID").html(" <span class='glyphicon glyphicon-user'></span>&nbsp;&nbsp;"+$username);
+				$("#accountLinkID").show();
+				$("#modalCloseID").click();
+				
+				if($(xml).find("adminAccess").text()=="true"){
+					$("#adminLinksID").show();
+				}
+			}
+		},
+		error : function(xhr, status, error) {
+				console.log("Error occured...");
+		}
+	});
+
+    // The ID token you need to pass to your backend:
+    var id_token = googleUser.getAuthResponse().id_token;
+    console.log("ID Token: " + id_token);
+  };
+  
+  
 $(document).ready(function() {
 
 	$.ajax({
@@ -287,7 +356,7 @@ $(document).ready(function() {
 						<p id="msgID1" class="text-center" style="dislpay:none;"></p>
 						
 						<div class="hr-sect">Or</div>
-						<div class="g-signin2" data-onsuccess="onSignIn"></div>
+						<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 						
 					</form>
 				  </div>

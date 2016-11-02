@@ -105,10 +105,10 @@
 	                  <li><a href="myjobs"><span class="glyphicon glyphicon-briefcase">&nbsp;</span>My Jobs</a></li>
 	                  <li class="divider" role="separator"></li>
 	                  <li><a href="#" id="myAcntChgPwdID"><span class="glyphicon glyphicon-wrench">&nbsp;</span>Change Password</a></li>
-	                  <li><a href="logout" id="logoutID"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Log out</a></li>
+	                  <li><a href="javascript:logout();" id="logoutID"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Log out</a></li>
 	                </ul>
 	              </li>
-				
+				<form id="logoutFormID" style="display:none;" action="logout"></form>
 				</ul>
 			</div>
 			<!-- /.navbar -->

@@ -51,10 +51,7 @@ public class HomeController {
 	public String home() {
 		return "home";
 	}
-	@RequestMapping(value = {"/google", "home"}, method = RequestMethod.GET)
-	public String google() {
-		return "google";
-	}
+	
 	@RequestMapping(value = "/careers", method = RequestMethod.GET)
 	public String careers() {
 		return "careers";
@@ -841,6 +838,40 @@ public class HomeController {
 		}
 		return output;
 	}
+	
+	@RequestMapping(value = "/authenticateSocialLogin", method = { RequestMethod.GET }, produces = { "text/plain" })
+	public @ResponseBody String authenticateSocialLogin(@RequestParam("email") String email,
+			@RequestParam("firstName") String firstName,@RequestParam("lastName") String lastName) {
+		
+		UserAccountService userAccntService = (UserAccountService) context.getBean("userAccountServiceImpl");
+		User user = new User();
+		Role role = new Role();
+		role.setId(2);
+		role.setRole("User");
+		
+		user.setEmail(email);
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setRole(role);
+		
+		String userName = null;
+		boolean adminAccess = false;
+		user = userAccntService.isSocialUserAuthentic(user);
+		user = (User)session.getAttribute("USER_BEAN"); 
+		userName = user.getFirstName()+" "+user.getLastName();
+		if(user.getRole().getRole().equalsIgnoreCase("Admin")){
+			adminAccess=true;
+		}
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+		sb.append("<userName>"+userName+"</userName>");
+		sb.append("<adminAccess>"+adminAccess+"</adminAccess>");
+		sb.append("</data>");
+		
+		return sb.toString();
+	}
+
 }
 	
 

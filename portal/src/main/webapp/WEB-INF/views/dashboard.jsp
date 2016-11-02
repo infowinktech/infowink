@@ -11,8 +11,6 @@
 	rel='stylesheet' type='text/css'>
 <script src="resources/js/jquery.min.js"></script>
 
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
 <link rel="stylesheet" href="resources/css/custom.css">
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

@@ -54,7 +54,6 @@ public class UserAccountDaoImpl implements UserAccountDao {
 
 	public String insertUser(User user) {
 		String status = null;
-		
 		Session session = sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(User.class);
 		criteria.add(Restrictions.eq("email", user.getEmail()));
@@ -68,6 +67,40 @@ public class UserAccountDaoImpl implements UserAccountDao {
 			session.save(user);
 			return "Succesfully registered";
 		}
+	}
+
+	public User isUserExists(User user) {
+		try{
+			Session session = sessionFactory.getCurrentSession();
+			Criteria criteria = session.createCriteria(User.class);
+			criteria.add(Restrictions.eq("email", user.getEmail()));
+
+			List<User> results = (List<User>)criteria.list();
+			
+			if(results!=null && results.size()>0){
+				User usr = results.get(0);
+				httpSession.setAttribute("USER_BEAN", usr);
+				log.info("user exists .. "+usr.getPkid());
+				return usr;
+			}else{
+				log.info("social email doesnt exists");
+				return null;
+			}
+
+		}catch(Exception e){
+			log.info("social email doesnt exists");
+			log.error(e.getMessage());
+			return null;
+		}
+	}
+
+	public User insertSocialUser(User user) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(user);
+		httpSession.setAttribute("USER_BEAN", user);
+		log.info("social user inserting..."+user.getPkid());
+		return user;
+	
 	}
 
 }
