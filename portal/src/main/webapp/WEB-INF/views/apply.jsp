@@ -58,6 +58,9 @@ $(document).ready(function() {
 		type : "POST",
 		success : function(xml){
 			$("#overviewID").html($(xml).find("overviewContent").text());
+			$("#firstNameID").html($(xml).find("firstName").text());
+			$("#emailID").html($(xml).find("email").text());
+			$("#lastNameID").html($(xml).find("lastName").text());
 		},
 		error : function(xhr, status, error) {
 				console.log("Error occured...");
@@ -114,21 +117,21 @@ function validate(){
 				  <div class="form-group">
 				    <label class="col-sm-2 control-label text-left">First Name</label>
 				    <div class="col-sm-10">
-				      <p class="form-control-static">Raghu</p>
+				      <p class="form-control-static" id="firstNameID"></p>
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <label class="col-sm-2 control-label text-left">Last Name</label>
 				    <div class="col-sm-10">
-				      <p class="form-control-static">Jinka</p>
+				      <p class="form-control-static" id="lastNameID"></p>
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <label class="col-sm-2 control-label">Email</label>
 				    <div class="col-sm-10">
-				      <p class="form-control-static">raghurama.j@gmail.com</p>
+				      <p class="form-control-static" id="emailID"></p>
 				    </div>
 				  </div>
 				  

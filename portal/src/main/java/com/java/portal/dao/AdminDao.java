@@ -36,4 +36,6 @@ public interface AdminDao {
 	public List<JobApplication> selectMyJobs(int userId);
 	public boolean updateUser(User user);
 	public User getResetEmailUser(String resetEmail);
+	public User selectUserBasedOnId(int pkid);
+	public boolean updateRole(int userId, String role);
 }

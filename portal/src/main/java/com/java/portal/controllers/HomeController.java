@@ -101,6 +101,10 @@ public class HomeController {
 	public String viewApplication() {
 		return "viewapplication";
 	}
+	@RequestMapping(value = "/viewuser", method = RequestMethod.GET)
+	public String viewuser() {
+		return "viewuser";
+	}
 	@RequestMapping(value = "/editjob", method = RequestMethod.GET)
 	public String editjob() {
 		return "editjob";
@@ -870,6 +874,43 @@ public class HomeController {
 		sb.append("</data>");
 		
 		return sb.toString();
+	}
+	
+	@RequestMapping(value = "/saveUserId", method = { RequestMethod.POST }, produces = { "text/plain" })
+	public @ResponseBody String saveUserId(@RequestParam("userId") int userId) {
+		log.info("userId:"+userId);
+		session.setAttribute("USER_DETAILS_ID", userId);
+		return "";
+	}
+	
+	@RequestMapping(value = "/loadUserBasedOnId", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String loadUserBasedOnId() {
+		String output = null;
+		int userID = (Integer) session.getAttribute("USER_DETAILS_ID");
+		log.info("userID:"+userID);
+		try{
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			output = adminService.getUserBasedOnId(userID); 
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
+	}
+	
+	@RequestMapping(value = "/updateUserRole", method = { RequestMethod.POST }, produces = { "text/xml;charset=UTF-8" })
+	public @ResponseBody String updateUserRole(@RequestParam("role") String role) {
+		String output = null;
+		try{
+			int userID = (Integer) session.getAttribute("USER_DETAILS_ID");
+			AdminService adminService = (AdminServiceImpl) context.getBean("adminServiceImpl");
+			log.info("role : "+role);
+			output = adminService.updateUserRole(userID, role);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return output;
 	}
 
 }

@@ -28,6 +28,8 @@ padding-left: 5px;
 </style>
 
 <script type="text/javascript">
+
+
 $(document).ready(function() {
 
 	$.ajax({
@@ -65,6 +67,23 @@ function exportRecords(){
 	});
 	
 }
+
+function viewUser(id){
+	console.log(id);
+	$.ajax({
+		url : "saveUserId",
+		data : "userId="+id,
+		dataType : "text",
+		type : "POST",
+		success : function(xml){
+			console.log("user id saved...");
+			$("#viewUserFormID").submit();
+		},
+		error : function(xhr, status, error) {
+			
+		}
+	});
+}
 </script>
 
 
@@ -79,7 +98,7 @@ function exportRecords(){
 	<div class="container" style="margin-top: 80px;">
 	
 	<div class="row">
-		
+		<form id="viewUserFormID" action="viewuser" method="get" style="display: none;"></form>
     	<div class="col-sm-12" style="min-height: 550px;">
 			<h3></h3>
 			<ol class="breadcrumb" style="background-color: #ffffff;margin-top: 20px; padding-left: 0px;">
@@ -105,6 +124,7 @@ function exportRecords(){
 								<th>Email</th>
 								<th>Role</th>
 								<th>Applications submitted</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tfoot style="background-color: #f8f9fa;">
@@ -115,6 +135,7 @@ function exportRecords(){
 								<th>Email</th>
 								<th>Role</th>
 								<th>Applications submitted</th>
+								<th></th>
 							</tr>
 						</tfoot>
 						

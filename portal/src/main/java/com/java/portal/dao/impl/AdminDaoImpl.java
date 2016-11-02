@@ -23,6 +23,7 @@ import com.java.portal.dao.AdminDao;
 import com.java.portal.entity.ContactMessage;
 import com.java.portal.entity.JobApplication;
 import com.java.portal.entity.Jobs;
+import com.java.portal.entity.Role;
 import com.java.portal.entity.User;
 @Repository
 @Transactional
@@ -345,6 +346,54 @@ public class AdminDaoImpl implements AdminDao {
 			log.error(e.getMessage());
 			return null;
 		}
+	}
+
+	public User selectUserBasedOnId(int pkid) {
+		List<User> userList = new ArrayList<User>();
+
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(User.class);
+		criteria.add(Restrictions.eq("pkid", pkid));
+		userList = (List<User>)criteria.list();
+		
+		return userList.get(0);
+	}
+
+	public boolean updateRole(int userId, String role) {
+		try{
+			Session session = sessionFactory.getCurrentSession();
+			Criteria criteria = session.createCriteria(User.class);
+			criteria.add(Restrictions.eq("pkid", userId));
+			
+			List<User> results = (List<User>)criteria.list();
+			User user = results.get(0);
+			String userRole = null;
+			int roleID = 0;
+			Role rle = new Role();
+			if(role!=null && role.equalsIgnoreCase("admin")){
+				log.info("setting Admin role...");
+				roleID = 1;
+				userRole = "Admin";
+				rle.setId(roleID);
+				rle.setRole(userRole);
+			}
+			if(role!=null && role.equalsIgnoreCase("user")){
+				log.info("setting User role...");
+				roleID = 2;
+				userRole = "User";
+				rle.setId(roleID);
+				rle.setRole(userRole);
+			}
+			
+			user.setRole(rle);
+			
+			session.merge(user);
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+	
 	}
 	
 	

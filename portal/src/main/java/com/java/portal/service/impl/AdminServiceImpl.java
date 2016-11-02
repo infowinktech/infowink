@@ -138,7 +138,16 @@ public class AdminServiceImpl implements AdminService {
 		sb.append(overviewContent.toString());
 		sb.append("]]>");
 		sb.append("</overviewContent>");
+		
+		User user = (User)session.getAttribute("USER_BEAN");
+		
+		sb.append("<firstName><![CDATA["+user.getFirstName()+"]]></firstName>");
+		sb.append("<lastName><![CDATA["+user.getLastName()+"]]></lastName>");
+		sb.append("<email><![CDATA["+user.getEmail()+"]]></email>");
+		
 		sb.append("</data>");
+		
+		
 
 		return sb.toString();
 	}
@@ -243,7 +252,8 @@ public class AdminServiceImpl implements AdminService {
 			
 			Iterator iterator = userSet.iterator();
 			   while (iterator.hasNext()){
-				   	User user = (User)iterator.next(); 
+				   	User user = new User();
+				   	user = (User)iterator.next();
 				   	tableContent.append("<tr id='" + user.getPkid() + "'>");
 					tableContent.append("<td>" + slNo + "</td>");
 					tableContent.append("<td>" + user.getFirstName()+ "</td>");
@@ -251,6 +261,7 @@ public class AdminServiceImpl implements AdminService {
 					tableContent.append("<td>" + user.getEmail() + "</td>");
 					tableContent.append("<td>" + user.getRole().getRole() + "</td>");
 					tableContent.append("<td>" + user.getJobApplications().size() + "</td>");
+					tableContent.append("<td><a href=\"javascript:viewUser('" + user.getPkid()+ "')\"><span class=\"fa fa-eye\" title=\"View User\"></span></a></td>");
 					tableContent.append("</tr>");
 					slNo = slNo + 1;
 			   }
@@ -1028,6 +1039,39 @@ public class AdminServiceImpl implements AdminService {
 			e.printStackTrace();
 		}
 		return sb.toString();
+	}
+
+	public String getUserBasedOnId(int id) {
+
+		StringBuffer sb = new StringBuffer();
+		try {
+			AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+			User user = dao.selectUserBasedOnId(id);
+			
+			sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+			sb.append("<firstName><![CDATA["+user.getFirstName()+"]]></firstName>");
+			sb.append("<lastName><![CDATA["+user.getLastName()+"]]></lastName>");
+			sb.append("<email><![CDATA["+user.getEmail()+"]]></email>");
+			sb.append("<role><![CDATA["+user.getRole().getRole()+"]]></role>");
+			sb.append("</data>");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return sb.toString();
+	
+	}
+
+	public String updateUserRole(int userId, String role) {
+		AdminDao dao = (AdminDao) context.getBean("adminDaoImpl");
+		boolean updateStatus = dao.updateRole(userId, role);
+		StringBuffer sb = new StringBuffer();
+		
+		sb.append("<?xml version='1.0' encoding='utf-8'?>" + "<data>");
+		sb.append("<status>"+updateStatus+"</status>");
+		sb.append("</data>");
+		
+		return sb.toString();
+	
 	}
 
 }

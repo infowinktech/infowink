@@ -40,4 +40,6 @@ public interface AdminService {
 	public String addBulkJobs(List<Jobs> jobList);
 	public String changePassword(User user, String oldPassword, String newPassword);
 	public String resetPassword(String resetEmail);
+	public String getUserBasedOnId(int id);
+	public String updateUserRole(int userId, String role);
 }
