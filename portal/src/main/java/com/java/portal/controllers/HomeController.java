@@ -875,6 +875,7 @@ public class HomeController {
 		
 		return sb.toString();
 	}
+
 	
 	@RequestMapping(value = "/saveUserId", method = { RequestMethod.POST }, produces = { "text/plain" })
 	public @ResponseBody String saveUserId(@RequestParam("userId") int userId) {
@@ -912,7 +913,6 @@ public class HomeController {
 		}
 		return output;
 	}
-
 
 }
 	
