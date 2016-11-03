@@ -51,6 +51,10 @@ public class HomeController {
 	public String home() {
 		return "home";
 	}
+	@RequestMapping(value = {"/facebook"}, method = RequestMethod.GET)
+	public String google() {
+		return "google";
+	}
 	
 	@RequestMapping(value = "/careers", method = RequestMethod.GET)
 	public String careers() {

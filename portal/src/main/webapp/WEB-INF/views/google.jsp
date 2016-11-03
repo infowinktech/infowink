@@ -1,30 +1,74 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
-  <head>
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="743495565018-tno1atsqg5f21k6a6jaj1vf89nls5sqp.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-  </head>
-  <body>
-    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-    <script>
-      function onSignIn(googleUser) {
-        // Useful data for your client-side scripts:
-        console.log("on signin called...");
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
+<html>
+<head>
+<title>Facebook Login JavaScript Example</title>
+<meta charset="UTF-8">
+</head>
+<body>
+<script src="resources/js/jquery.min.js"></script>
+<script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
+<script>
+$(document).ready(function() {
 
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-      };
-    </script>
-  </body>
+	FB.init({
+		appId      : '200586337051347',
+		xfbml      : true,
+		version    : 'v2.2'
+	});
+ 
+	//check user session and refresh it
+	FB.getLoginStatus(function(response) {
+		if (response.status === 'connected') {
+			console.log("response:"+response);
+			document.getElementById('loginBtn').style.display = 'none';
+			getUserData();
+		} else {
+			//user is not authorized
+		}
+	});
+
+	(function(d, s, id){
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {return;}
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	
+	$("#loginBtn").click(function() {
+		FB.login(function(response) {
+			if (response.authResponse) {
+				getUserData();
+			}
+		}, {'scope': 'email'});
+	});
+		
+	});
+function getUserData() {
+	FB.api('/me', {fields: 'first_name,last_name,email'}, function(response) {
+		$("#response").append("<p>"+response.first_name+"</p>");
+		$("#response").append("<p>"+response.last_name+"</p>");
+		$("#response").append("<p>"+response.email+"</p>");
+	});
+}
+
+//load the JavaScript SDK
+
+
+</script>
+
+<!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+-->
+
+<button id="loginBtn">Facebook Login</button>
+<div id="response">
+
+</div>
+
+</body>
 </html>
