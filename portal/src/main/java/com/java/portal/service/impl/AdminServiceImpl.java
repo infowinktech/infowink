@@ -139,11 +139,15 @@ public class AdminServiceImpl implements AdminService {
 		sb.append("]]>");
 		sb.append("</overviewContent>");
 		
-		User user = (User)session.getAttribute("USER_BEAN");
 		
-		sb.append("<firstName><![CDATA["+user.getFirstName()+"]]></firstName>");
-		sb.append("<lastName><![CDATA["+user.getLastName()+"]]></lastName>");
-		sb.append("<email><![CDATA["+user.getEmail()+"]]></email>");
+		User user = (User)session.getAttribute("USER_BEAN");
+		if(user!=null){
+			sb.append("<firstName><![CDATA["+user.getFirstName()+"]]></firstName>");
+			sb.append("<lastName><![CDATA["+user.getLastName()+"]]></lastName>");
+			sb.append("<email><![CDATA["+user.getEmail()+"]]></email>");
+		}
+		
+		
 		
 		sb.append("</data>");
 		
