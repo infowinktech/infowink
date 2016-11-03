@@ -28,7 +28,10 @@ padding-bottom: 0px;
     text-align: left;
 }
 
-
+.form-control{
+		border : 1px solid #dce4ec;
+		padding: 5px;
+	}
 </style>
 
 <script type="text/javascript">
@@ -138,7 +141,7 @@ function validate(){
 				  <div class="form-group">
 				    <label class="col-sm-2 control-label">Cover Letter</label>
 				    <div class="col-sm-10">
-				     	<textarea class="form-control input-sm" rows="2" name="coverLetter" maxlength="2500" id="coverLetterID"></textarea>
+				     	<textarea class="form-control input-sm" rows="2" name="coverLetter" maxlength="2500" id="coverLetterID" placeholder="Paste your cover letter here..."></textarea>
 				    </div>
 				    
 				  </div>
@@ -146,7 +149,7 @@ function validate(){
 				<div class="input-group" style="margin-top: 20px;">
 	                <label class="input-group-btn">
 	                    <span class="btn btn-primary btn-sm" id="browseID">
-	                        Browse&hellip; <input type="file" style="display: none;" name="resume" id="fileID">
+	                        Browse&hellip; <input type="file" style="display: none;" name="resume" id="fileID" accept=".pdf, .docx">
 	                    </span>
 	                </label>
 	                <input type="text" class="form-control input-sm" readonly id="fileNameID" placeholder="Upload resume" style="padding-left: 10px;">
