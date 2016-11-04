@@ -135,7 +135,7 @@ function roleStatus(status){
 				    <label class="col-sm-3 control-label">Change Role</label>
 				    <div class="col-sm-9">
 				     	 <div class="dropdown">
-							  <button class="btn btn-primary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" id="aStID"> Application Status <span class="caret"></span></button>
+							  <button class="btn btn-primary dropdown-toggle btn-sm" type="button" data-toggle="dropdown" id="aStID"> Change Role <span class="caret"></span></button>
 							  <ul class="dropdown-menu">
 							    <li><a href="javascript:roleStatus('Admin')">Admin</a></li>
 							    <li><a href="javascript:roleStatus('User')">User</a></li>
