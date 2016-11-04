@@ -28,7 +28,7 @@ code {
 
 <hr style="margin-top: 0px;">
 	<footer id="footerID" class="section section-primary bg-primary footer">
-		<div class="container">
+		<div class="container bg-primary">
 			<div class="row small">
 				<div class="col-md-4">
 					<h4>About Us</h4>
