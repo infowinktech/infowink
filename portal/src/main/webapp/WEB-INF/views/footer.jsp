@@ -28,8 +28,9 @@ code {
 
 <hr style="margin-top: 0px;">
 	<footer id="footerID" class="section section-primary bg-primary footer">
-		<div class="container bg-primary">
+		<div class="container-fluid bg-primary">
 			<div class="row small">
+			
 				<div class="col-md-4">
 					<h4>About Us</h4>
 					<p>TEAM Consultants is a national provider of technology
@@ -67,6 +68,12 @@ code {
 						<li><a href="#" class="icoLinkedin" title="Linkedin"><i
 								class="fa fa-linkedin"></i></a></li>
 					</ul>
+				</div>
+			</div>
+			
+			<div class="row small" style="background-color: #476481;opacity:0.6;">
+				<div class="col-md-12 ">
+				Website developed by Infowink Technologies | <a href="http://infowink.com/" target="_blank" style="opacity:0.9;">http://infowink.com/</a>
 				</div>
 			</div>
 		</div>
