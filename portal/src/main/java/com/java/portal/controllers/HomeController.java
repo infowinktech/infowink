@@ -49,7 +49,6 @@ public class HomeController {
 	
 	@RequestMapping(value = {"/", "home"}, method = RequestMethod.GET)
 	public String home() {
-		log.info("homee");
 		return "home";
 	}
 	@RequestMapping(value = {"/facebook"}, method = RequestMethod.GET)
