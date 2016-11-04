@@ -44,7 +44,7 @@ code {
 					<ul style="list-style: none; padding-left: 0px;">
 						<li><a href="home">Home</a></li>
 						<li><a href="careers">Find a Job</a></li>
-						<li><a href="#">Services</a></li>
+						<li><a href="about">About Us</a></li>
 						<li><a href="contact">Contact Us</a></li>
 					</ul>
 				</div>
