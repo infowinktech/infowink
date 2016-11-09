@@ -24,11 +24,13 @@
 			<div class="visible-lg">
 				<ul class="v4-tease list-inline text-right" style="margin-bottom: 0px;">
 				  <li class="glyphicon glyphicon-map-marker" style="color: #18bc9c;"></li>
-				  <li>5150 Crescent Oaks Dr, Madison, WI 53704 US</li>
+				  <li>1600 Golf Road,Corporate Center, Suite 1200, Rolling Meadows, IL 60008,US</li>
 				  <li class="glyphicon glyphicon-time" style="margin-left: 20px;color: #18bc9c;"></li>
 				  <li>Mon - Sat 8.00 - 18.00. Sunday CLOSED</li>
 				  <li class="glyphicon glyphicon-earphone" style="margin-left: 20px;color: #18bc9c;"></li>
-				  <li>1-888-732-4402</li>
+				  <li>1-222-279-4923</li>
+				  <li class="glyphicon glyphicon-envelope" style="margin-left: 20px;color: #18bc9c;"></li>
+				  <li>hr@vensainc.com</li>
 				</ul>
 		</div>
 		
@@ -57,23 +59,7 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="home">Home</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Services <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Staffing Services</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Project Management</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Consulting</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">On Demand Resources</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Infrastructure Services</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Application Development</a></li>
-						</ul></li>
-
+					<li><a href="services">Services</a></li>
 					<li><a href="careers">Careers</a></li>
 					
 					<li class="dropdown" id="adminLinksID" style="display: none;"><a href="#" class="dropdown-toggle"

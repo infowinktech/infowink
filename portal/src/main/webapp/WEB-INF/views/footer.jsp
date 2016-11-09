@@ -51,9 +51,7 @@ code {
 
 				<div class="col-md-2">
 					<h4>Address</h4>
-					<p>5150 Crescent Oaks </br>
-					Dr, Madison </br>
-					WI 53704 US</p>
+					<p>1600 Golf Road, <br/>Corporate Center, Suite 1200,<br/> Rolling Meadows, IL 60008,US</p>
 				</div>
 
 				<div class="col-md-3">

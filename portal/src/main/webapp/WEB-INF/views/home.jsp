@@ -13,15 +13,36 @@
 <link rel="stylesheet" href="resources/css/custom.css">
 <script src="resources/js/jquery.webticker.min.js"></script>
 
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
 <script type="text/javascript">
 $(document).ready(function() {
-$('#webTicker,#webTicker1').webTicker();
-
-
+	$('.autoplay').slick({
+		  slidesToShow: 2,
+		  slidesToScroll: 1,
+		  autoplay: true,
+		  autoplaySpeed: 2000,
+		  prevArrow: $('.prev'),
+	      nextArrow: $('.next'),
+	      height: 50
+		});
 });
 </script>
 
 <style type="text/css">
+
+.slick-prev:after {
+  content: ">";
+  color: red;
+  font-size: 30px;
+}
+
+.slick-next:before {
+  content: "<";
+  color: red;
+  font-size: 30px;
+}
+
 .thumbnail {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     border: medium none;
@@ -186,10 +207,55 @@ $('#webTicker,#webTicker1').webTicker();
 	
   	<div class="row">
   	<div class="col-md-2"></div>
+  	<div class="col-md-4">
+  	<h3>Welcome!</h3>
+  	<p>Vensa Technologies is a national provider of technology resource solutions to small and mid-size companies including sourcing for federal and state agencies. From single development resource needs to staffing entire project teams.</p>
+	<p>At Vensa Technologies, we believe that hard work is the key to sustainable and user friendly technology. By understanding what drives our specialty industries, becoming involved in our communities on a professional and personal basis, following a disciplined process of identifying quality candidates, partnering with employers to understand their core business and their employment requirements, and delivering exceptional service, we achieve great results for all.</p>
+  	</div>
   	
+  	<div class="col-md-2 col-sm-6 col-xs-6">
+		<div class="thumbnail">
+      	<img src="resources/img/thm1.png" alt="...">
+	      <div class="caption">
+	        <h3>Experience</h3>
+	        <p>What sets Team Consultants apart is not only our commitment to our clients, but a commitment to every aspect of our business, our employees, and our community.</p>
+	      </div>
+    	</div>
+	</div>
+	
+	<div class="col-md-2 col-sm-6 col-xs-6">
+		<div class="thumbnail">
+      	<img src="resources/img/thm2.png" alt="...">
+	      <div class="caption">
+	        <h3>Corporate Values</h3>
+	        <ul>
+					<li>Integrity</li>
+					<li>Commitment</li>
+					<li>Innovation</li>
+					<li>Personal Satisfaction</li>
+					<li>Community Service</li>
+					<li>Respect</li>
+					<li>Leadership</li>
+				</ul>
+	      </div>
+    	</div>
+	</div>
   	
   	</div>
   	
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8">
+<h3>Our Clients</h3>
+<div class="slider autoplay">
+					<div><img src="resources/img/acs.png"></div>
+					<div><img src="resources/img/cri.png"></div>
+					<div><img src="resources/img/ntt.png"></div>
+				</div>
+</div>
+<div class="col-md-2"></div>
+</div>
+
 
 		
 	</div>
