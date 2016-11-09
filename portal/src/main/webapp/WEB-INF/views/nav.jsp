@@ -13,6 +13,9 @@
 	margin-left: 8px;
 }
 
+.navbar-brand {
+    font-size: 20px;
+}
 </style>
 
 
@@ -45,8 +48,7 @@
 				</button>
 
 				<a class="navbar-brand" href="home">
-				 <b>Team</b> Consultants <small>Solution
-						for your IT needs</small>
+				 <b>Vensa</b> Technologies
 				</a>
 			</div>
 

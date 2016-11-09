@@ -10,10 +10,7 @@
 <link href='https://fonts.googleapis.com/css?family=Questrial'
 	rel='stylesheet' type='text/css'>
 <script src="resources/js/jquery.min.js"></script>
-
-    
 <link rel="stylesheet" href="resources/css/custom.css">
-
 <script src="resources/js/jquery.webticker.min.js"></script>
 
 <script type="text/javascript">
@@ -23,9 +20,42 @@ $('#webTicker,#webTicker1').webTicker();
 
 });
 </script>
-<title>Team Consultants | Solution for your IT needs</title>
+
+<style type="text/css">
+.thumbnail {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.thumbnail figure {
+    height: 186px;
+    line-height: 186px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.thumbnail .caption {
+    background: #fcfcfc none repeat scroll 0 0;
+    overflow: hidden;
+    padding: 32px 32px 47px;
+    position: relative;
+}
+.thumbnail .caption {
+    padding: 9px;
+}
+
+
+</style>
+<title>Vensa Technologies | Solution for your IT needs</title>
 </head>
-<body>
+<body style="background-color: #fdfdfd;">
 
 	<jsp:include page="nav.jsp"></jsp:include>
 
@@ -105,56 +135,60 @@ $('#webTicker,#webTicker1').webTicker();
 	<!-- Content -->
 	<div class="container-fluid">
 	
-	<div class="row">
-		<div class="col-sm-3" style="padding-top: 5px;">
-			<div class="card">
-				  <a href="careers"><img class="card-img-top" src="resources/img/jobs.png" alt="Card image cap" class="thumbnail" height="150px" width="100%" /></a>
-				  
-				  <ul id="webTicker" class="list-inline text-rightlist-inline text-right">
-					    <li>Click here to apply for new Jobs! Click here to apply for new Jobs! Click here to apply for new Jobs! Click here to apply for new Jobs!</li>
-					    
-					</ul>
-
-			</div>
-			<div class="card">
-				  <a href="careers"><img class="card-img-top" src="resources/img/nowhiring.png" alt="Card image cap" class="thumbnail" height="150px" width="100%"></a>
-				   <ul id="webTicker1" class="list-inline text-rightlist-inline text-right">
-					    <li>Click here to apply for new Jobs! Click here to apply for new Jobs! Click here to apply for new Jobs! Click here to apply for new Jobs!</li>
-					</ul>
-			</div>
-			
-		</div>
-    	<div class="col-sm-6" style="border-right: 1px solid #e0e0e0;border-left: 1px solid #e0e0e0;">
-			<h3>Technology at your finger tips!</h3>
-			<p>TEAM Consultants is a national provider of technology resource solutions to small and mid-size companies including sourcing for federal and state agencies. From single development resource needs to staffing entire project teams.</p>
-			<p>At TEAM Consultants, we believe that hard work is the key to sustainable and user friendly technology. By understanding what drives our specialty industries, becoming involved in our communities on a professional and personal basis, following a disciplined process of identifying quality candidates, partnering with employers to understand their core business and their employment requirements, and delivering exceptional service, we achieve great results for all.</p>
-			<h3>Company</h3>
-			<p>What sets Team Consultants apart is not only our commitment to our clients, but a commitment to every aspect of our business, our employees, and our community.</p>
-			<h4>Corporate Values</h4>
-				<ul>
-					<li>Integrity</li>
-					<li>Commitment</li>
-					<li>Innovation</li>
-					<li>Personal Satisfaction</li>
-					<li>Community Service</li>
-					<li>Respect</li>
-					<li>Leadership</li>
-				</ul>
-				 
-		</div>
-		<div class="col-sm-3" >
-			<h3>Tech Partners</h3>
-			<div class="card">
-				  <img class="card-img-top" src="resources/img/partners.png" alt="Card image cap" class="thumbnail" height="220px" width="100%">
-				</div>
-			<h4 class="text-center" style="font-weight:600;">NAICS CODES</h4>
-			<p class="text-center" style="font-weight: 600; margin-bottom: 0px;">238210 &nbsp; 541511</p>
-			<p class="text-center" style="font-weight: 600; margin-bottom: 0px;">541512 &nbsp; 541519</p>
-			<p class="text-center" style="font-weight: 600; margin-bottom: 0px;">611420 &nbsp; 811212</p>
-			<h5 class="text-center" style="font-weight:600;">MBE Certified</h5>
-		</div>
-  	</div>
+	
+	<div class="row" style="background-color: #f8f8f8;">
+	<div class="col-md-2"></div>
+	<div class="col-md-2 col-sm-6 col-xs-6">
+		<div class="thumbnail">
+              <figure style="background: #f1bb40 none repeat scroll 0 0;"><img alt="" src="resources/img/page1_icon1.png"></figure>
+              <div class="caption maxheight" style="height: 251px;"><div class="box_inner">
+                  <p class="text-center" style="margin-top: 0px;font-weight: normal;font-size: 22px;border-bottom: 1px solid #cfcfcf;">GLOBAL RESEARCH</p>
+                  <p>Bertarsa atunteger rutrum losasjha vertyua hatsfasera.Bsey yoleacnrit ma hasesera deyuas lety mert betyudes. Cum socis natoqu eagnis dulmuese ugiata lesuada lecenas.</p>
+                  <a href="#"><img alt="" src="img/arrow.png"></a>
+              </div></div>
+          </div>
+	</div>
+	
+	<div class="col-md-2 col-sm-6 col-xs-6">
+		<div class="thumbnail">
+              <figure style="background: #01a89e none repeat scroll 0 0"><img alt="" src="resources/img/page1_icon2.png"></figure>
+              <div class="caption maxheight" style="height: 251px;"><div class="box_inner">
+                  <p class="text-center" style="margin-top: 0px;font-weight: normal;font-size: 22px;border-bottom: 1px solid #cfcfcf;">CREATIVE IDEAS</p>
+                  <p>Bertarsa atunteger rutrum losasjha vertyua hatsfasera.Bsey yoleacnrit ma hasesera deyuas lety mert betyudes. Cum socis natoqu eagnis dulmuese ugiata lesuada lecenas.</p>
+                  <a href="#"><img alt="" src="img/arrow.png"></a>
+              </div></div>
+          </div>
+	</div>
+	
+	<div class="col-md-2 col-sm-6 col-xs-6">
+		<div class="thumbnail">
+              <figure style="background: #d66c9a none repeat scroll 0 0"><img alt="" src="resources/img/page1_icon3.png"></figure>
+              <div class="caption maxheight" style="height: 251px;"><div class="box_inner">
+                  <p class="text-center" style="margin-top: 0px;font-weight: normal;font-size: 22px;border-bottom: 1px solid #cfcfcf;">NEW SERVICES</p>
+                  <p>Bertarsa atunteger rutrum losasjha vertyua hatsfasera.Bsey yoleacnrit ma hasesera deyuas lety mert betyudes. Cum socis natoqu eagnis dulmuese ugiata lesuada lecenas.</p>
+                  <a href="#"><img alt="" src="img/arrow.png"></a>
+              </div></div>
+          </div>
+	</div>
+	
+	<div class="col-md-2 col-sm-6  col-xs-6">
+		<div class="thumbnail">
+              <figure style="background: #b1c77a none repeat scroll 0 0"><img alt="" src="resources/img/page1_icon4.png"></figure>
+              <div class="caption maxheight" style="height: 251px;"><div class="box_inner">
+                  <p class="text-center" style="margin-top: 0px;font-weight: normal;font-size: 22px;border-bottom: 1px solid #cfcfcf;">PRO MANAGEMENT</p>
+                  <p>Bertarsa atunteger rutrum losasjha vertyua hatsfasera.Bsey yoleacnrit ma hasesera deyuas lety mert betyudes. Cum socis natoqu eagnis dulmuese ugiata lesuada lecenas.</p>
+                  <a href="#"><img alt="" src="img/arrow.png"></a>
+              </div></div>
+          </div>
+	</div>
+	</div>
+	
+	
+  	<div class="row">
+  	<div class="col-md-2"></div>
   	
+  	
+  	</div>
   	
 
 		
