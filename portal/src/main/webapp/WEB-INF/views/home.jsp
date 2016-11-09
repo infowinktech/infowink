@@ -243,7 +243,7 @@ $(document).ready(function() {
   	
   	</div>
   	
-<div class="row">
+<div class="row" style="background-color: #f8f8f8;">
 <div class="col-md-2"></div>
 <div class="col-md-8">
 <h3>Our Clients</h3>
