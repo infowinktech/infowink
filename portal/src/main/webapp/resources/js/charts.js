@@ -19,7 +19,7 @@
 
                 var options = {
                         chart: {
-                          title: 'Team Consultants | Solution for your IT needs',
+                          title: 'Vensa Technologies | Solution for your IT needs',
                           subtitle: 'Jobs available',
                         },
                         bars: 'horizontal',
@@ -45,7 +45,7 @@
 
               var options = {
                 chart: {
-                  title: 'Team Consultants | Solution for your IT needs',
+                  title: 'Vensa Technologies | Solution for your IT needs',
                   subtitle: 'Job applications received for last 4 months',
                 },
                 bars: 'vertical',

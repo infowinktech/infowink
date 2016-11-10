@@ -11,7 +11,7 @@
 	rel='stylesheet' type='text/css'>
 <script src="resources/js/jquery.min.js"></script>
 <link rel="stylesheet" href="resources/css/custom.css">
-<title>Team Consultants | Solution for your IT needs</title>
+<title>Vensa Technologies | Solution for your IT needs</title>
 </head>
 <body>
 
@@ -44,15 +44,6 @@
 				 
 		</div>
 		<div class="col-sm-3" >
-			<h3>Tech Partners</h3>
-			<div class="card">
-				  <img class="card-img-top" src="resources/img/partners.png" alt="Card image cap" class="thumbnail" height="220px" width="100%">
-				</div>
-			<h4 class="text-center" style="font-weight:600;">NAICS CODES</h4>
-			<p class="text-center" style="font-weight: 600; margin-bottom: 0px;">238210 &nbsp; 541511</p>
-			<p class="text-center" style="font-weight: 600; margin-bottom: 0px;">541512 &nbsp; 541519</p>
-			<p class="text-center" style="font-weight: 600; margin-bottom: 0px;">611420 &nbsp; 811212</p>
-			<h5 class="text-center" style="font-weight:600;">MBE Certified</h5>
 		</div>
   	</div>
   	

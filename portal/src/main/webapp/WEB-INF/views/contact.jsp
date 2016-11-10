@@ -109,7 +109,7 @@ $(function() {
 	}	  
 });
 </script>
-<title>Team Consultants | Solution for your IT needs</title>
+<title>Vensa Technologies | Solution for your IT needs</title>
 </head>
 <body>
 
@@ -138,7 +138,7 @@ $(function() {
 		</div>
 		
 		<div class="col-sm-12 col-md-7">
-			<p>We appreciate your interest in Team Consultants and hope we can be of service to you. To learn more about Vensa Technologies and our services, please send us an e-mail at  hr@vensainc.com or call our toll free number (+1)-222-279-4923 . We look forward to hearing from you!</p>
+			<p>We appreciate your interest in Vensa Technologies and hope we can be of service to you. To learn more about Vensa Technologies and our services, please send us an e-mail at  hr@vensainc.com or call our toll free number (+1)-222-279-4923 . We look forward to hearing from you!</p>
 			
 			<h3>Send us a message!</h3>
 			<form role="form" id="contactFormID">

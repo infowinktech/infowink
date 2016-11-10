@@ -218,7 +218,7 @@ $(document).ready(function() {
       	<img src="resources/img/thm1.png" alt="...">
 	      <div class="caption">
 	        <h3>Experience</h3>
-	        <p>What sets Team Consultants apart is not only our commitment to our clients, but a commitment to every aspect of our business, our employees, and our community.</p>
+	        <p>What sets Vensa Technologies apart is not only our commitment to our clients, but a commitment to every aspect of our business, our employees, and our community.</p>
 	      </div>
     	</div>
 	</div>

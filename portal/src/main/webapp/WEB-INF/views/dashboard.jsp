@@ -48,7 +48,7 @@ $(document).ready(function() {
 });
 
 </script>
-<title>Team Consultants | Solution for your IT needs</title>
+<title>Vensa Technologies | Solution for your IT needs</title>
 </head>
 <body style="background-color: #f7f7f7;">
 
