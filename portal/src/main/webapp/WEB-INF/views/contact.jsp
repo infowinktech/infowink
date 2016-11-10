@@ -11,7 +11,18 @@
 	rel='stylesheet' type='text/css'>
 <script src="resources/js/jquery.min.js"></script>
 <link rel="stylesheet" href="resources/css/custom.css">
-
+<style type="text/css">
+address {
+    font-style: normal;
+    line-height: 1.42857;
+    margin-bottom: 20px;
+}
+address p {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 7px;
+    padding:10px;
+}
+</style>
 <script type="text/javascript">
 $(function() {
 	console.log("ready");
@@ -109,10 +120,25 @@ $(function() {
 	<div class="container" style="margin-top: 80px;">
 	
 	<div class="row">
+		<div class="col-sm-12 col-md-5">
+			<h3>Contact us!</h3>		
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-12 col-md-5">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m10!1m3!1d47400.584644547016!2d-88.03659293739834!3d42.053117576521885!2m1!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3d5c112988b2288f!2sRegus+Rolling+Meadows!5e0!3m2!1sen!2sin!4v1478777471958" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+			
+			<address>
+                            <p><i class="fa fa-map-marker fa-lg" style="color: #18bc9c;"></i> &nbsp;1600 Golf Road,Corporate Center, Suite 1200, Rolling Meadows, IL 60008,US</p>
+                            <p><i class="fa fa-phone fa-lg" style="color: #18bc9c;"></i> &nbsp;(+1)-222-279-4923</p>
+                            <p><i class="fa fa-envelope fa-lg" style="color: #18bc9c;"></i> &nbsp;hr@vensainc.com</p>
+                            
+            </address>
+		</div>
 		
-    	<div class="col-sm-9" style="border-right: 1px solid #e0e0e0;">
-			<h3>Contact us!</h3>
-			<p>We appreciate your interest in Team Consultants and hope we can be of service to you. To learn more about Team Consultants and our services, please send us an e-mail at info@teamjamano.com or call our toll free number 1-888-732-4402 . We look forward to hearing from you!</p>
+		<div class="col-sm-12 col-md-7">
+			<p>We appreciate your interest in Team Consultants and hope we can be of service to you. To learn more about Vensa Technologies and our services, please send us an e-mail at  hr@vensainc.com or call our toll free number (+1)-222-279-4923 . We look forward to hearing from you!</p>
 			
 			<h3>Send us a message!</h3>
 			<form role="form" id="contactFormID">
@@ -148,35 +174,13 @@ $(function() {
 						<img alt="" src="resources/img/loading.gif" style="height: 40px;display:none;" id="loadingID1">
 						
 					</form>			
-				 
 		</div>
-		<div class="col-sm-3" >
-			<h3>Tech Partners</h3>
-			<div class="card">
-				  <img class="card-img-top" src="resources/img/partners.png" alt="Card image cap" class="thumbnail" height="220px" width="100%">
-				</div>
-			<h4 class="text-center" style="font-weight:600;">NAICS CODES</h4>
-			<p class="text-center" style="font-weight: 600; margin-bottom: 0px;">238210 &nbsp; 541511</p>
-			<p class="text-center" style="font-weight: 600; margin-bottom: 0px;">541512 &nbsp; 541519</p>
-			<p class="text-center" style="font-weight: 600; margin-bottom: 0px;">611420 &nbsp; 811212</p>
-			<h5 class="text-center" style="font-weight:600;">MBE Certified</h5>
-			
-			<h3>To speak with someone immediately,call (toll-free)</h3>
-			<h3 class="glyphicon glyphicon-earphone">1-888-732-4402</h3>
-			<h4>5150 Crescent Oaks Dr.Madison, WI 53704</h4>  
-			
-		</div>
-  	</div>
+	</div>
+	
+	
   </div>
   		
-  		<div class="container">
-  			<div class="row">
-  				<div class="col-sm-12">
-  					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2982428.1535745636!2d-91.53643081908744!3d43.114443895118846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880656e81e3abac9%3A0xcc455b6e3f115aa!2s5150+Crescent+Oaks+Dr%2C+Madison%2C+WI+53704%2C+USA!5e0!3m2!1sen!2sin!4v1473161261041" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-  				</div>
-  			</div>			
-  		</div>
-	
+  		
 	<jsp:include page="signin.jsp"></jsp:include>
 	<jsp:include page="footer.jsp"></jsp:include>
 	

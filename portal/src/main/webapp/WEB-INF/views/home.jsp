@@ -165,7 +165,7 @@ $(document).ready(function() {
               <div class="caption maxheight" style="height: 251px;"><div class="box_inner">
                   <p class="text-center" style="margin-top: 0px;font-weight: normal;font-size: 22px;border-bottom: 1px solid #cfcfcf;">GLOBAL RESEARCH</p>
                   <p>Bertarsa atunteger rutrum losasjha vertyua hatsfasera.Bsey yoleacnrit ma hasesera deyuas lety mert betyudes. Cum socis natoqu eagnis dulmuese ugiata lesuada lecenas.</p>
-                  <a href="#"><img alt="" src="img/arrow.png"></a>
+                  
               </div></div>
           </div>
 	</div>
@@ -176,7 +176,7 @@ $(document).ready(function() {
               <div class="caption maxheight" style="height: 251px;"><div class="box_inner">
                   <p class="text-center" style="margin-top: 0px;font-weight: normal;font-size: 22px;border-bottom: 1px solid #cfcfcf;">CREATIVE IDEAS</p>
                   <p>Bertarsa atunteger rutrum losasjha vertyua hatsfasera.Bsey yoleacnrit ma hasesera deyuas lety mert betyudes. Cum socis natoqu eagnis dulmuese ugiata lesuada lecenas.</p>
-                  <a href="#"><img alt="" src="img/arrow.png"></a>
+                  
               </div></div>
           </div>
 	</div>
@@ -187,7 +187,7 @@ $(document).ready(function() {
               <div class="caption maxheight" style="height: 251px;"><div class="box_inner">
                   <p class="text-center" style="margin-top: 0px;font-weight: normal;font-size: 22px;border-bottom: 1px solid #cfcfcf;">NEW SERVICES</p>
                   <p>Bertarsa atunteger rutrum losasjha vertyua hatsfasera.Bsey yoleacnrit ma hasesera deyuas lety mert betyudes. Cum socis natoqu eagnis dulmuese ugiata lesuada lecenas.</p>
-                  <a href="#"><img alt="" src="img/arrow.png"></a>
+                  
               </div></div>
           </div>
 	</div>
@@ -198,7 +198,7 @@ $(document).ready(function() {
               <div class="caption maxheight" style="height: 251px;"><div class="box_inner">
                   <p class="text-center" style="margin-top: 0px;font-weight: normal;font-size: 22px;border-bottom: 1px solid #cfcfcf;">PRO MANAGEMENT</p>
                   <p>Bertarsa atunteger rutrum losasjha vertyua hatsfasera.Bsey yoleacnrit ma hasesera deyuas lety mert betyudes. Cum socis natoqu eagnis dulmuese ugiata lesuada lecenas.</p>
-                  <a href="#"><img alt="" src="img/arrow.png"></a>
+                  
               </div></div>
           </div>
 	</div>
