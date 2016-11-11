@@ -33,7 +33,7 @@ code {
 			
 				<div class="col-md-4">
 					<h4>About Us</h4>
-					<p>TEAM Consultants is a national provider of technology
+					<p>Vensa Technologies is a national provider of technology
 						resource solutions to small and mid-size companies including
 						sourcing for federal and state agencies. From single development
 						resource needs to staffing entire project teams.</p>
