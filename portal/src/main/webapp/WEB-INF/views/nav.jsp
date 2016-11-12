@@ -16,6 +16,18 @@
 .navbar-brand {
     font-size: 20px;
 }
+
+
+.navbar-brand {
+  padding: 0px;
+}
+.navbar-brand>img {
+  height: 120%;
+  padding: 15px;
+  padding-top:0px;
+  width: auto;
+}
+
 </style>
 
 
@@ -50,8 +62,9 @@
 				</button>
 
 				<a class="navbar-brand" href="home">
-				 <b>Vensa</b> Technologies
+				 <img src="resources/img/logo.png">
 				</a>
+				<h4 class="navbar-text" style="margin-left: 0px;">Vensa Technologies</h4>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
