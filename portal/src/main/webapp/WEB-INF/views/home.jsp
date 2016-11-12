@@ -164,7 +164,9 @@ $(document).ready(function() {
               <figure style="background: #f1bb40 none repeat scroll 0 0;"><img alt="" src="resources/img/page1_icon1.png"></figure>
               <div class="caption maxheight" style="height: 251px;"><div class="box_inner">
                   <p class="text-center" style="margin-top: 0px;font-weight: normal;font-size: 22px;border-bottom: 1px solid #cfcfcf;">GLOBAL RESEARCH</p>
-                  <p>Bertarsa atunteger rutrum losasjha vertyua hatsfasera.Bsey yoleacnrit ma hasesera deyuas lety mert betyudes. Cum socis natoqu eagnis dulmuese ugiata lesuada lecenas.</p>
+                  <p>
+Big data and advanced analytics are creating profound new opportunities for businesses, yet we found that only 4% of companies are able to combine the right people, tools, data and organizational focus to take advantage.
+</p>
                   
               </div></div>
           </div>
@@ -175,7 +177,7 @@ $(document).ready(function() {
               <figure style="background: #01a89e none repeat scroll 0 0"><img alt="" src="resources/img/page1_icon2.png"></figure>
               <div class="caption maxheight" style="height: 251px;"><div class="box_inner">
                   <p class="text-center" style="margin-top: 0px;font-weight: normal;font-size: 22px;border-bottom: 1px solid #cfcfcf;">CREATIVE IDEAS</p>
-                  <p>Bertarsa atunteger rutrum losasjha vertyua hatsfasera.Bsey yoleacnrit ma hasesera deyuas lety mert betyudes. Cum socis natoqu eagnis dulmuese ugiata lesuada lecenas.</p>
+                  <p>Too many companies leave money on the table in their core businesses. More than 80% of executives say they are not even close to achieving full potential in their core business. Our strategy consultants help companies find the untapped growth potential.</p>
                   
               </div></div>
           </div>
@@ -186,7 +188,7 @@ $(document).ready(function() {
               <figure style="background: #d66c9a none repeat scroll 0 0"><img alt="" src="resources/img/page1_icon3.png"></figure>
               <div class="caption maxheight" style="height: 251px;"><div class="box_inner">
                   <p class="text-center" style="margin-top: 0px;font-weight: normal;font-size: 22px;border-bottom: 1px solid #cfcfcf;">NEW SERVICES</p>
-                  <p>Bertarsa atunteger rutrum losasjha vertyua hatsfasera.Bsey yoleacnrit ma hasesera deyuas lety mert betyudes. Cum socis natoqu eagnis dulmuese ugiata lesuada lecenas.</p>
+                  <p>Customer-centric businesses build a virtuous cycle we call the customer wheel. We help companies at every stage of growth, developing custom solutions and collaborating with all levels of your business.</p>
                   
               </div></div>
           </div>
@@ -197,7 +199,9 @@ $(document).ready(function() {
               <figure style="background: #b1c77a none repeat scroll 0 0"><img alt="" src="resources/img/page1_icon4.png"></figure>
               <div class="caption maxheight" style="height: 251px;"><div class="box_inner">
                   <p class="text-center" style="margin-top: 0px;font-weight: normal;font-size: 22px;border-bottom: 1px solid #cfcfcf;">PRO MANAGEMENT</p>
-                  <p>Bertarsa atunteger rutrum losasjha vertyua hatsfasera.Bsey yoleacnrit ma hasesera deyuas lety mert betyudes. Cum socis natoqu eagnis dulmuese ugiata lesuada lecenas.</p>
+                  <p>
+We help businesses improve financial performance and make their organizations better places to work by ensuring the entire organization system is aligned and set up to deliver on the company's objectives.
+</p>
                   
               </div></div>
           </div>
