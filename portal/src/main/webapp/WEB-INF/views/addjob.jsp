@@ -11,12 +11,15 @@
 	rel='stylesheet' type='text/css'>
 <script src="resources/js/jquery.min.js"></script>
 <link rel="stylesheet" href="resources/css/custom.css">
-
+<link rel="stylesheet" href="resources/css/checkbox.css">
 <script src="resources/js/bootstrap-select.min.js"></script>
 <link rel="stylesheet" href="resources/css/bootstrap-select.min.css">
 
 <script type="text/javascript">
 $(document).ready(function() {
+
+
+	
 	$jobCategoryID = "";
 	$jobCodeID = "";
 	$jobTitleID = "";
@@ -40,7 +43,7 @@ $(document).ready(function() {
 		$jobCodeID=$('#jobCodeID').val();
 		$jobTitleID=$('#jobTitleID').val();
 		$jobLocationID=$('#jobLocationID').val();
-		$jobTypeID=$('#jobTypeID').val();
+		$jobTypeID=$("input[name=jobType]:checked").val();
 		$jobRequirementsID=$('#jobRequirementsID').val();
 		$jobDescriptionID=$('#jobDescriptionID').val();
 		$hoursID=$('#hoursID').val();
@@ -153,7 +156,41 @@ $(document).ready(function() {
 				  <div class="form-group">
 				    <label class="col-sm-3 control-label">Job Type</label>
 				    <div class="col-sm-9">
-				     	<input type="text" class="form-control input-sm"  placeholder="Job Type" name="jobType" id="jobTypeID">
+				     	<div class="radio col-sm-3">
+			          <label>
+			            <input type="radio" value="PART-TIME" name="jobType">
+			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+			            PART-TIME
+			          </label>
+		        </div>
+		        
+		        <div class="radio col-sm-3">
+			          <label>
+			            <input type="radio" value="CONTRACT" name="jobType">
+			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+			            CONTRACT
+			          </label>
+		        </div>
+		        
+		        
+		        
+		        <div class="radio col-sm-3">
+			          <label>
+			            <input type="radio" value="FULL-TIME" name="jobType">
+			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+			            FULL-TIME
+			          </label>
+		        </div>
+		        
+		        <div class="radio col-sm-3">
+			          <label>
+			            <input type="radio" value="PERMANENT" name="jobType">
+			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+			            PERMANENT
+			          </label>
+		        </div>
+		        
+		        
 				    </div>
 				  </div>
 				  

@@ -235,8 +235,8 @@ public class HomeController {
 			String jobLocation = request.getParameter("jobLocation");
 			String hours = request.getParameter("hours");
 			String rate = request.getParameter("rate");
-			
-			/*log.info("jobCode:"+jobCode);
+			/*
+			log.info("jobCode:"+jobCode);
 			log.info("jobCategory:"+jobCategory);
 			log.info("jobTitle:"+jobTitle);
 			log.info("jobRequirements:"+jobRequirements);
@@ -244,8 +244,8 @@ public class HomeController {
 			log.info("jobDescription:"+jobDescription);
 			log.info("jobLocation:"+jobLocation);
 			log.info("hours:"+hours);
-			log.info("rate:"+rate);
-			*/
+			log.info("rate:"+rate);*/
+			
 			Jobs jobs = new Jobs();
 			jobs.setJobStatus("OPEN");
 			jobs.setJobCategory(jobCategory);

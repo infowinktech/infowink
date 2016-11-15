@@ -11,7 +11,7 @@
 	rel='stylesheet' type='text/css'>
 <script src="resources/js/jquery.min.js"></script>
 <link rel="stylesheet" href="resources/css/custom.css">
-
+<link rel="stylesheet" href="resources/css/checkbox.css">
 <script src="resources/js/bootstrap-select.min.js"></script>
 <link rel="stylesheet" href="resources/css/bootstrap-select.min.css">
 
@@ -64,7 +64,9 @@ $(document).ready(function() {
 			$("#jobCodeID").val($(xml).find("jobCode").text());
 			$("#jobTitleID").val($(xml).find("jobTitle").text());
 			$("#jobLocationID").val($(xml).find("jobLocation").text());
-			$("#jobTypeID").val($(xml).find("jobType").text());
+			
+			$('input[name=jobType][value=' + $(xml).find("jobType").text() + ']').prop('checked',true)
+
 			$("#jobRequirementsID").val($(xml).find("jobRequirements").text());
 			$("#jobDescriptionID").val($(xml).find("jobDescription").text());
 			$("#rateID").val($(xml).find("rate").text());
@@ -99,7 +101,7 @@ $(document).ready(function() {
 		$jobCodeID=$('#jobCodeID').val();
 		$jobTitleID=$('#jobTitleID').val();
 		$jobLocationID=$('#jobLocationID').val();
-		$jobTypeID=$('#jobTypeID').val();
+		$jobTypeID=$("input[name=jobType]:checked").val();
 		$jobRequirementsID=$('#jobRequirementsID').val();
 		$jobDescriptionID=$('#jobDescriptionID').val();
 		$hoursID=$('#hoursID').val();
@@ -159,7 +161,7 @@ $(document).ready(function() {
 });
 </script>
 
-<title>Vensa Technologies | Solution for your IT needs</title>
+<title>Team Consultants | Solution for your IT needs</title>
 </head>
 <body>
 
@@ -208,10 +210,44 @@ $(document).ready(function() {
 				    </div>
 				  </div>
 				  
-				  <div class="form-group">
+				 <div class="form-group">
 				    <label class="col-sm-3 control-label">Job Type</label>
 				    <div class="col-sm-9">
-				     	<input type="text" class="form-control input-sm"  placeholder="Job Type" name="jobType" id="jobTypeID">
+				     	<div class="radio col-sm-3">
+			          <label>
+			            <input type="radio" value="PART-TIME" name="jobType">
+			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+			            PART-TIME
+			          </label>
+		        </div>
+		        
+		        <div class="radio col-sm-3">
+			          <label>
+			            <input type="radio" value="CONTRACT" name="jobType">
+			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+			            CONTRACT
+			          </label>
+		        </div>
+		        
+		        
+		        
+		        <div class="radio col-sm-3">
+			          <label>
+			            <input type="radio" value="FULL-TIME" name="jobType">
+			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+			            FULL-TIME
+			          </label>
+		        </div>
+		        
+		        <div class="radio col-sm-3">
+			          <label>
+			            <input type="radio" value="PERMANENT" name="jobType">
+			            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+			            PERMANENT
+			          </label>
+		        </div>
+		        
+		        
 				    </div>
 				  </div>
 				  
