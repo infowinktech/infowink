@@ -25,8 +25,7 @@ public class MailUtility {
 	public static void main(String [] args){/*
 		FileUtility fu = new FileUtility();
 		String body = fu.readFile("C:\\mail.html");
-		String to = "knrao75@gmail.com";
-		String from = "no-reply@in.bosch.com";
+		//
 		String subject = "Test Mail";
 		send(from, to, subject, body, new ArrayList<String>(), new ArrayList<String>());
 	*/}
