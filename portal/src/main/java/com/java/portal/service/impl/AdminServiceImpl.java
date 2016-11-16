@@ -1024,7 +1024,7 @@ public class AdminServiceImpl implements AdminService {
 					body = body.replace("TC_USER_NAME", user.getEmail());
 					body = body.replace("TC_PASSWORD", tempPassword);
 					String to = user.getEmail();
-					String from = "no-reply@in.bosch.com";
+					String from = "";
 					String subject = "Team Consultants - Reset Password";
 					log.info("sending mail....");
 					mail.send(from, to, subject, body, new ArrayList<String>(), new ArrayList<String>());

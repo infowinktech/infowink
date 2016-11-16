@@ -58,7 +58,7 @@ public class MailUtility {
 		  	  }
 	          message.setSubject(subject);
 	          Multipart mp = new MimeMultipart();
-	          //Building Body
+	          //Building Body 
 	          MimeBodyPart htmlPart = new MimeBodyPart();
 	          htmlPart.setContent(body, "text/html");
 	          mp.addBodyPart(htmlPart);
