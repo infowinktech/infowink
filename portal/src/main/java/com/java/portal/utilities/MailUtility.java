@@ -26,7 +26,7 @@ public class MailUtility {
 		FileUtility fu = new FileUtility();
 		String body = fu.readFile("C:\\mail.html");
 		String to = "knrao75@gmail.com";
-		String from = "no-reply@in.bosch.com";
+		
 		String subject = "Test Mail";
 		send(from, to, subject, body, new ArrayList<String>(), new ArrayList<String>());
 	*/}
@@ -40,7 +40,7 @@ public class MailUtility {
 	          InternetAddress toAddress;
 	          Properties properties;
 	          properties  = new Properties();
-	          properties.put("mail.smtp.host", "rb-smtp-int.bosch.com");
+	          properties.put("mail.smtp.host", "XXXXXX");
  
 	          session = Session.getInstance(properties, null);
 	          message  =   new MimeMessage(session);
@@ -63,13 +63,6 @@ public class MailUtility {
 	          htmlPart.setContent(body, "text/html");
 	          mp.addBodyPart(htmlPart);
 	          
-	          /*//Attaching files if any
-	          BodyPart messageBodyPart = new MimeBodyPart();
-	          String filename = "C:/request.html";
-	          DataSource source = new FileDataSource(filename);
-	          messageBodyPart.setDataHandler(new DataHandler(source));
-	          messageBodyPart.setFileName(filename);
-	          mp.addBodyPart(messageBodyPart);*/
 	          message.setContent(mp);
 	          Transport.send(message);
 	          log.info("mail sent");
